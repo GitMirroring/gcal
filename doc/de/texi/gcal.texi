@@ -52,7 +52,6 @@
 @settitle Gcal @value{GCAL-VERSION}
 @c
 @setchapternewpage odd
-@setshortcontentsaftertitlepage
 @paragraphindent 0
 @footnotestyle separate
 @c @smallbook

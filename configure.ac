@@ -773,7 +773,7 @@ AC_OUTPUT([Makefile \
            misc/srss/srss \
            misc/wloc/wlocdrv \
            po/Makefile.in \
-           src/Makefile])dnl
+           src/Makefile])
 
 dnl
 dnl Emit some final text.

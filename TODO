@@ -2,6 +2,8 @@ TODO file for Gcal.
 
 Planned features:
 
+   * take care of warnings during bootstrap and autoreconf
+
    * Create XML output (high priority).
 
    * Create more wrapper scripts which produce diverse sheets using
@@ -26,6 +28,16 @@ Planned features:
    * Support systems with Terminfo and without Termcap (low priority).
 
 Nothing else to do actually, do *you* see anything missing?
+
+I am not sure whether everything can be implemented, but here are the
+ideas from older bug reports:
+
+   * multi-year event
+     https://lists.gnu.org/archive/html/bug-gcal/2019-12/msg00000.html
+   * country specific overall holiday list
+     https://lists.gnu.org/archive/html/bug-gcal/2020-09/msg00001.html
+   * continous yearly planner calendar
+     https://lists.gnu.org/archive/html/bug-gcal/2020-11/msg00000.html
 
 Please send comments to my postal or electronic mail address.
 

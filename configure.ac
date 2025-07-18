@@ -268,15 +268,15 @@ dnl
 AC_PROG_LN_S
 
 
-dnl
-AC_PROG_GCC_TRADITIONAL
-dnl
-dnl Set some warning flags in CFLAGS if this environment variable was either
-dnl undefined or not set before previous COMPILER test, and `gcc' is found.
-dnl
-if test "$gcal_possibly_adjust_cflags" = yes && test -n "$GCC"; then
-  CFLAGS="$CFLAGS -Wall"
-fi
+dnl dnl
+dnl AC_XXX_PROG_GCC_TRADITIONAL
+dnl dnl
+dnl dnl Set some warning flags in CFLAGS if this environment variable was either
+dnl dnl undefined or not set before previous COMPILER test, and `gcc' is found.
+dnl dnl
+dnl if test "$gcal_possibly_adjust_cflags" = yes && test -n "$GCC"; then
+dnl   CFLAGS="$CFLAGS -Wall"
+dnl fi
 
 dnl
 dnl Checks for operating system variants.

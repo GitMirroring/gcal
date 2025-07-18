@@ -4187,6 +4187,9 @@ cz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
    */
   holiday (*init_data, detected, _(hd_text[HD_NEW_YEARS_DAY].ht_text),
 	   ptr_cc_id, "+", 1, 1, year, hd_elems, fday, count);
+  if (year >= 2016)
+    holiday (*init_data, detected, _(hd_text[HD_GOOD_FRIDAY].ht_text),
+        ptr_cc_id, "+", easter - 2, 0, year, hd_elems, fday, count);
   holiday (*init_data, detected, _(hd_text[HD_EASTER_MONDAY].ht_text),
 	   ptr_cc_id, "+", easter + 1, 0, year, hd_elems, fday, count);
   holiday (*init_data, detected, _(hd_text[HD_EASTER_SUNDAY].ht_text),

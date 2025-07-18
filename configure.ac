@@ -25,8 +25,10 @@ dnl
 dnl Starting operations.
 dnl
 
-AC_INIT([gcal],[m4_esyscmd(build-aux/git-version-gen .tarball-version)],[bug-gcal@gnu.org])
-AC_PREREQ([2.71])
+AC_INIT([gcal],
+        m4_esyscmd([build-aux/git-version-gen .tarball-version]),
+        [bug-gcal@gnu.org])
+AC_PREREQ(2.65)
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -57,7 +59,7 @@ if test -z "$CFLAGS"; then
   gcal_possibly_adjust_cflags=yes
 fi
 AC_MSG_RESULT()
-AS_MESSAGE([checking for C compiler...])
+AC_CHECKING(for C compiler)
 dnl
 AC_PROG_CC
 AM_PROG_CC_C_O
@@ -81,7 +83,7 @@ dnl
 dnl Checks for Gcal specific package options.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for $PACKAGE specific package options...])
+AC_CHECKING(for $PACKAGE specific package options)
 dnl
 AC_MSG_CHECKING(whether unicode support is required)
 AC_ARG_ENABLE(unicode,
@@ -159,7 +161,7 @@ dnl
 dnl Checks for programs.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for programs...])
+AC_CHECKING(for programs)
 dnl
 dnl Checks for make.
 dnl
@@ -280,17 +282,17 @@ dnl
 dnl Checks for operating system variants.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for operating system variants...])
+AC_CHECKING(for operating system variants)
 dnl
-AC_USE_SYSTEM_EXTENSIONS
-AC_USE_SYSTEM_EXTENSIONS
-AC_SEARCH_LIBS([strerror],[cposix])
+AC_AIX
+AC_MINIX
+AC_ISC_POSIX
 
 dnl
 dnl Checks for libraries.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for libraries...])
+AC_CHECKING(for libraries)
 dnl
 dnl Checks for terminal libraries.
 dnl
@@ -317,7 +319,9 @@ if test "$gcal_cv_use_term" = yes; then
   AC_MSG_CHECKING(for working terminal libraries)
   SAVE_LIBS=$LIBS
   LIBS="$LIBS $TTYLIBS"
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_ttylibs_ok=yes],[])
+  AC_TRY_LINK(,
+    [tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);],
+    [gcal_ttylibs_ok=yes])
   if test "$gcal_ttylibs_ok" = yes; then
     AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
     AC_MSG_RESULT(using $TTYLIBS)
@@ -330,7 +334,9 @@ if test "$gcal_cv_use_term" = yes; then
         [TTYLIBS="-ltermcap"])
       AC_MSG_CHECKING(for working terminal libraries again)
       LIBS="$LIBS $TTYLIBS"
-      AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_ttylibs_ok=yes],[])
+      AC_TRY_LINK(,
+        [tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);],
+        [gcal_ttylibs_ok=yes])
       if test "$gcal_ttylibs_ok" = yes; then
         AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
         AC_MSG_RESULT(using $TTYLIBS)
@@ -345,7 +351,9 @@ if test "$gcal_cv_use_term" = yes; then
         LIBS="$LIBS $TTYLIBS"
         if test "$have_libtermlib" = yes; then
           AC_MSG_CHECKING(for working terminal libraries again)
-          AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_libtermlib_ok=yes],[])
+          AC_TRY_LINK(,
+            [tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);],
+            [gcal_libtermlib_ok=yes])
           if test "$gcal_libtermlib_ok" = yes; then
             AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
             AC_MSG_RESULT(using $TTYLIBS)
@@ -356,7 +364,9 @@ if test "$gcal_cv_use_term" = yes; then
       if test "$have_libtermlib" = yes; then
         TTYLIBS="-ltermlib"
         LIBS="$SAVE_LIBS $TTYLIBS"
-        AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_libtermlib_ok=yes],[])
+        AC_TRY_LINK(,
+          [tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);],
+          [gcal_libtermlib_ok=yes])
         if test "$gcal_libtermlib_ok" = yes; then
             AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
           AC_MSG_RESULT(using $TTYLIBS)
@@ -393,25 +403,17 @@ dnl
 dnl Checks for header files.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for header files...])
+AC_CHECKING(for header files)
 dnl
-m4_warn([obsolete],
-[The preprocessor macro `STDC_HEADERS' is obsolete.
-  Except in unusual embedded environments, you can safely include all
-  ISO C90 headers unconditionally.])dnl
-# Autoupdate added the next two lines to ensure that your configure
-# script's behavior did not change.  They are probably safe to remove.
-AC_CHECK_INCLUDES_DEFAULT
-AC_PROG_EGREP
-
+AC_STDC_HEADERS
 AC_CHECK_HEADERS(stdio.h stdlib.h string.h unistd.h ctype.h errno.h limits.h)
 AC_CHECK_HEADERS(assert.h signal.h termio.h termios.h sgtty.h langinfo.h)
 
 AC_MSG_CHECKING([for _NL_TIME_FIRST_WEEKDAY])
-AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <langinfo.h>]], [[
+AC_TRY_LINK([#include <langinfo.h>], [
 char c;
 c = *((unsigned char *) nl_langinfo(_NL_TIME_FIRST_WEEKDAY));
-]])],[nl_res=yes],[nl_res=no])
+], nl_res=yes, nl_res=no)
 AC_MSG_RESULT($nl_res)
 if test "$nl_res" = "yes"; then
 AC_DEFINE([HAVE__NL_TIME_FIRST_WEEKDAY], [1],
@@ -439,41 +441,16 @@ dnl
 dnl Checks for typedefs and structures.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for typedefs and structures...])
+AC_CHECKING(for typedefs and structures)
 dnl
 if test "$gcal_cv_use_pager" = yes; then
   AC_TYPE_PID_T
 fi
-m4_warn([obsolete],
-[your code may safely assume C89 semantics that RETSIGTYPE is void.
-Remove this warning and the `AC_CACHE_CHECK' when you adjust the code.])dnl
-AC_CACHE_CHECK([return type of signal handlers],[ac_cv_type_signal],[AC_COMPILE_IFELSE(
-[AC_LANG_PROGRAM([#include <sys/types.h>
-#include <signal.h>
-],
-		 [return *(signal (0, 0)) (0) == 1;])],
-		   [ac_cv_type_signal=int],
-		   [ac_cv_type_signal=void])])
-AC_DEFINE_UNQUOTED([RETSIGTYPE],[$ac_cv_type_signal],[Define as the return type of signal handlers
-		    (`int' or `void').])
-
-m4_warn([obsolete],
-[Update your code to rely only on HAVE_SYS_TIME_H,
-then remove this warning and the obsolete code below it.
-All current systems provide time.h; it need not be checked for.
-Not all systems provide sys/time.h, but those that do, all allow
-you to include it and time.h simultaneously.])dnl
-AC_CHECK_HEADERS_ONCE([sys/time.h])
-# Obsolete code to be removed.
-if test $ac_cv_header_sys_time_h = yes; then
-  AC_DEFINE([TIME_WITH_SYS_TIME],[1],[Define to 1 if you can safely include both <sys/time.h>
-	     and <time.h>.  This macro is obsolete.])
-fi
-# End of obsolete code.
-
+AC_TYPE_SIGNAL
+AC_HEADER_TIME
 AC_MSG_CHECKING(for time_t)
 AC_CACHE_VAL(gcal_cv_type_time_t,
-  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_COMPILE([
 #    if TIME_WITH_SYS_TIME
 #      include <sys/time.h>
 #      include <time.h>
@@ -483,7 +460,10 @@ AC_CACHE_VAL(gcal_cv_type_time_t,
 #      else
 #        include <time.h>
 #      endif
-#    endif]], [[time_t t = 0;]])],[gcal_cv_type_time_t=yes],[gcal_cv_type_time_t=no]))
+#    endif],
+    [time_t t = 0;],
+    [gcal_cv_type_time_t=yes],
+    [gcal_cv_type_time_t=no]))
 if test "$gcal_cv_type_time_t" = yes; then
   AC_DEFINE([HAVE_TIME_T], [1], [Type time_t is predefined.])
 fi
@@ -493,13 +473,16 @@ dnl
 dnl Checks for compiler characteristics.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for compiler characteristics...])
+AC_CHECKING(for compiler characteristics)
 dnl
 AC_C_CONST
 dnl
 AC_MSG_CHECKING(for void)
 AC_CACHE_VAL(gcal_cv_c_void,
-  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[void *foo = 0;]])],[gcal_cv_c_void=yes],[gcal_cv_c_void=no]))
+  AC_TRY_COMPILE(,
+    [void *foo = 0;],
+    [gcal_cv_c_void=yes],
+    [gcal_cv_c_void=no]))
 if test "$gcal_cv_c_void" = yes; then
   AC_DEFINE([HAVE_VOID], [1], [Identifier void exists.])
 fi
@@ -509,7 +492,7 @@ dnl
 dnl Checks for library functions.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for library functions...])
+AC_CHECKING(for library functions)
 dnl
 if test "$gcal_cv_use_pager" = yes; then
   AC_CHECK_FUNCS([dup dup2])
@@ -524,7 +507,7 @@ dnl Check for working system() function.
 dnl
 AC_MSG_CHECKING(for working system function)
 AC_CACHE_VAL(gcal_cv_func_system_ok,
-  AC_RUN_IFELSE([AC_LANG_SOURCE([[
+  AC_TRY_RUN([
 #    if STDC_HEADERS
 #      include <stdlib.h>
 #    endif
@@ -535,7 +518,10 @@ AC_CACHE_VAL(gcal_cv_func_system_ok,
       if (!i)
         exit(1);
       exit(0);
-    }]])],[gcal_cv_func_system_ok=yes],[gcal_cv_func_system_ok=no],[gcal_cv_func_system_ok=no]))
+    }],
+    gcal_cv_func_system_ok=yes,
+    gcal_cv_func_system_ok=no,
+    gcal_cv_func_system_ok=no))
 AC_MSG_RESULT($gcal_cv_func_system_ok)
 if test "$gcal_cv_func_system_ok" = yes; then
   AC_DEFINE([HAVE_SYSTEM], [1], [Define if you have a working system function])
@@ -546,7 +532,7 @@ if test "$gcal_cv_use_included_regexps" = no; then
   dnl
   have_regexp=no
   AC_MSG_RESULT()
-  AS_MESSAGE([checking for regular expression functions...])
+  AC_CHECKING(for regular expression functions)
   dnl
   dnl Are the preferred GNU regexp functions available?
   dnl
@@ -560,7 +546,7 @@ if test "$gcal_cv_use_included_regexps" = no; then
     dnl Some versions of Solaris have a regcomp() function, but it doesn't work!
     dnl So we run a test program.  If we're cross-compiling, do it the old way.
     dnl
-    AC_RUN_IFELSE([AC_LANG_SOURCE([[
+    AC_TRY_RUN([
 #      if HAVE_SYS_TYPES_H
 #        include <sys/types.h>
 #      endif
@@ -576,23 +562,28 @@ if test "$gcal_cv_use_included_regexps" = no; then
         if (regexec(&r, "xabcy", 1, &rm, 0))
           exit(1);
         exit(0);
-      }]])],[have_posix_regexp=yes],[have_posix_regexp=no],[have_posix_regexp=unknown])
+      }],
+      have_posix_regexp=yes,
+      have_posix_regexp=no,
+      have_posix_regexp=unknown)
     if test "$have_posix_regexp" = yes; then
       AC_MSG_RESULT(using POSIX regcomp)
       AC_DEFINE([HAVE_POSIX_REGCOMP], [1], [POSIX regcomp() and regex.h])
       have_regexp=yes
     else
       if test "$have_posix_regexp" = unknown; then
-        AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+        AC_TRY_LINK([
 #          if HAVE_SYS_TYPES_H
 #            include <sys/types.h>
 #          endif
 #          if HAVE_REGEX_H
 #            include <regex.h>
-#          endif]], [[regex_t *r;
-           regfree(r);]])],[AC_MSG_RESULT(using POSIX regcomp)
-          AC_DEFINE(HAVE_POSIX_REGCOMP, 1, POSIX regcomp() and regex.)
-          have_regexp=yes],[])
+#          endif],
+          [regex_t *r;
+           regfree(r);],
+          AC_MSG_RESULT(using POSIX regcomp)
+          AC_DEFINE([HAVE_POSIX_REGCOMP], [1], [POSIX regcomp() and regex.])
+          have_regexp=yes)
       fi
     fi
     if test "$have_regexp" = no; then
@@ -607,14 +598,17 @@ dnl
 dnl Checks for ctype functions.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for ctype library functions...])
+AC_CHECKING(for ctype library functions)
 dnl
 AC_MSG_CHECKING(for upper/lower)
 AC_CACHE_VAL(gcal_cv_func_upper_lower,
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_LINK([
 #    if HAVE_CTYPE_H
 #      include <ctype.h>
-#    endif]], [[static int x; x = tolower(x); x = toupper(x); x = islower(x); x = isupper(x);]])],[gcal_cv_func_upper_lower=yes],[gcal_cv_func_upper_lower=no]))
+#    endif],
+    [static int x; x = tolower(x); x = toupper(x); x = islower(x); x = isupper(x);],
+    [gcal_cv_func_upper_lower=yes],
+    [gcal_cv_func_upper_lower=no]))
 if test "$gcal_cv_func_upper_lower" = yes; then
   AC_DEFINE([HAVE_UPPER_LOWER], [1], [Functions/macros toupper(), tolower(), isupper() and islower() are found.])
 fi
@@ -622,10 +616,13 @@ AC_MSG_RESULT($gcal_cv_func_upper_lower)
 dnl
 AC_MSG_CHECKING(for isdigit)
 AC_CACHE_VAL(gcal_cv_func_isdigit,
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_LINK([
 #    if HAVE_CTYPE_H
 #      include <ctype.h>
-#    endif]], [[static int x; x = isdigit(x);]])],[gcal_cv_func_isdigit=yes],[gcal_cv_func_isdigit=no]))
+#    endif],
+    [static int x; x = isdigit(x);],
+    [gcal_cv_func_isdigit=yes],
+    [gcal_cv_func_isdigit=no]))
 if test "$gcal_cv_func_isdigit" = yes; then
   AC_DEFINE([HAVE_ISDIGIT], [1], [Function/macro isdigit() is found.])
 fi
@@ -633,10 +630,13 @@ AC_MSG_RESULT($gcal_cv_func_isdigit)
 dnl
 AC_MSG_CHECKING(for isalpha)
 AC_CACHE_VAL(gcal_cv_func_isalpha,
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_LINK([
 #    if HAVE_CTYPE_H
 #      include <ctype.h>
-#    endif]], [[static int x; x = isalpha(x);]])],[gcal_cv_func_isalpha=yes],[gcal_cv_func_isalpha=no]))
+#    endif],
+    [static int x; x = isalpha(x);],
+    [gcal_cv_func_isalpha=yes],
+    [gcal_cv_func_isalpha=no]))
 if test "$gcal_cv_func_isalpha" = yes; then
   AC_DEFINE([HAVE_ISALPHA], [1], [Have isalpha])
 fi
@@ -644,10 +644,13 @@ AC_MSG_RESULT($gcal_cv_func_isalpha)
 dnl
 AC_MSG_CHECKING(for isalnum)
 AC_CACHE_VAL(gcal_cv_func_isalnum,
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_LINK([
 #    if HAVE_CTYPE_H
 #      include <ctype.h>
-#    endif]], [[static int x; x = isalnum(x);]])],[gcal_cv_func_isalnum=yes],[gcal_cv_func_isalnum=no]))
+#    endif],
+    [static int x; x = isalnum(x);],
+    [gcal_cv_func_isalnum=yes],
+    [gcal_cv_func_isalnum=no]))
 if test "$gcal_cv_func_isalnum" = yes; then
   AC_DEFINE([HAVE_ISALNUM], [1], [Have isalnum])
 fi
@@ -655,10 +658,13 @@ AC_MSG_RESULT($gcal_cv_func_isalnum)
 dnl
 AC_MSG_CHECKING(for isspace)
 AC_CACHE_VAL(gcal_cv_func_isspace,
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_TRY_LINK([
 #    if HAVE_CTYPE_H
 #      include <ctype.h>
-#    endif]], [[static int x; x = isspace(x);]])],[gcal_cv_func_isspace=yes],[gcal_cv_func_isspace=no]))
+#    endif],
+    [static int x; x = isspace(x);],
+    [gcal_cv_func_isspace=yes],
+    [gcal_cv_func_isspace=no]))
 if test "$gcal_cv_func_isspace" = yes; then
   AC_DEFINE([HAVE_ISSPACE], [1], [Have isspace])
 fi
@@ -670,11 +676,11 @@ dnl
 if test "$gcal_cv_use_term" = yes; then
   if test "$gcal_ttylibs_ok" = yes || test "$gcal_libtermlib_ok" = yes; then
     AC_MSG_RESULT()
-    AS_MESSAGE([checking for external variables...])
+    AC_CHECKING(for external variables)
     dnl
     AC_MSG_CHECKING(terminal library for ospeed)
     AC_CACHE_VAL(gcal_cv_var_ospeed_test_1,
-      AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+      AC_TRY_LINK([
 #        if HAVE_SYS_TYPES_H
 #          include <sys/types.h>
 #        endif
@@ -683,10 +689,16 @@ if test "$gcal_cv_use_term" = yes; then
 #        endif
 #        if HAVE_TERMCAP_H
 #          include <termcap.h>
-#        endif]], [[ospeed = 0;]])],[gcal_cv_var_ospeed_test_1=yes],[gcal_cv_var_ospeed_test_1=no]))
+#        endif],
+        [ospeed = 0;],
+        [gcal_cv_var_ospeed_test_1=yes],
+        [gcal_cv_var_ospeed_test_1=no]))
     if test "$gcal_cv_var_ospeed_test_1" = no; then
       AC_CACHE_VAL(gcal_cv_var_ospeed_test_2,
-        AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[extern short ospeed; ospeed = 0;]])],[gcal_cv_var_ospeed_test_2=yes],[gcal_cv_var_ospeed_test_2=no]))
+        AC_TRY_LINK(,
+          [extern short ospeed; ospeed = 0;],
+          [gcal_cv_var_ospeed_test_2=yes],
+          [gcal_cv_var_ospeed_test_2=no]))
     fi
     if test "$gcal_cv_var_ospeed_test_1" = yes || test "$gcal_cv_var_ospeed_test_2" = yes; then
       AC_DEFINE([HAVE_OSPEED], [1], [The ospeed variable is defined in -lncurses or -ltermcap or -ltermlib])
@@ -704,7 +716,7 @@ dnl
 dnl Checks for system services.
 dnl
 AC_MSG_RESULT()
-AS_MESSAGE([checking for system services...])
+AC_CHECKING(for system services)
 dnl
 AC_EXEEXT
 AC_OBJEXT
@@ -741,7 +753,7 @@ AC_MSG_RESULT()
 
 AC_CONFIG_HEADERS([config.h])
 
-AC_CONFIG_FILES([Makefile \
+AC_OUTPUT([Makefile \
            install-inf \
            data/Makefile \
            doc/Makefile \
@@ -761,8 +773,7 @@ AC_CONFIG_FILES([Makefile \
            misc/srss/srss \
            misc/wloc/wlocdrv \
            po/Makefile.in \
-           src/Makefile])
-AC_OUTPUTdnl
+           src/Makefile])dnl
 
 dnl
 dnl Emit some final text.

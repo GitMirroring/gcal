@@ -10,7 +10,7 @@
 lib/error.c
 lib/regcomp.c
 lib/spawn-pipe.c
-lib/w32spawn.h
+lib/windows-spawn.h
 lib/wait-process.c
 lib/xalloc-die.c
 src/file-io.c

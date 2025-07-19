@@ -4164,26 +4164,26 @@ cz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
    * I've tried to capture the somewhat complex evolution of the Czech holidays,
    * but so far I have only a little information on the state before year 1975,
    * so if you know more, please let me know.
-   *                           Martin Mares <mj@ucw.cz>, September 2003
+   *                           Martin Mares <mj@ucw.cz>, December 2023
    *
    * This is a brief sketch of the history:
    *
-   * Law:              56/75   141/88  167/90  204/90  218/91  245/00
-   * Effective:        23.6.75 21.9.88 10.5.90 18.5.90 31.5.91 9.8.00
-   *  1. 1.            +       +       +       +       +       +
-   *  Easter           +       +       +       +       +       +
-   *  1. 5.            +       +       +       +       +       +
-   *  5. 5.
-   *  8. 5.                                            +       +
+   * Law:              56/75   141/88  167/90  204/90  218/91  245/00 359/2015
+   * Effective:        23.6.75 21.9.88 10.5.90 18.5.90 31.5.91 9.8.00 21.12.15
+   *  1. 1.            +       +       +       +       +       +      +
+   *  Good Friday                                                     +
+   *  Easter           +       +       +       +       +       +      +
+   *  1. 5.            +       +       +       +       +       +      +
+   *  8. 5.                                            +       +      +
    *  9. 5.            +       +       +       +
-   *  5. 7.                            +       +       +       +
-   *  6. 7.                                    +       +       +
-   * 28. 9.                                                    +
-   * 28.10.                    +       +       +       +       +
-   * 17.11.                                                    +
-   * 24.12.                            +       +       +       +
-   * 25.12.            +       +       +       +       +       +
-   * 26.12.            +       +       +       +       +       +
+   *  5. 7.                            +       +       +       +      +
+   *  6. 7.                                    +       +       +      +
+   * 28. 9.                                                    +      +
+   * 28.10.                    +       +       +       +       +      +
+   * 17.11.                                                    +      +
+   * 24.12.                            +       +       +       +      +
+   * 25.12.            +       +       +       +       +       +      +
+   * 26.12.            +       +       +       +       +       +      +
    */
   holiday (*init_data, detected, _(hd_text[HD_NEW_YEARS_DAY].ht_text),
 	   ptr_cc_id, "+", 1, 1, year, hd_elems, fday, count);

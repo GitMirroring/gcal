@@ -2569,6 +2569,9 @@ hu_hdy (init_data, detected, easter, year, hd_elems, fday, count)
   holiday (*init_data, detected, _(hd_text[HD_SYLVESTER].ht_text), ptr_cc_id,
 	   DIS_HLS_PREF, dvec[MONTH_MAX - 1], MONTH_MAX, year, hd_elems, fday,
 	   count);
+  if (year >= 2017)
+    holiday (*init_data, detected, _(hd_text[HD_GOOD_FRIDAY].ht_text),
+        ptr_cc_id, "+", easter - 2, 0, year, hd_elems, fday, count);
   if (year < 1990)
     {
       if (year > 1916)

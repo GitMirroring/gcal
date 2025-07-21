@@ -809,21 +809,21 @@ extern char *getenv __P_ ((const char *env_var));
 # endif
 # define SYEAR(gc_d, gc_s)  ( (  ((gc_d)-(gc_s)+1) < DAY_MIN) \
                                  ? ((gc_d)-(gc_s)+(DAY_MAX+1)) \
-                                 : ((gc_d)-(gc_s)+1)
+                                 : ((gc_d)-(gc_s)+1) \
                             )
 # ifdef SMONTH
 #  undef  SMONTH
 # endif
 # define SMONTH(gc_d, gc_s) ( (  ((gc_d)+(gc_s)-1) > MONTH_MAX) \
                                  ? ((gc_d)+(gc_s)-(MONTH_MAX+1)) \
-                                 : ((gc_d)+(gc_s)-1)
+                                 : ((gc_d)+(gc_s)-1) \
                             )
 # ifdef SDAY
 #  undef  SDAY
 # endif
 # define SDAY(gc_d, gc_s)   ( (  ((gc_d)+(gc_s)-1) > DAY_MAX) \
                                  ? ((gc_d)+(gc_s)-(DAY_MAX+1)) \
-                                 : ((gc_d)+(gc_s)-1)
+                                 : ((gc_d)+(gc_s)-1) \
                             )
 
 

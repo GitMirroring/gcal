@@ -317,7 +317,7 @@ if test "$gcal_cv_use_term" = yes; then
   AC_MSG_CHECKING(for working terminal libraries)
   SAVE_LIBS=$LIBS
   LIBS="$LIBS $TTYLIBS"
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_ttylibs_ok=yes],[])
+  AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <term.h>]], [[tgetent(0,0); tgetflag(0); tgetnum(0); tgetstr(0,0);]])],[gcal_ttylibs_ok=yes],[])
   if test "$gcal_ttylibs_ok" = yes; then
     AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
     AC_MSG_RESULT(using $TTYLIBS)
@@ -330,7 +330,7 @@ if test "$gcal_cv_use_term" = yes; then
         [TTYLIBS="-ltermcap"])
       AC_MSG_CHECKING(for working terminal libraries again)
       LIBS="$LIBS $TTYLIBS"
-      AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_ttylibs_ok=yes],[])
+      AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <term.h>]], [[tgetent(0,0); tgetflag(0); tgetnum(0); tgetstr(0,0);]])],[gcal_ttylibs_ok=yes],[])
       if test "$gcal_ttylibs_ok" = yes; then
         AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
         AC_MSG_RESULT(using $TTYLIBS)
@@ -345,7 +345,7 @@ if test "$gcal_cv_use_term" = yes; then
         LIBS="$LIBS $TTYLIBS"
         if test "$have_libtermlib" = yes; then
           AC_MSG_CHECKING(for working terminal libraries again)
-          AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_libtermlib_ok=yes],[])
+          AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <term.h>]], [[tgetent(0,0); tgetflag(0); tgetnum(0); tgetstr(0,0);]])],[gcal_libtermlib_ok=yes],[])
           if test "$gcal_libtermlib_ok" = yes; then
             AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
             AC_MSG_RESULT(using $TTYLIBS)
@@ -356,7 +356,7 @@ if test "$gcal_cv_use_term" = yes; then
       if test "$have_libtermlib" = yes; then
         TTYLIBS="-ltermlib"
         LIBS="$SAVE_LIBS $TTYLIBS"
-        AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[tgetent(0); tgetflag(0); tgetnum(0); tgetstr(0);]])],[gcal_libtermlib_ok=yes],[])
+        AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <term.h>]], [[tgetent(0,0); tgetflag(0); tgetnum(0); tgetstr(0,0);]])],[gcal_libtermlib_ok=yes],[])
         if test "$gcal_libtermlib_ok" = yes; then
             AC_DEFINE([HAVE_TTYLIBS], [1], [Link -lncurses or -ltermcap or -ltermlib to executable.])
           AC_MSG_RESULT(using $TTYLIBS)

@@ -27,6 +27,8 @@ Planned features:
 
    * Support systems with Terminfo and without Termcap (low priority).
 
+   * update docu to install package "check" and "pkg-config"
+
 Nothing else to do actually, do *you* see anything missing?
 
 I am not sure whether everything can be implemented, but here are the

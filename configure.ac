@@ -701,6 +701,21 @@ if test "$gcal_cv_use_term" = yes; then
 fi
 
 dnl
+dnl Check for Testsuite
+dnl
+PKG_CHECK_MODULES([CHECK], [check])
+dnl
+dnl
+dnl take care of gcov
+AC_ARG_ENABLE([gcov],
+  [AS_HELP_STRING([--enable-gcov],
+    [use Gcov to test the test suite])],
+    [],
+    [enable_gcov=no])
+AM_CONDITIONAL([COND_GCOV],[test '!' "$enable_gcov" = no])
+dnl
+
+dnl
 dnl Checks for system services.
 dnl
 AC_MSG_RESULT()

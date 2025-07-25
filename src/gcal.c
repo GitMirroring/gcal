@@ -5982,6 +5982,18 @@ check_command_line (argc, argv)
 	    break;
 	}
     }
+  // we need a warning just in case of shown week numbers
+  if (cal_with_week_number)
+    {
+      if (iso_week_number && start_day != 1)
+        {
+          if (start_day == SPECIAL_VALUE) {
+            fprintf (stderr, _("NOTE: Combining --iso-week-number=yes with --starting-day=today can lead to unexpected values for CW, because the CW field is populated from the starting day, not Monday.\n"), start_day);
+          } else {
+            fprintf (stderr, _("NOTE: Combining --iso-week-number=yes with --starting-day=%i can lead to unexpected values for CW, because the CW field is populated from the starting day, not Monday.\n"), start_day);
+          }
+        }
+    }
 #if USE_RC
   /*
      Read the internal system date an evaluate

@@ -1393,7 +1393,7 @@ us_id_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 */
 {
   ptr_cc_id = "US_ID";
-  observe_us_hdy = SAFR_SUMO;
+  observe_us_hdy = SASA_SUSU;
   us_hdy (init_data, detected, easter, year, hd_elems, fday, count);
 }
 

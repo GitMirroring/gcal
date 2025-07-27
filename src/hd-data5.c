@@ -2068,7 +2068,7 @@ us_oh_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 */
 {
   ptr_cc_id = "US_OH";
-  observe_us_hdy = SAFR_SUMO;
+  observe_us_hdy = SASA_SUSU;
   us_hdy (init_data, detected, easter, year, hd_elems, fday, count);
 }
 

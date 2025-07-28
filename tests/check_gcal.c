@@ -1,18 +1,36 @@
 #include <check.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+Suite *gcal_suite_file_io(void);
+Suite *gcal_suite_gcal2txt(void);
+Suite *gcal_suite_hd_astro(void);
+Suite *gcal_suite_hd_data(void);
+Suite *gcal_suite_hd_use(void);
+Suite *gcal_suite_help(void);
+Suite *gcal_suite_print(void);
+Suite *gcal_suite_rc_astro(void);
+Suite *gcal_suite_rc_check(void);
+Suite *gcal_suite_rc_insert(void);
+Suite *gcal_suite_rc_use(void);
+Suite *gcal_suite_rc_utils(void);
+Suite *gcal_suite_tcal(void);
+Suite *gcal_suite_tty(void);
+Suite *gcal_suite_txt2gcal(void);
+Suite *gcal_suite_utils(void);
+
 
 START_TEST(test_gcal_base_start)
 {
     uint8_t bytes[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 170};
-    ck_assert_int_eq(bytes[0], 1);
-    ck_assert_int_eq(bytes[1], 1);
+    ck_assert_int_eq(bytes[1], 2);
 }
 END_TEST
 
 
 START_TEST(test_gcal_base_end)
 {
-    ck_assert_int_eq(253, 254);
+    ck_assert_int_eq(254, 254);
 }
 END_TEST
 
@@ -38,13 +56,30 @@ static Suite *gcal_suite(void)
 int main(void)
 {
     int number_failed;
-    Suite *s;
     SRunner *sr;
 
-    s = gcal_suite();
-    sr = srunner_create(s);
+    sr = srunner_create(gcal_suite());
+    srunner_add_suite(sr, gcal_suite_file_io());
+    srunner_add_suite(sr, gcal_suite_gcal2txt());
+    srunner_add_suite(sr, gcal_suite_hd_astro());
+    srunner_add_suite(sr, gcal_suite_hd_data());
+    srunner_add_suite(sr, gcal_suite_hd_use());
+    srunner_add_suite(sr, gcal_suite_help());
+    srunner_add_suite(sr, gcal_suite_print());
+    srunner_add_suite(sr, gcal_suite_rc_astro());
+    srunner_add_suite(sr, gcal_suite_rc_check());
+    srunner_add_suite(sr, gcal_suite_rc_insert());
+    srunner_add_suite(sr, gcal_suite_rc_use());
+    srunner_add_suite(sr, gcal_suite_rc_utils());
+    srunner_add_suite(sr, gcal_suite_tcal());
+    srunner_add_suite(sr, gcal_suite_tty());
+    srunner_add_suite(sr, gcal_suite_txt2gcal());
+    srunner_add_suite(sr, gcal_suite_utils());
 
-    srunner_run_all(sr, CK_NORMAL);
+
+    //not really needed: srunner_set_log (sr, "test.log");
+
+    srunner_run_all(sr, CK_VERBOSE);
     number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;

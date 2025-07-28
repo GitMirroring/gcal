@@ -17,12 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# add this until tests are really working
+AUTOMAKE_OPTIONS = subdir-objects
+
 SUBDIRS = lib \
 	po \
 	src \
+	tests \
 	misc \
 	data \
 	doc
+
+if COND_GCOV
+   MAYBE_COVERAGE=--coverage --no-inline -fprofile-arcs -ftest-coverage
+endif
+
+MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
 
 EXTRA_DIST = BUGS LIMITATIONS .version
 

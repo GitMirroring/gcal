@@ -21,7 +21,13 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 MISC_LIBS = @LIBM@ @LIBS@
 LIBS = $(MISC_LIBS)
 
-AM_CFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS)
+if COND_GCOV
+   MAYBE_COVERAGE=--coverage --no-inline -fprofile-arcs -ftest-coverage
+endif
+
+MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
+
+AM_CFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS) $(MAYBE_COVERAGE)
 LDADD = ../lib/libgnu.a $(LIBINTL)
 
 SRCS = \

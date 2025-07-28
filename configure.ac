@@ -703,7 +703,9 @@ fi
 dnl
 dnl Check for Testsuite
 dnl
+
 PKG_CHECK_MODULES([CHECK], [check])
+
 dnl
 dnl
 dnl take care of gcov
@@ -764,6 +766,7 @@ AC_CONFIG_FILES([Makefile \
            doc/en/examples/Makefile \
            doc/mksamp \
            lib/Makefile \
+           tests/Makefile \
            misc/Makefile \
            misc/daily/daily \
            misc/ddiff/ddiff \

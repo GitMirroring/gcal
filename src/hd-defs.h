@@ -683,7 +683,7 @@ typedef struct country_code_type
   char *cc_info;
 
   /* The country code specific holiday handling function. */
-  void (*Cc_hdy_handler) ();
+  void (*Cc_hdy_handler) (Bool *, const Bool, int, const int, int *, const int, const int);
 }
 Cc_struct;
 

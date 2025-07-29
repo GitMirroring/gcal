@@ -3699,6 +3699,7 @@ rearrange_argv (opt_list, argc, argv)
   register int n = 1;
   auto char **ptr_argv = argv;
   auto char **ptr2_argv;
+  auto char *new_arg;
   auto Bool is_modified;
 
 
@@ -3771,17 +3772,18 @@ rearrange_argv (opt_list, argc, argv)
 				     short-style option character and its needed argument.
 				   */
 				  i--;
-				  argv[n] =
-				    (char *) my_realloc ((VOID_PTR) (argv[n]),
-							 strlen (*ptr_argv) +
-							 strlen (*ptr2_argv) +
-							 1,
-							 ERR_NO_MEMORY_AVAILABLE,
-							 __FILE__,
-							 ((long) __LINE__) -
-							 3L, "argv[n]", n);
-				  strcpy (argv[n], *ptr_argv);
-				  strcat (argv[n], *ptr2_argv);
+				  new_arg =
+				    (char *) my_malloc (strlen (*ptr_argv) +
+							strlen (*ptr2_argv) +
+							1,
+							ERR_NO_MEMORY_AVAILABLE,
+							__FILE__,
+							((long) __LINE__) -
+							3L, "argv[n]", n);
+				  strcpy (new_arg, *ptr_argv);
+				  strcat (new_arg, *ptr2_argv);
+				  free (argv[n]);
+				  argv[n] = new_arg;
 				  ptr_argv++;
 				  is_modified = TRUE;
 				}
@@ -3809,12 +3811,13 @@ rearrange_argv (opt_list, argc, argv)
 	     or     a command (an argument not leaded by a '-', '/', '@' or '%' character.
 	   */
 	  (*ptr_argv)--;
-	  argv[n] = (char *) my_realloc ((VOID_PTR) (argv[n]),
-					 strlen (*ptr_argv) + 1,
-					 ERR_NO_MEMORY_AVAILABLE,
-					 __FILE__, ((long) __LINE__) - 3L,
-					 "argv[n]", n);
-	  strcpy (argv[n], *ptr_argv);
+	  new_arg = (char *) my_malloc (strlen (*ptr_argv) + 1,
+					ERR_NO_MEMORY_AVAILABLE,
+					__FILE__, ((long) __LINE__) - 3L,
+					"argv[n]", n);
+	  strcpy (new_arg, *ptr_argv);
+	  free (argv[n]);
+	  argv[n] = new_arg;
 	}
       n++;
       i--;

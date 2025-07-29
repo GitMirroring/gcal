@@ -298,7 +298,7 @@ __END_DECLARATIONS
 		    ptr_char = s2 + len + 1;
 		    if (!*ptr_char)
 		      break;
-		    strcpy (s2, ptr_char);
+		    memmove (s2, ptr_char, strlen(ptr_char) + 1);
 		  }
 		/*
 		   If a file isn't found yet but the last character of the

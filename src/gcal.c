@@ -1571,9 +1571,7 @@ static Bool year_flag = FALSE;
 *  Function implementations.
 */
 int
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 /*!
    The Gcal program entry point   =8^)
 */
@@ -3178,9 +3176,7 @@ main (argc, argv)
 
 
 int
-eval_longopt (longopt, longopt_symbolic)
-     char *longopt;
-     int *longopt_symbolic;
+eval_longopt (char *longopt, int *longopt_symbolic)
 /*!
    Evaluates a long option and returns -2...0 if success, +1...+6 if fails:
      -2 == Given `longopt' successfully parsed and completed `long_name' with argument returned.
@@ -3681,10 +3677,7 @@ is_correct_date_format (format_txt, use_day_suffix, use_short3_day_name,
 
 
 static void
-rearrange_argv (opt_list, argc, argv)
-     const char *opt_list;
-     int *argc;
-     char *argv[];
+rearrange_argv (const char *opt_list, int *argc, char *argv[])
 /*!
    Rearranges `argv[]' internally.
      This means all short-style options which need an argument,
@@ -3828,9 +3821,7 @@ rearrange_argv (opt_list, argc, argv)
 
 
 static void
-check_command_line (argc, argv)
-     int argc;
-     char *argv[];
+check_command_line (int argc, char *argv[])
 /*!
    Gets and manages the arguments from the command line.
 */
@@ -6808,8 +6799,7 @@ check_command_line (argc, argv)
 
 
 static void
-build_month_list (argv)
-     char *argv[];
+build_month_list (char *argv[])
 /*!
    If more than a single month/year is wanted (means list or ranges of
      months or years), fill the global data structure `month_list[]'; which
@@ -7372,8 +7362,7 @@ eliminate_invalid_data ()
 
 
 static void
-pseudo_blank_conversion (text)
-     char **text;
+pseudo_blank_conversion (char **text)
 /*!
    Perform conversion of quoted or unquoted PSEUDO_BLANK characters
      in TEXT to real ' ' blank characters.
@@ -7415,8 +7404,7 @@ pseudo_blank_conversion (text)
 
 #if USE_RC
 static int
-further_check (option)
-     char **option;
+further_check (char **option)
 /*!
    Checks whether invalid characters trail the
      argument of the `--period-of-fixed-dates=ARG' option.

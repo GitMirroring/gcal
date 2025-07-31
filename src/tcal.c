@@ -348,8 +348,7 @@ my_error (exit_status, module_name, module_line, var_name, var_contents)
 
 #if HAVE_SIGNAL && (defined(SIGINT) || defined(SIGTERM) || defined(SIGHUP))
 static RETSIGTYPE
-handle_signal (the_signal)
-     int the_signal;
+handle_signal (int the_signal)
 /*!
    Signal handler function which displays the numeric ID of the
      received signal on STDERR channel and terminates the program
@@ -367,10 +366,7 @@ handle_signal (the_signal)
 
 #if !HAVE_STRNCASECMP
 static int
-my_strncasecmp (s1, s2, len)
-     const char *s1;
-     const char *s2;
-     int len;
+my_strncasecmp (const char *s1, const char *s2, int len)
 /*!
    Same as the ANSI C `strncmp()' function, but case insensitive.
 */
@@ -401,8 +397,7 @@ my_strncasecmp (s1, s2, len)
 
 
 static int
-days_of_february (year)
-     const int year;
+days_of_february (const int year)
 /*!
    Computes the number of days in February --- respecting
      the Gregorian Reformation period --- and returns them.
@@ -430,11 +425,7 @@ days_of_february (year)
 
 
 static Bool
-doy2date (doy, is_leap_year, day, month)
-     int doy;
-     const int is_leap_year;
-     int *day;
-     int *month;
+doy2date (int doy, const int is_leap_year, int *day, int *month)
 /*!
    Converts a given number of days of a year to a standard date
      (returned in &day and &month) and returns:
@@ -471,10 +462,7 @@ doy2date (doy, is_leap_year, day, month)
 
 
 static Ulint
-date2num (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+date2num (const int day, const int month, const int year)
 /*!
    Computes the absolute number of days of the given date since
      00010101(==YYYYMMDD) respecting the missing period of the
@@ -508,11 +496,7 @@ date2num (day, month, year)
 
 
 static void
-num2date (mjd, day, month, year)
-     Ulint mjd;
-     int *day;
-     int *month;
-     int *year;
+num2date (Ulint mjd, int *day, int *month, int *year)
 /*!
    Converts a delivered absolute number of days `mjd' to a standard
      date (since 00010101(==YYYYMMDD), returned in &day, &month and &year)
@@ -571,10 +555,7 @@ num2date (mjd, day, month, year)
 
 
 static void
-get_actual_date (day, month, year)
-     int *day;
-     int *month;
-     int *year;
+get_actual_date (int *day, int *month, int *year)
 /*!
    Gets the actual date from the system.
 */
@@ -595,9 +576,7 @@ get_actual_date (day, month, year)
 
 
 int
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 /*!
    Starts Gcal with date set one day ahead (default mode, like the `--shift=1'
      long-style option is passed to it) and all other arguments which are given

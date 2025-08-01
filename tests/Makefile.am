@@ -19,6 +19,36 @@
 
 # add this until tests are really working
 
+#AM_CFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS)
+AM_CPPFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS) -D_GNU_SOURCE
+
+GCAL_OBJS= \
+  ../src/file-io.o \
+  ../src/hd-astro.o \
+  ../src/hd-data.o \ 
+  ../src/hd-data1.o \
+  ../src/hd-data2.o \
+  ../src/hd-data3.o \
+  ../src/hd-data4.o \
+  ../src/hd-data5.o \
+  ../src/hd-use.o \
+  ../src/help.o \
+  ../src/print.o \
+  ../src/rc-astro.o \
+  ../src/rc-check.o \
+  ../src/rc-insert.o \
+  ../src/rc-use.o \
+  ../src/rc-utils.o \
+  ../src/tty.o \
+  ../src/utils.o
+
+GCAL_GNULIB_OBJS= \
+  ../lib/fclose.o \
+  ../lib/fflush.o \
+  ../lib/fseeko.o \
+  ../lib/ioctl.o \
+  ../lib/tmpdir.o 
+
 noinst_PROGRAMS = check_gcal
 TESTS = check_gcal
 check_gcal_SOURCES = check_gcal.c \
@@ -40,5 +70,5 @@ check_gcal_SOURCES = check_gcal.c \
                            check_utils.c 
 
 
-check_gcal_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS)
-check_gcal_LDADD = $(LDFLAGS) $(CHECK_LIBS)
+check_gcal_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS) $(DEFS)
+check_gcal_LDADD = $(LDFLAGS) $(CHECK_LIBS) $(GCAL_OBJS) $(GCAL_GNULIB_OBJS)

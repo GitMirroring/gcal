@@ -1,6 +1,22 @@
-#include <check.h>
+#include "../config.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "../src/tailor.h"
+#include "../src/common.h"
+#if USE_RC
+# include "../src/rc-defs.h"
+#endif /* USE_RC */
+#include "../src/globals.h"
+#include "../src/hd-defs.h"
+#include "../src/hd-use.h"
+#if USE_RC
+# include "../src/rc-utils.h"
+#endif /* USE_RC */
+#include "../src/utils.h"
+
+#include "../src/global-variables.h"
+#include <check.h>
 
 Suite *gcal_suite_file_io(void);
 Suite *gcal_suite_gcal2txt(void);
@@ -53,10 +69,29 @@ static Suite *gcal_suite(void)
     return s;
 }
 
+/* dumy function (normally defined in gcal.c) to make linking possible */
+int
+eval_longopt (char *longopt, int *longopt_symbolic)
+{
+ return 0;
+}
+
+/* initialize some global variables */
+void init_global_variables()
+{
+  testval = INT_MAX;
+  allocate_all_strings (2048, __FILE__, (long) __LINE__);
+
+  sprintf (s1, "%d", YEAR_MAX);
+  len_year_max = (int) strlen (s1);
+}
+
 int main(void)
 {
     int number_failed;
     SRunner *sr;
+
+    init_global_variables();
 
     sr = srunner_create(gcal_suite());
     srunner_add_suite(sr, gcal_suite_file_io());

@@ -1894,8 +1894,7 @@ weekno2doy (week, year, is_iso_week, start_day_of_week)
 
 
 int
-knuth_easter_formula (year)
-     const int year;
+knuth_easter_formula (const int year)
 /*!
    This procedure calculates the day and month of Easter giving the year.
    It returns the "actual day_of_year date" of Western Eastern (not the
@@ -2007,10 +2006,7 @@ knuth_easter_formula (year)
 
 
 int
-julian_gregorian_diff (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+julian_gregorian_diff (const int day, const int month, const int year)
 /*!
    Returns the day difference between the given Gregorian calendar date
      and the according Julian calendar date, i.e. the amount of days,
@@ -2031,10 +2027,7 @@ julian_gregorian_diff (day, month, year)
 
 
 static void
-gregorian2julian (day, month, year)
-     int *day;
-     int *month;
-     int *year;
+gregorian2julian (int *day, int *month, int *year)
 /*!
    Converts a Gregorian date to a Julian date.
 */
@@ -2083,12 +2076,7 @@ gregorian2julian (day, month, year)
 
 
 static int
-raw_week_number (day, month, year, is_iso_week, start_day_of_week)
-     const int day;
-     const int month;
-     const int year;
-     const Bool is_iso_week;
-     const int start_day_of_week;
+raw_week_number (const int day, const int month, const int year, const Bool is_iso_week, const int start_day_of_week)
 /*!
    Returns either the raw ISO-8601:1988 standard week number of the given
      date if the `is_iso_week' variable is TRUE.  Note that an ISO week
@@ -2165,8 +2153,7 @@ raw_week_number (day, month, year, is_iso_week, start_day_of_week)
 
 
 static const char *
-dflt_day_name (day)
-     const int day;
+dflt_day_name (const int day)
 /*!
    Returns the complete default (==English) name of the day
      (needed by the `compare_d_m_name()' function if another native language
@@ -2185,8 +2172,7 @@ dflt_day_name (day)
 
 
 static const char *
-dflt_month_name (month)
-     const int month;
+dflt_month_name (const int month)
 /*!
    Returns the complete default (==English) name of the month
      (needed by the `compare_d_m_name()' function if another native lanuage

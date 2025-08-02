@@ -35,6 +35,8 @@ Planned features:
 
    * take care of warnings with gcc-15
 
+   * julian_gregorian_diff() has a bug, see tests
+
 Nothing else to do actually, do *you* see anything missing?
 
 I am not sure whether everything can be implemented, but here are the

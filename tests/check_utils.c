@@ -17,12 +17,6 @@ const char *dflt_month_name(const int month);
 
 #include <check.h>
 
-START_TEST(test_gcal_dummy)
-{
-    ck_assert_int_eq(254, 254);
-}
-END_TEST
-
 START_TEST(test_utils_my_atoi)
 {
     char *snumber0 = "0";
@@ -97,7 +91,6 @@ Suite *gcal_suite_utils(void)
     /* Core test case */
     tc_core = tcase_create("utils");
 
-    tcase_add_test(tc_core, test_gcal_dummy);
     tcase_add_test(tc_core, test_utils_my_atoi);
     tcase_add_test(tc_core, test_utils_julian_gregorian_diff);
     tcase_add_test(tc_core, test_utils_knuth_easter_formula);

@@ -3536,13 +3536,8 @@ eval_longopt (char *longopt, int *longopt_symbolic)
 
 
 static Bool
-is_correct_date_format (format_txt, use_day_suffix, use_short3_day_name,
-			use_day_zeroleaded, use_year_zeroleaded)
-     char *format_txt;
-     Bool *use_day_suffix;
-     Bool *use_short3_day_name;
-     Bool *use_day_zeroleaded;
-     Bool *use_year_zeroleaded;
+is_correct_date_format (char *format_txt, Bool *use_day_suffix, Bool *use_short3_day_name,
+			Bool *use_day_zeroleaded, Bool *use_year_zeroleaded)
 /*!
    Checks whether the delivered `format_txt' contains valid format directives
      (see the `decode_date_format()' function for a more brief description of

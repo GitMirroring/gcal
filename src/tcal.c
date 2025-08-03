@@ -179,10 +179,7 @@ static char *shift_option_name = "shift";
 *  Function implementations.
 */
 static void
-usage_msg (fp, prgr_name, exit_status)
-     FILE *fp;
-     const char *prgr_name;
-     int exit_status;
+usage_msg (FILE *fp, const char *prgr_name, int exit_status)
 /*!
    Writes the program "usage" text to file `fp' and
      terminates the program with `exit_status'.
@@ -205,10 +202,7 @@ usage_msg (fp, prgr_name, exit_status)
 
 
 static void
-version_msg (fp, prgr_name, exit_status)
-     FILE *fp;
-     const char *prgr_name;
-     int exit_status;
+version_msg (FILE *fp, const char *prgr_name, int exit_status)
 /*!
    Writes the program "version" text to file `fp' and
      terminates the program with `exit_status'.
@@ -231,14 +225,8 @@ version_msg (fp, prgr_name, exit_status)
 
 
 static VOID_PTR
-my_malloc (amount, exit_status, module_name, module_line, var_name,
-	   var_contents)
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_malloc (const int amount, const int exit_status, const char *module_name, const long module_line, const char *var_name,
+	   const int var_contents)
 /*!
    Allocate AMOUNT bytes of memory dynamically, with error checking.
      Calls `my_error()' and terminates the program if any errors occur.
@@ -268,15 +256,8 @@ my_malloc (amount, exit_status, module_name, module_line, var_name,
 
 
 static VOID_PTR
-my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
-	    var_name, var_contents)
-     VOID_PTR ptr_memblock;
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_realloc (VOID_PTR ptr_memblock, const int amount, const int exit_status, const char *module_name, const long module_line,
+	    const char *var_name, const int var_contents)
 /*!
    Change the size of an allocated block of memory PTR_MEMBLOCK to AMOUNT
      bytes, with error checking.  Calls `my_error()' and terminates the program
@@ -308,12 +289,7 @@ my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
 
 
 static void
-my_error (exit_status, module_name, module_line, var_name, var_contents)
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_error (const int exit_status, const char *module_name, const long module_line, const char *var_name, const int var_contents)
 /*!
    Displays a specific error message on STDERR channel
      and terminates the program with status `exit_status'.

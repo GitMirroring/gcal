@@ -51,12 +51,8 @@ __END_DECLARATIONS
 /*
 *  Function implementations.
 */
-  static double
-meeus_equinox_solstice (mode, year, hour, min)
-     const double mode;
-     const int year;
-     int hour;
-     int min;
+static double
+meeus_equinox_solstice (const double mode, const int year, int hour, int min)
 /*!
    According to MODE (== 0.0|90.0|180.0|270.0), this function calculates the
      dates of equinoxes and solstices for the given YEAR (range: 0001...9999)
@@ -179,13 +175,7 @@ meeus_equinox_solstice (mode, year, hour, min)
 
 
 double
-equinox_solstice (longitude, day, month, year, hour, min)
-     const double longitude;
-     int *day;
-     int *month;
-     int *year;
-     const int hour;
-     const int min;
+equinox_solstice (const double longitude, int *day, int *month, int *year, const int hour, const int min)
 /*!
    Wrapper/driver function for selecting the proper function
      that calculates the date and time of the equinoxes/solstices
@@ -208,12 +198,7 @@ equinox_solstice (longitude, day, month, year, hour, min)
 
 
 
-double delta_t (day, month, year, hour, min)
-     const int day;
-     const int month;
-     const int year;
-     const int hour;
-     const int min;
+double delta_t (const int day, const int month, const int year, const int hour, const int min)
 /*!
    Returns the approximate Delta_T in seconds plus fraction for the given
      Julian/Gregorian calendar date (range 00010101..99991231), which is the
@@ -494,17 +479,8 @@ double delta_t (day, month, year, hour, min)
 
 
 double
-moonphase (phase_selector, find_eclipse, eclipse_type, lunation,
-	   day, month, year, hour, min)
-     const double phase_selector;
-     const Bool find_eclipse;
-     double *eclipse_type;
-     Ulint *lunation;
-     int *day;
-     int *month;
-     int *year;
-     int hour;
-     int min;
+moonphase (const double phase_selector, const Bool find_eclipse, double *eclipse_type, Ulint *lunation,
+	   int *day, int *month, int *year, int hour, int min)
 /*!
    According to PHASE_SELECTOR, this function calculates the requested Moon
      phase, which occurs on or later the given Julian/Gregorian date (range

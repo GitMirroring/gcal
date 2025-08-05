@@ -181,6 +181,60 @@ START_TEST(test_hd_astro_moonphase)
 }
 END_TEST
 
+START_TEST(test_hd_astro_helper_functions)
+{
+  int degree, min;
+  double sec, angle, x, y;
+
+  sec=0;
+  val2degrees(1.234, &degree, &min, &sec);
+  ck_assert_int_eq(degree, 1);
+  ck_assert_int_eq(min, 14);
+  ck_assert_double_eq_tol(sec, 2.4, 1e-7);
+
+  sec=0;
+  val2degrees(3.141592, &degree, &min, &sec);
+  ck_assert_int_eq(degree, 3);
+  ck_assert_int_eq(min, 8);
+  ck_assert_double_eq_tol(sec, 29.73124, 1e-4);
+
+  sec=0;
+  val2degrees(179.24567, &degree, &min, &sec);
+  ck_assert_int_eq(degree, 179);
+  ck_assert_int_eq(min, 14);
+  ck_assert_double_eq_tol(sec, 44.4120, 1e-4);
+
+  angle=2.0*M_PI+0.00001;
+  ck_assert_double_eq_tol(my_cot(angle), cos(angle)/sin(angle), 1e-6);
+  ck_assert_double_eq_tol(my_acot(my_cot(angle)), angle-2*M_PI, 1e-6);
+  angle=M_PI-0.00001;
+  ck_assert_double_eq_tol(my_cot(angle), cos(angle)/sin(angle), 1e-6);
+  ck_assert_double_eq_tol(my_acot(my_cot(angle)), angle, 1e-6);
+  angle=0.00001;
+  ck_assert_double_eq_tol(my_cot(angle), cos(angle)/sin(angle), 1e-6);
+  ck_assert_double_eq_tol(my_acot(my_cot(angle)), angle, 1e-6);
+  angle=M_PI/2;
+  ck_assert_double_eq_tol(my_cot(angle), cos(angle)/sin(angle), 1e-6);
+  ck_assert_double_eq_tol(my_acot(my_cot(angle)), angle, 1e-6);
+  angle=3*M_PI/4;
+  ck_assert_double_eq_tol(my_cot(angle), cos(angle)/sin(angle), 1e-6);
+  ck_assert_double_eq_tol(my_acot(my_cot(angle)), angle, 1e-6);
+
+  x=0.123; y=2.345;
+  ck_assert_double_eq_tol(my_atan2(x,y), atan2(x,y), 1e-6);
+  x=-0.123; y=2.345;
+  ck_assert_double_eq_tol(my_atan2(x,y), atan2(x,y), 1e-6);
+  x=0.000; y=2.345;
+  ck_assert_double_eq_tol(my_atan2(x,y), atan2(x,y), 1e-6);
+  x=0.000; y=-2.345;
+  ck_assert_double_eq_tol(my_atan2(x,y), atan2(x,y), 1e-6);
+
+
+  /* is pi = pi ? */
+  ck_assert_double_eq_tol(MY_PI, M_PI, 1e-6);
+}
+END_TEST
+
 Suite *gcal_suite_hd_astro(void)
 {
     Suite *s;
@@ -194,6 +248,7 @@ Suite *gcal_suite_hd_astro(void)
     tcase_add_test(tc_core, test_hd_astro_equinox_solstice);
     tcase_add_test(tc_core, test_hd_astro_delta_t);
     tcase_add_test(tc_core, test_hd_astro_moonphase);
+    tcase_add_test(tc_core, test_hd_astro_helper_functions);
 
     suite_add_tcase(s, tc_core);
 

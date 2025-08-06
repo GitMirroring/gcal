@@ -1110,8 +1110,7 @@ static const char *chi_branch[] = {
 *  Function implementations.
 */
 static char *
-decode_eclipse (eclipse)
-     double *eclipse;
+decode_eclipse (double *eclipse)
 /*!
    Decodes the eclipse mode value given via the address of ECLIPSE
      in that it is reduced to the Julian/Gregorian date with time fraction
@@ -1152,22 +1151,9 @@ decode_eclipse (eclipse)
 
 
 static void
-ocs_monthtext (init_data, detected, ptr_cc_id, day, month, year,
-	       ocs_leap, ocs_month, ocs_year, ocs_extra, hd_elems, fday,
-	       count)
-     Bool *init_data;
-     const Bool detected;
-     const char *ptr_cc_id;
-     const int day;
-     const int month;
-     const int year;
-     const Bool ocs_leap;
-     const int ocs_month;
-     const int ocs_year;
-     const int ocs_extra;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ocs_monthtext (Bool *init_data, const Bool detected, const char *ptr_cc_id, const int day, const int month, const int year,
+	       const Bool ocs_leap, const int ocs_month, const int ocs_year, const int ocs_extra, int *hd_elems, const int fday,
+	       const int count)
 /*!
    Formats a text that includes the given OCS_MONTH and OCS_YEAR number,
      which is based on another calendar systems date.  The given PTR_CC_ID
@@ -1197,8 +1183,7 @@ ocs_monthtext (init_data, detected, ptr_cc_id, day, month, year,
 
 
 const Cc_struct *
-binsearch_cc_id (id)
-     char *id;
+binsearch_cc_id (char *id)
 /*!
    Simple binary search the delivered `id' if it is listed in the global
      `cc_holidays' table.  The `id' is an ISO-3166 A2 (2-letter) country
@@ -1235,15 +1220,7 @@ binsearch_cc_id (id)
 
 
 void
-base_christian_hdy (init_data, detected, easter, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+base_christian_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all base Christian Western churches calendar based holidays.
 */
@@ -1269,13 +1246,7 @@ base_christian_hdy (init_data, detected, easter, year, hd_elems, fday, count, cc
 *  All global holiday management functions.
 */
 void
-astronomical_hdy (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+astronomical_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Astronomically based holidays (equinoxes, solstices,
    Moon phases, solar and lunar eclipses).
@@ -1389,14 +1360,7 @@ astronomical_hdy (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-bahai_hdy (init_data, detected, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+bahai_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all Bah'a'i calendar based holidays since AD 21-Mar-1844.
 */
@@ -1474,13 +1438,7 @@ bahai_hdy (init_data, detected, year, hd_elems, fday, count, cc)
 
 
 void
-bahai_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+bahai_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Bah'a'i calendar based months since AD 21-Mar-1844.
 */
@@ -1533,14 +1491,7 @@ bahai_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-celtic_hdy (init_data, detected, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+celtic_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all Celtic calendar based holidays.
      Calculations are done for a line at a definite meridian expressed as a
@@ -1620,16 +1571,8 @@ celtic_hdy (init_data, detected, year, hd_elems, fday, count, cc)
 
 
 void
-chinese_hdy (init_data, detected, year, hd_elems, fday, count, cc,
-	     is_any_meridian)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
-     const Bool is_any_meridian;
+chinese_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc,
+	     const Bool is_any_meridian)
 /*!
    Manages all Chinese calendar based holidays since AD 1645.
      Earlier years are not respected, because the rules of the Chinese
@@ -2193,16 +2136,8 @@ chinese_hdy (init_data, detected, year, hd_elems, fday, count, cc,
 
 
 void
-chinese_mth (init_data, detected, year, hd_elems, fday, count,
-	     is_any_meridian, do_chinese)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const Bool is_any_meridian;
-     const Bool do_chinese;
+chinese_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count,
+	     const Bool is_any_meridian, const Bool do_chinese)
 /*!
    Manages all Chinese/Japanese calendar based months since AD 1645.
      Earlier years are not respected, because the rules of the Chinese/Japanese
@@ -2420,14 +2355,7 @@ chinese_mth (init_data, detected, year, hd_elems, fday, count,
 
 
 void
-christian_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+christian_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Christian Western churches calendar based holidays.
 */
@@ -2595,14 +2523,7 @@ christian_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-coptic_mth (init_data, detected, year, hd_elems, fday, count, do_coptic)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const Bool do_coptic;
+coptic_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const Bool do_coptic)
 /*!
    Manages all Coptic/Ethiopic calendar based months
      since AD 284 (Coptic) respectively AD 7 (Ethiopic).
@@ -2648,13 +2569,7 @@ coptic_mth (init_data, detected, year, hd_elems, fday, count, do_coptic)
 
 
 void
-french_revolutionary_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+french_revolutionary_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all French Revolutionary (Republican) calendar months
      since AD 22-Sep-1792.
@@ -2704,13 +2619,7 @@ french_revolutionary_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-indian_civil_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+indian_civil_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Indian civil-calendar (reformed calendar) months
      since AD 22-Mar-1957.
@@ -2756,14 +2665,7 @@ indian_civil_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-hebrew_hdy (init_data, detected, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+hebrew_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all Hebrew calendar based holidays.
      (Really unoptimized and dull implementation of the arithmetical
@@ -2950,13 +2852,7 @@ hebrew_hdy (init_data, detected, year, hd_elems, fday, count, cc)
 
 
 void
-hebrew_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+hebrew_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Hebrew calendar based months.
      (Really unoptimized and dull implementation of the arithmetical
@@ -3020,14 +2916,7 @@ hebrew_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-islamic_hdy (init_data, detected, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+islamic_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all Islamic civil-calendar based holidays since AD 622.
      Note that this function uses the arithmetical lunar Islamic ***CIVIL***
@@ -3600,13 +3489,7 @@ islamic_hdy (init_data, detected, year, hd_elems, fday, count, cc)
 
 
 void
-islamic_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+islamic_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Islamic civil-calendar based months since AD 622.
      Note that this function uses the arithmetical lunar Islamic ***CIVIL***
@@ -3686,16 +3569,8 @@ islamic_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-japanese_hdy (init_data, detected, year, hd_elems, fday, count, cc,
-	      is_any_meridian)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
-     const Bool is_any_meridian;
+japanese_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc,
+	      const Bool is_any_meridian)
 /*!
    Manages all Japanese calendar based holidays since AD 1645.
      Earlier years are not respected, because the rules of the Japanese
@@ -4148,13 +4023,7 @@ japanese_hdy (init_data, detected, year, hd_elems, fday, count, cc,
 
 
 void
-multicultural_new_year_hdy (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+multicultural_new_year_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Multicultural New_Year's_Day holidays, which are majorly
      based on calendar systems different the Julian/Gregorian calendar system.
@@ -4321,14 +4190,7 @@ multicultural_new_year_hdy (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-old_egyptic_mth (init_data, detected, year, hd_elems, fday, count, do_egyptic)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const Bool do_egyptic;
+old_egyptic_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const Bool do_egyptic)
 /*!
    Manages all Old-Armenic/Old-Egyptic calendar based months since
      AD 11-Jul-0552 (Old-Armenic).
@@ -4428,17 +4290,8 @@ old_egyptic_mth (init_data, detected, year, hd_elems, fday, count, do_egyptic)
 
 
 void
-orthodox_hdy (init_data, detected, easter, year, hd_elems, fday, count, cc,
-	      is_new_calendar)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
-     const Bool is_new_calendar;
+orthodox_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count, const char *cc,
+	      const Bool is_new_calendar)
 /*!
    Manages all Orthodox Christian Eastern churches calendar based holidays.
      If `is_new_calendar' is set to TRUE, the new calendar holidays are
@@ -4610,14 +4463,7 @@ orthodox_hdy (init_data, detected, easter, year, hd_elems, fday, count, cc,
 
 
 void
-persian_hdy (init_data, detected, year, hd_elems, fday, count, cc)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
-     const char *cc;
+persian_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count, const char *cc)
 /*!
    Manages all Persian ``Jalaali'' calendar based holidays since AD 622.
      Note that this function calculates the solar ``Jalaali'' calendar
@@ -4768,13 +4614,7 @@ persian_hdy (init_data, detected, year, hd_elems, fday, count, cc)
 
 
 void
-persian_mth (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+persian_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Persian ``Jalaali'' calendar based months since AD 622.
      Note that this function calculates the solar ``Jalaali'' calendar
@@ -4833,13 +4673,7 @@ persian_mth (init_data, detected, year, hd_elems, fday, count)
 
 
 void
-zodiacal_marker_hdy (init_data, detected, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+zodiacal_marker_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all Zodiacal/Solar Seasonal Marker based holidays.
      Calculations are done for a line at a definite meridian expressed as a

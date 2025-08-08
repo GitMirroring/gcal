@@ -120,10 +120,7 @@ static char *version_option_name = "version";
 *  Function implementations.
 */
 static void
-usage_msg (fp, prgr_name, exit_status)
-     FILE *fp;
-     const char *prgr_name;
-     int exit_status;
+usage_msg (FILE *fp, const char *prgr_name, int exit_status)
 /*!
    Writes the program "usage" text to file `fp' and
      terminates the program with `exit_status'.
@@ -143,10 +140,7 @@ usage_msg (fp, prgr_name, exit_status)
 
 
 static void
-version_msg (fp, prgr_name, exit_status)
-     FILE *fp;
-     const char *prgr_name;
-     int exit_status;
+version_msg (FILE *fp, const char *prgr_name, int exit_status)
 /*!
    Writes the program "version" text to file `fp' and
      terminates the program with `exit_status'.
@@ -169,14 +163,8 @@ version_msg (fp, prgr_name, exit_status)
 
 
 static VOID_PTR
-my_malloc (amount, exit_status, module_name, module_line, var_name,
-	   var_contents)
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_malloc (const int amount, const int exit_status, const char *module_name, const long module_line, const char *var_name,
+	   const int var_contents)
 /*!
    Allocate AMOUNT bytes of memory dynamically, with error checking.
      Calls `my_error()' and terminates the program if any errors occur.
@@ -206,15 +194,8 @@ my_malloc (amount, exit_status, module_name, module_line, var_name,
 
 
 static VOID_PTR
-my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
-	    var_name, var_contents)
-     VOID_PTR ptr_memblock;
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_realloc (VOID_PTR ptr_memblock, const int amount, const int exit_status, const char *module_name, const long module_line,
+	    const char *var_name, const int var_contents)
 /*!
    Change the size of an allocated block of memory PTR_MEMBLOCK to AMOUNT
      bytes, with error checking.  Calls `my_error()' and terminates the program
@@ -246,12 +227,7 @@ my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
 
 
 static void
-my_error (exit_status, module_name, module_line, var_name, var_contents)
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_error (const int exit_status, const char *module_name, const long module_line, const char *var_name, const int var_contents)
 /*!
    Displays a specific error message on STDERR channel
      and terminates the program with status `exit_status'.
@@ -283,8 +259,7 @@ my_error (exit_status, module_name, module_line, var_name, var_contents)
 
 #if HAVE_SIGNAL && (defined(SIGINT) || defined(SIGTERM) || defined(SIGHUP))
 static RETSIGTYPE
-handle_signal (the_signal)
-     int the_signal;
+handle_signal (int the_signal)
 /*!
    Signal handler function which displays the numeric ID of the
      received signal on STDERR channel and terminates the program
@@ -302,10 +277,7 @@ handle_signal (the_signal)
 
 #if !HAVE_STRNCASECMP
 static int
-my_strncasecmp (s1, s2, len)
-     const char *s1;
-     const char *s2;
-     int len;
+my_strncasecmp (const char *s1, const char *s2, int len)
 /*!
    Same as the ANSI C `strncmp()' function, but case insensitive.
 */
@@ -336,12 +308,7 @@ my_strncasecmp (s1, s2, len)
 
 
 static char *
-decode_format (fp, is_eof, flen, fwidth, ch)
-     FILE *fp;
-     Bool *is_eof;
-     int *flen;
-     int *fwidth;
-     int *ch;
+decode_format (FILE *fp, Bool *is_eof, int *flen, int *fwidth, int *ch)
 /*!
    Simplified check for an optional format instruction taken from `fp' stream
      which can either be used in case a TVAR or a `%...' special text is
@@ -548,9 +515,7 @@ decode_format (fp, is_eof, flen, fwidth, ch)
 
 
 int
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 /*!
    Creates a verbatim text file from a Gcal resource file (optional argument 1)
      and displays the results on the STDOUT channel.  If no text file name or

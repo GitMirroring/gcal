@@ -159,9 +159,7 @@ static Bool tty_xn = FALSE;
 *  Function implementations.
 */
 void
-print_text (fp, text_line)
-     FILE *fp;
-     char *text_line;
+print_text (FILE *fp, char *text_line)
 /*!
    This is the central tty output function, which works according to
      actual display mode.  It prints a line of text given in `text_line'
@@ -520,8 +518,7 @@ print_text (fp, text_line)
 
 
 void
-get_tty_hls (sequence_str)
-     const char *sequence_str;
+get_tty_hls (const char *sequence_str)
 /*!
    Reads the colors/highlighting sequences from Termcap and assigns them
      to the according variables.  If Termcap isn't present, defaults are used.
@@ -742,9 +739,7 @@ get_tty_hls (sequence_str)
 
 #if USE_PAGER
 void
-get_tty_scr_size (rows, cols)
-     int *rows;
-     int *cols;
+get_tty_scr_size (int *rows, int *cols)
 /*!
    Detects the number of rows and columns of a tty
      and stores the values found in `&rows' and `&cols'.
@@ -949,8 +944,7 @@ get_tty_scr_size (rows, cols)
 
 #if defined(GCAL_TCAP) && USE_HLS
 static char *
-skip_leading_padding_info (sequence_str)
-     char *sequence_str;
+skip_leading_padding_info (char *sequence_str)
 /*!
    Skips the leading padding information part of a highlighting sequence.
 */
@@ -1239,8 +1233,7 @@ get_ospeed ()
 
 
 static int
-outchar (ch)
-     int ch;
+outchar (int ch)
 /*!
    Termcap's `tputs()' function prints a character to the module local defined
      file `fp_outchar', which must be assigned before using `tputs()' itself.
@@ -1252,9 +1245,7 @@ outchar (ch)
 
 
 static Bool
-get_termcap_hls (hls1_set, hls2_set)
-     Bool *hls1_set;
-     Bool *hls2_set;
+get_termcap_hls (Bool *hls1_set, Bool *hls2_set)
 /*!
    Inspects the Termcap buffer `tc_buf' to detect the tty color/highlighting
      sequences.  The module global vector `tc_buf[]' must be filled previously.
@@ -1341,9 +1332,7 @@ get_termcap_hls (hls1_set, hls2_set)
 
 #  if USE_PAGER
 static Bool
-get_termcap_scr_attrib (rows, cols)
-     int *rows;
-     int *cols;
+get_termcap_scr_attrib (int *rows, int *cols)
 /*!
    Inspects the Termcap buffer `tc_buf' to detect first the amount of rows and
      columns of the tty, next whether the terminal wraps the line automatically
@@ -1383,9 +1372,7 @@ get_termcap_scr_attrib (rows, cols)
 # else /* !GCAL_TCAP */
 #  if defined(MSDOS) && USE_PAGER
 static Uchar
-peek_byte (segment, offset)
-     Uint segment;
-     Uint offset;
+peek_byte (Ulint segment, Ulint offset)
 /*!
    Gets a byte of IBM/PC-memory from address (segment:offset).
 */
@@ -1408,10 +1395,7 @@ peek_byte (segment, offset)
 
 
 static void
-get_hl_seq (sequence_str, hls1_set, hls2_set)
-     const char *sequence_str;
-     Bool *hls1_set;
-     Bool *hls2_set;
+get_hl_seq (const char *sequence_str, Bool *hls1_set, Bool *hls2_set)
 /*!
    Highlighting sequences/marking characters are given in command line
    (`-H<seq1_start:seq1_end:seq2_start:seq2_end>' option set),
@@ -1687,9 +1671,7 @@ get_hl_seq (sequence_str, hls1_set, hls2_set)
 
 #if !HAVE_STRTOL
 static int
-sbyte2int (string, base)
-     const char *string;
-     const int base;
+sbyte2int (const char *string, const int base)
 /*!
    Converts a textual b-adic string `string', which contains the absolute
      textual representation of a byte given in number base `base' (2-16)

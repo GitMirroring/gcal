@@ -148,11 +148,7 @@ static const Ed_struct info_exclusive_day[] = {
 *  Function implementations.
 */
 void
-my_help_on_help (fp, longopt, lopt_ambig, cols)
-     FILE *fp;
-     const char *longopt;
-     const Bool lopt_ambig;
-     const int cols;
+my_help_on_help (FILE *fp, const char *longopt, const Bool lopt_ambig, const int cols)
 /*!
    Prints the "help on help" text to file `fp' using the central output
      function `print_text()', and uses the global text buffer `s1' internally.
@@ -215,9 +211,7 @@ my_help_on_help (fp, longopt, lopt_ambig, cols)
 
 
 void
-my_extended_help (fp, longopt_symbolic)
-     FILE *fp;
-     const int longopt_symbolic;
+my_extended_help (FILE *fp, const int longopt_symbolic)
 /*!
    Prints the "extended help" text to file `fp' using the central
      output function `print_text()', and uses the global text buffers
@@ -2270,8 +2264,7 @@ my_extended_help (fp, longopt_symbolic)
 
 
 void
-my_basic_help (fp)
-     FILE *fp;
+my_basic_help (FILE *fp)
 /*!
    Prints the "basic help" text to file `fp' using the central
      output function `print_text()' and uses global text buffer
@@ -2325,8 +2318,7 @@ my_basic_help (fp)
 
 
 void
-my_license (fp)
-     FILE *fp;
+my_license (FILE *fp)
 /*!
    Prints the program-id and the license text to file `fp' using
      the central output function `print_text()', and uses the global
@@ -2382,8 +2374,7 @@ my_license (fp)
 
 
 void
-my_version (fp)
-     FILE *fp;
+my_version (FILE *fp)
 /*!
    Prints the program-id and all compilation flags to file `fp'
      using the central output function `print_text()', and
@@ -2468,8 +2459,7 @@ lopt_msg ()
 
 
 static int
-gmt_timezone_value (hour)
-     int hour;
+gmt_timezone_value (int hour)
 /*!
    Returns the given HOUR offset value as an offset value N
      within the range -12...-1...[0]...+1...+12, which is
@@ -2491,9 +2481,7 @@ gmt_timezone_value (hour)
 
 
 static const char *
-get_longopt_description (longopt_symbolic, with_larglist)
-     const int longopt_symbolic;
-     const Bool with_larglist;
+get_longopt_description (const int longopt_symbolic, const Bool with_larglist)
 /*!
    Returns a description text of given `longopt_symbolic' long-style option
      in global text buffer `s2'.  If `with_larglist' is TRUE, the returned
@@ -2554,8 +2542,7 @@ get_longopt_description (longopt_symbolic, with_larglist)
 
 
 static void
-my_bug_report_address (fp)
-     FILE *fp;
+my_bug_report_address (FILE *fp)
 /*!
    Prints the bug report address to file `fp' using the central output
    function `print_text()', and uses the global text buffer `s1' internally.
@@ -2573,9 +2560,7 @@ my_bug_report_address (fp)
 
 
 static void
-my_copyright (fp, with_short_license)
-     FILE *fp;
-     const Bool with_short_license;
+my_copyright (FILE *fp, const Bool with_short_license)
 /*!
    Prints the program-id and copyright text to file `fp' using
      the central output function `print_text()', and uses the global
@@ -2606,8 +2591,7 @@ my_copyright (fp, with_short_license)
 
 
 static void
-my_help_head_text (fp)
-     FILE *fp;
+my_help_head_text (FILE *fp)
 /*!
    Prints the help heading text to file `fp' using the central
      output function `print_text()', and uses the global text buffer
@@ -2649,8 +2633,7 @@ my_help_head_text (fp)
 */
 #if defined(MSDOS)
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 # if defined(__DJGPP__) || defined(__WATCOMC__) || (defined(_MSC_VER) && (_MSC_VER != 800))
   char buf[80];
@@ -2793,7 +2776,7 @@ print_compiler_info (fp)
 #else /* !MSDOS */
 # if defined(WIN32)
 static void
-print_compiler_info (fp)
+print_compiler_info (FILE *fp)
      FILE *fp;
 {
 #  if (defined(_MSC_VER) || defined(__WATCOMC__))
@@ -2882,8 +2865,7 @@ print_compiler_info (fp)
 # else /* !WIN32 */
 #  if defined(OS2)
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 #   if defined(__IBMC__) || defined(__WATCOMC__) || defined(_MSC_VER)
   char buf[80];
@@ -3016,7 +2998,7 @@ print_compiler_info (fp)
 #  else	/* !OS2 */
 #   if defined(ACORN)
 static void
-print_compiler_info (fp)
+print_compiler_info (FILE *fp)
      FILE *fp;
 {
   sprintf (s1, _(*compiler_info),
@@ -3049,8 +3031,7 @@ int WBversion = (int)
   10;
 
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 /* Define buffers. */
 
@@ -3107,8 +3088,7 @@ print_compiler_info (fp)
 #    else /* !AMIGA */
 #     if defined(ATARI)
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 #      ifdef __TURBOC__
   char buf[40];
@@ -3144,8 +3124,7 @@ print_compiler_info (fp)
 #     else /* !ATARI */
 #      if defined(__50SERIES)	/* Prime/PRIMOS */
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
   sprintf (s1, _(*compiler_info),
 #       ifdef __GNUC__
@@ -3162,8 +3141,7 @@ print_compiler_info (fp)
 #      else /* !__50SERIES */
 #       if defined(VAXC) || defined(VMS)	/* DEC Vax */
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 #        ifdef VMS_VERSION
   char buf[40];
@@ -3222,8 +3200,7 @@ print_compiler_info (fp)
 #        endif
 
 static void
-print_compiler_info (fp)
-     FILE *fp;
+print_compiler_info (FILE *fp)
 {
 #        if defined(CRAY) || defined(NX_CURRENT_COMPILER_RELEASE) || defined(NetBSD)
   char buf1[40];

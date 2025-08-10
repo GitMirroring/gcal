@@ -56,14 +56,7 @@
 *  All other T-Z countries specific holiday management functions.
 */
 void
-tc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tc_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Turks and Caicos Islands.
 */
@@ -112,14 +105,7 @@ tc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-td_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+td_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Chad.
 */
@@ -143,14 +129,7 @@ td_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tg_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tg_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Togo.
 */
@@ -179,14 +158,7 @@ tg_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-th_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+th_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Thailand.
 */
@@ -299,14 +271,7 @@ th_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tj_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tj_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tajikistan.
 */
@@ -341,14 +306,7 @@ tj_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tk_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tk_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tokelau.
 */
@@ -362,14 +320,7 @@ tk_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tm_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Turkmenistan.
 */
@@ -447,14 +398,7 @@ tm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tn_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tunisia.
 */
@@ -491,14 +435,7 @@ tn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-to_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+to_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tonga.
 */
@@ -545,14 +482,7 @@ to_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tr_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tr_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Turkey.
 */
@@ -579,14 +509,7 @@ tr_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tt_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Trinidad and Tobago.
 */
@@ -638,14 +561,7 @@ tt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tv_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tuvalu.
 */
@@ -696,14 +612,7 @@ tv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tw_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tw_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Taiwan.
 */
@@ -744,14 +653,7 @@ tw_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-tz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+tz_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Tanzania.
 */
@@ -793,14 +695,7 @@ tz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-ua_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ua_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Ukraine.
 */
@@ -904,14 +799,7 @@ ua_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-ug_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ug_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Uganda.
 */
@@ -957,14 +845,7 @@ ug_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ak_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ak_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Alaska.
 */
@@ -992,14 +873,7 @@ us_ak_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_al_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_al_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Alabama.
 */
@@ -1034,14 +908,7 @@ us_al_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ar_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ar_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Arkansas.
 */
@@ -1069,14 +936,7 @@ us_ar_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_az_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_az_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Arizona.
 */
@@ -1089,14 +949,7 @@ us_az_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ca_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ca_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/California.
 */
@@ -1134,14 +987,7 @@ us_ca_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_co_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_co_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Colorado.
 */
@@ -1159,14 +1005,7 @@ us_co_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ct_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ct_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Connecticut.
 */
@@ -1184,14 +1023,7 @@ us_ct_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_dc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_dc_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/District of Columbia.
 */
@@ -1216,14 +1048,7 @@ us_dc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_de_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_de_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Delaware.
 */
@@ -1251,14 +1076,7 @@ us_de_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_fl_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_fl_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Florida.
 */
@@ -1274,14 +1092,7 @@ us_fl_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ga_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ga_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Georgia.
 */
@@ -1305,14 +1116,7 @@ us_ga_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_hi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_hi_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Hawaii.
 */
@@ -1344,14 +1148,7 @@ us_hi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ia_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ia_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Iowa.
 */
@@ -1380,14 +1177,7 @@ us_ia_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_id_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_id_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Idaho.
 */
@@ -1400,14 +1190,7 @@ us_id_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_il_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_il_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Illinois.
 */
@@ -1438,14 +1221,7 @@ us_il_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_in_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_in_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Indiana.
 */
@@ -1484,14 +1260,7 @@ us_in_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ks_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ks_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Kansas.
 */
@@ -1504,14 +1273,7 @@ us_ks_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ky_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ky_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Kentucky.
 */
@@ -1528,14 +1290,7 @@ us_ky_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_la_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_la_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Louisiana.
 */
@@ -1568,14 +1323,7 @@ us_la_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ma_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ma_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Massachusetts.
 */
@@ -1598,14 +1346,7 @@ us_ma_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_md_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_md_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Maryland.
 */
@@ -1657,14 +1398,7 @@ us_md_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_me_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_me_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Maine.
 */
@@ -1683,14 +1417,7 @@ us_me_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_mi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_mi_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Michigan.
 */
@@ -1708,14 +1435,7 @@ us_mi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_mn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_mn_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Minnesota.
 */
@@ -1728,14 +1448,7 @@ us_mn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_mo_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_mo_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Missouri.
 */
@@ -1753,14 +1466,7 @@ us_mo_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ms_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ms_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Mississippi.
 */
@@ -1792,14 +1498,7 @@ us_ms_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_mt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_mt_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Montana.
 */
@@ -1821,14 +1520,7 @@ us_mt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nc_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/North Carolina.
 */
@@ -1847,14 +1539,7 @@ us_nc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nd_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nd_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/North Dakota.
 */
@@ -1869,14 +1554,7 @@ us_nd_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ne_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ne_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Nebraska.
 */
@@ -1895,14 +1573,7 @@ us_ne_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nh_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nh_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/New Hampshire.
 */
@@ -1924,14 +1595,7 @@ us_nh_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nj_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nj_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/New Jersey.
 */
@@ -1958,14 +1622,7 @@ us_nj_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nm_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/New Mexico.
 */
@@ -1978,14 +1635,7 @@ us_nm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_nv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_nv_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Nevada.
 */
@@ -2023,14 +1673,7 @@ us_nv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ny_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ny_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/New York.
 */
@@ -2055,14 +1698,7 @@ us_ny_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_oh_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_oh_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Ohio.
 */
@@ -2075,14 +1711,7 @@ us_oh_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ok_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ok_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Oklahoma.
 */
@@ -2095,14 +1724,7 @@ us_ok_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_or_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_or_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Oregon.
 */
@@ -2115,14 +1737,7 @@ us_or_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_pa_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_pa_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Pennsylvania.
 */
@@ -2142,14 +1757,7 @@ us_pa_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ri_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ri_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Rhode Island.
 */
@@ -2181,14 +1789,7 @@ us_ri_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_sc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_sc_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/South Carolina.
 */
@@ -2212,14 +1813,7 @@ us_sc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_sd_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_sd_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/South Dakota.
 */
@@ -2232,14 +1826,7 @@ us_sd_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_tn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_tn_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Tennessee.
 */
@@ -2252,14 +1839,7 @@ us_tn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_tx_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_tx_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Texas.
 */
@@ -2297,14 +1877,7 @@ us_tx_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_ut_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_ut_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Utah.
 */
@@ -2329,14 +1902,7 @@ us_ut_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_va_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_va_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Virginia.
 */
@@ -2361,14 +1927,7 @@ us_va_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_vt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_vt_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Vermont.
 */
@@ -2405,14 +1964,7 @@ us_vt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_wa_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_wa_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Washington.
 */
@@ -2431,14 +1983,7 @@ us_wa_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_wi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_wi_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Wisconsin.
 */
@@ -2451,14 +1996,7 @@ us_wi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_wv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_wv_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/West Virginia.
 */
@@ -2512,14 +2050,7 @@ us_wv_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-us_wy_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+us_wy_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in United States/Wyoming.
 */
@@ -2532,14 +2063,7 @@ us_wy_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-uy_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+uy_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Uruguay.
 */
@@ -2601,14 +2125,7 @@ uy_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-uz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+uz_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Uzbekistan.
 */
@@ -2683,14 +2200,7 @@ uz_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-vc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+vc_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in St Vincent and Grenadines.
 */
@@ -2735,14 +2245,7 @@ vc_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-ve_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ve_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Venezuela.
 */
@@ -2845,14 +2348,7 @@ ve_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-vg_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+vg_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in British Virgin Islands.
 */
@@ -2896,14 +2392,7 @@ vg_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-vi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+vi_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in U.S. Virgin Islands.
 */
@@ -3007,14 +2496,7 @@ vi_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-vn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+vn_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Viet Nam.
 */
@@ -3042,14 +2524,7 @@ vn_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-vu_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+vu_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Vanuatu.
 */
@@ -3130,14 +2605,7 @@ vu_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-wf_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+wf_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Wallis and Futuna Islands.
 */
@@ -3151,14 +2619,7 @@ wf_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-ws_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ws_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in (Western) Samoa.
 */
@@ -3216,14 +2677,7 @@ ws_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-ye_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+ye_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Yemen.
 */
@@ -3256,14 +2710,7 @@ ye_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-yt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+yt_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Mayotte.
 */
@@ -3277,14 +2724,7 @@ yt_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-yu_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+yu_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Serbia and Montenegro.
 */
@@ -3364,14 +2804,7 @@ yu_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-za_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+za_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in South Africa.
 */
@@ -3460,14 +2893,7 @@ za_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-zm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+zm_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Zambia.
 */
@@ -3535,14 +2961,7 @@ zm_hdy (init_data, detected, easter, year, hd_elems, fday, count)
 
 
 void
-zw_hdy (init_data, detected, easter, year, hd_elems, fday, count)
-     Bool *init_data;
-     const Bool detected;
-     int easter;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+zw_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Manages all specific holidays celebrated in Zimbabwe.
 */

@@ -82,14 +82,8 @@ __END_DECLARATIONS
 *  Function implementations.
 */
   VOID_PTR
-my_malloc (amount, exit_status, module_name, module_line, var_name,
-	   var_contents)
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_malloc (const int amount, const int exit_status, const char *module_name, const long module_line, const char *var_name,
+	   const int var_contents)
 /*!
    Allocates AMOUNT bytes of memory dynamically, with error checking.
      Calls `my_error()' and terminates the program if any errors occur.
@@ -119,15 +113,8 @@ my_malloc (amount, exit_status, module_name, module_line, var_name,
 
 
 VOID_PTR
-my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
-	    var_name, var_contents)
-     VOID_PTR ptr_memblock;
-     const int amount;
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_realloc (VOID_PTR ptr_memblock, const int amount, const int exit_status, const char *module_name, const long module_line,
+	    const char *var_name, const int var_contents)
 /*!
    Changes the size of an allocated block of memory PTR_MEMBLOCK to AMOUNT
      bytes, with error checking.  Calls `my_error()' and terminates the program
@@ -159,10 +146,7 @@ my_realloc (ptr_memblock, amount, exit_status, module_name, module_line,
 
 
 void
-allocate_all_strings (amount, module_name, module_line)
-     const int amount;
-     const char *module_name;
-     const long module_line;
+allocate_all_strings (const int amount, const char *module_name, const long module_line)
 /*!
    Initially allocates AMOUNT bytes of memory dynamically for all string
      vectors used, with error checking.  Calls `my_error()' indirectly and
@@ -209,11 +193,7 @@ allocate_all_strings (amount, module_name, module_line)
 
 
 void
-resize_all_strings (amount, with_line_buffer, module_name, module_line)
-     const int amount;
-     const Bool with_line_buffer;
-     const char *module_name;
-     const long module_line;
+resize_all_strings (const int amount, const Bool with_line_buffer, const char *module_name, const long module_line)
 /*!
    Changes the size of all string vectors used to AMOUNT bytes, with error
      checking.  Calls `my_error()' indirectly and terminates the program
@@ -258,12 +238,7 @@ resize_all_strings (amount, with_line_buffer, module_name, module_line)
 
 
 void
-my_error (exit_status, module_name, module_line, var_name, var_contents)
-     const int exit_status;
-     const char *module_name;
-     const long module_line;
-     const char *var_name;
-     const int var_contents;
+my_error (const int exit_status, const char *module_name, const long module_line, const char *var_name, const int var_contents)
 /*!
    Displays a specific error message on STDERR channel
      and terminates the program with status `exit_status'.
@@ -392,8 +367,7 @@ my_error (exit_status, module_name, module_line, var_name, var_contents)
 
 #if HAVE_SIGNAL && (defined(SIGINT) || defined(SIGTERM) || defined(SIGHUP))
 RETSIGTYPE
-handle_signal (the_signal)
-     int the_signal;
+handle_signal (int the_signal)
 /*!
    Signal handler function which displays the numeric ID of the
      received signal on STDERR channel and terminates the program
@@ -410,8 +384,7 @@ handle_signal (the_signal)
 
 
 void
-my_exit (exit_status)
-     const int exit_status;
+my_exit (const int exit_status)
 /*!
    Tries to erase all temporary files before without error checking
      and quits the program by calling the systems `exit()' function.
@@ -439,8 +412,7 @@ my_exit (exit_status)
 
 
 int
-my_atoi (string)
-     const char *string;
+my_atoi (const char *string)
 /*!
    Converts given `string' to a positiv integer value
      skipping leading zeroes and returns values in
@@ -458,8 +430,7 @@ my_atoi (string)
 
 
 int
-my_system (command)
-     const char *command;
+my_system (const char *command)
 /*!
    Wrapper for the system() function.
 */
@@ -475,9 +446,7 @@ my_system (command)
 
 #if !HAVE_STRSTR
 char *
-my_strstr (text, pattern)
-     const char *text;
-     const char *pattern;
+my_strstr (const char *text, const char *pattern)
 /*!
    Search the `pattern' needle in haystack `text'   =8^)
      (emulates the ANSI C strstr() function; not very well optimized).
@@ -509,9 +478,7 @@ my_strstr (text, pattern)
 
 #if !HAVE_STRCSPN
 int
-my_strcspn (s1, s2)
-     const char *s1;
-     const char *s2;
+my_strcspn (const char *s1, const char *s2)
 /*!
    Find length of initial segment of `s1' consisting entirely
    of characters not from `s2' (emulates the ANSI C strcspn() function).
@@ -538,9 +505,7 @@ my_strcspn (s1, s2)
 
 #if !HAVE_STRCASECMP
 int
-my_strcasecmp (s1, s2)
-     const char *s1;
-     const char *s2;
+my_strcasecmp (const char *s1, const char *s2)
 /*!
    Same as the ANSI C `strcmp()' function, but case insensitive.
 */
@@ -570,10 +535,7 @@ my_strcasecmp (s1, s2)
 
 #if !HAVE_STRNCASECMP
 int
-my_strncasecmp (s1, s2, len)
-     const char *s1;
-     const char *s2;
-     int len;
+my_strncasecmp (const char *s1, const char *s2, int len)
 /*!
    Same as the ANSI C `strncmp()' function, but case insensitive.
 */
@@ -896,9 +858,7 @@ get_actual_date ()
 
 
 int
-compare_d_m_name (string, mode)
-     const char *string;
-     const Cmode_enum mode;
+compare_d_m_name (const char *string, const Cmode_enum mode)
 /*!
    Compares the given day/month name `string' with built-in names and
      returns (1...7|1...12) either if `string' matches partly (until `\0'
@@ -981,9 +941,7 @@ compare_d_m_name (string, mode)
 
 
 int
-asc_sort (a, b)
-     const char **a;
-     const char **b;
+asc_sort (const char **a, const char **b)
 /*!
    The (q)sort compare function; ascending order.
 */
@@ -994,9 +952,7 @@ asc_sort (a, b)
 
 
 int
-des_sort (a, b)
-     const char **a;
-     const char **b;
+des_sort (const char **a, const char **b)
 /*!
    The (q)sort compare function; descending order.
 */
@@ -1007,9 +963,7 @@ des_sort (a, b)
 
 
 Bool
-is_presorted (table, elems)
-     char **table;
-     int elems;
+is_presorted (char **table, int elems)
 /*!
    Checks whether the textual entries in `&table[]' are presorted in
       ascending sort order.  Returns TRUE if the entries in `table'
@@ -1038,9 +992,7 @@ is_presorted (table, elems)
 
 
 void
-reverse_order (table, elems)
-     char **table;
-     const int elems;
+reverse_order (char **table, const int elems)
 /*!
    Rearranges (reverts) the sort order of the textual entries in
      `&table[]' from  ascending sort order to descending sort order
@@ -1068,8 +1020,7 @@ reverse_order (table, elems)
 
 
 const char *
-day_suffix (day)
-     int day;
+day_suffix (int day)
 /*!
    Returns the ordinal suffix (st, nd, rd or th) which is added to a single day number.
 */
@@ -1114,8 +1065,7 @@ day_suffix (day)
 
 
 const char *
-short3_day_name (day)
-     const int day;
+short3_day_name (const int day)
 /*!
    Returns the short name of the day using the `printf()' format "%-3s".
 */
@@ -1165,8 +1115,7 @@ short3_day_name (day)
 
 
 const char *
-short_day_name (day)
-     const int day;
+short_day_name (const int day)
 /*!
    Returns the short name of the day using the `printf()' format "%-2s".
 */
@@ -1216,8 +1165,7 @@ short_day_name (day)
 
 
 const char *
-day_name (day)
-     const int day;
+day_name (const int day)
 /*!
    Returns the complete name of the day.
 */
@@ -1234,8 +1182,7 @@ day_name (day)
 
 
 const char *
-short_month_name (month)
-     const int month;
+short_month_name (const int month)
 /*!
    Returns the short name of the month using the `printf()' format "%-3s".
 */
@@ -1311,8 +1258,7 @@ short_month_name (month)
 
 
 const char *
-month_name (month)
-     const int month;
+month_name (const int month)
 /*!
    Returns the complete name of the month.
 */
@@ -1374,10 +1320,7 @@ month_name (month)
 
 
 Ulint
-date2num (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+date2num (const int day, const int month, const int year)
 /*!
    Returns the absolute number of days of the given date since
      00010101(==YYYYMMDD) respecting the missing period of the
@@ -1411,11 +1354,7 @@ date2num (day, month, year)
 
 
 void
-num2date (mjd, day, month, year)
-     Ulint mjd;
-     int *day;
-     int *month;
-     int *year;
+num2date (Ulint mjd, int *day, int *month, int *year)
 /*!
    Converts a delivered absolute number of days `mjd' to a standard
      date (since 00010101(==YYYYMMDD), returned in `&day', `&month' and `&year')
@@ -1474,11 +1413,7 @@ num2date (mjd, day, month, year)
 
 
 Bool
-doy2date (doy, is_leap_year, day, month)
-     int doy;
-     const int is_leap_year;
-     int *day;
-     int *month;
+doy2date (int doy, const int is_leap_year, int *day, int *month)
 /*!
    Converts a given number of days of a year to a standard date
      (returned in `&day' and `&month') and returns:
@@ -1530,10 +1465,7 @@ doy2date (doy, is_leap_year, day, month)
 
 
 int
-weekday_of_date (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+weekday_of_date (const int day, const int month, const int year)
 /*!
    Returns the weekday of a Gregorian/Julian calendar date
      (month must be 1...12) and returns 1...7 (1==mo, 2==tu...7==su).
@@ -1547,10 +1479,7 @@ weekday_of_date (day, month, year)
 
 
 int
-day_of_year (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+day_of_year (const int day, const int month, const int year)
 /*!
    Returns the day of the year of a Gregorian or Julian calendar date
      (month must be 1...12) and returns 1...365|366.
@@ -1570,8 +1499,7 @@ day_of_year (day, month, year)
 
 
 int
-days_of_february (year)
-     const int year;
+days_of_february (const int year)
 /*!
    Returns the number of days in February --- respecting the Gregorian
      Reformation period likewise the leap year rule as used by the
@@ -1608,10 +1536,7 @@ days_of_february (year)
 
 
 Bool
-valid_date (day, month, year)
-     const int day;
-     const int month;
-     const int year;
+valid_date (const int day, const int month, const int year)
 /*!
    Checks whether a delivered date is valid.
 */
@@ -1630,10 +1555,7 @@ valid_date (day, month, year)
 
 
 Bool
-prev_date (day, month, year)
-     int *day;
-     int *month;
-     int *year;
+prev_date (int *day, int *month, int *year)
 /*!
    Sets a delivered date back by one day (to yesterday's date)
      respecting the missing period of the Gregorian Reformation.
@@ -1675,10 +1597,7 @@ prev_date (day, month, year)
 
 
 Bool
-next_date (day, month, year)
-     int *day;
-     int *month;
-     int *year;
+next_date (int *day, int *month, int *year)
 /*!
    Sets the delivered date forwards by one day (to tomorrow's date)
      respecting the missing period of the Gregorian Reformation.
@@ -1718,12 +1637,7 @@ next_date (day, month, year)
 
 
 int
-week_number (day, month, year, is_iso_week, start_day_of_week)
-     const int day;
-     const int month;
-     const int year;
-     const Bool is_iso_week;
-     const int start_day_of_week;
+week_number (const int day, const int month, const int year, const Bool is_iso_week, const int start_day_of_week)
 /*!
    Returns either a ISO-8601:1988 standard week number of the given date
      if the `is_iso_week' variable is TRUE, or a special value for marking
@@ -1815,11 +1729,7 @@ week_number (day, month, year, is_iso_week, start_day_of_week)
 
 
 int
-weekno2doy (week, year, is_iso_week, start_day_of_week)
-     int week;
-     const int year;
-     const Bool is_iso_week;
-     const int start_day_of_week;
+weekno2doy (int week, const int year, const Bool is_iso_week, const int start_day_of_week)
 /*!
    Returns the "day_of_year" number of a Julian or Gregorian calendar year,
      the given week number (either ISO-8601:1988 or non-ISO) starts at.

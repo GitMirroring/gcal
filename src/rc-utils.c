@@ -80,11 +80,7 @@ __END_DECLARATIONS
 
 
 Bool
-rc_valid_day (date_text, day, month, year)
-     const char *date_text;
-     const int day;
-     const int month;
-     const int year;
+rc_valid_day (const char *date_text, const int day, const int month, const int year)
 /*!
    Checks the `date_text' for "%? special texts without argument", which
      disables a fixed dates and which is stored in `date_text' without a
@@ -315,13 +311,7 @@ rc_valid_day (date_text, day, month, year)
 
 
 Bool
-rc_valid_period (date_text, d, m, y, incr_year, decr_year)
-     char *date_text;
-     const int d;
-     const int m;
-     const int y;
-     const int incr_year;
-     const int decr_year;
+rc_valid_period (char *date_text, const int d, const int m, const int y, const int incr_year, const int decr_year)
 /*!
    Checks the `date_text' for "%? special texts with date argument", which
      disables a fixed dates and which is stored in `date_text' without a
@@ -785,24 +775,8 @@ rc_clean_flags ()
 
 
 Line_struct *
-rc_get_date (the_line, lineptrs, is_rc_file, is_weekday_mode, d, m, y, n, len,
-	     hc, hn, hwd, filename, line_number, line_buffer, on_error_exit)
-     char *the_line;
-     Line_struct *lineptrs;
-     const Bool is_rc_file;
-     Bool *is_weekday_mode;
-     int *d;
-     int *m;
-     int *y;
-     int *n;
-     int *len;
-     char *hc;
-     int *hn;
-     int *hwd;
-     const char *filename;
-     const long line_number;
-     const char *line_buffer;
-     const Bool on_error_exit;
+rc_get_date (char *the_line, Line_struct *lineptrs, const Bool is_rc_file, Bool *is_weekday_mode, int *d, int *m, int *y, int *n, int *len,
+	     char *hc, int *hn, int *hwd, const char *filename, const long line_number, const char *line_buffer, const Bool on_error_exit)
 /*!
    Converts the textual/string `date' of a RC-file line into a numerical date
      and returns a pointer struct to the "day"-part and the "text"-part of the
@@ -1495,14 +1469,7 @@ rc_get_date (the_line, lineptrs, is_rc_file, is_weekday_mode, d, m, y, n, len,
 
 
 Bool
-precomp_nth_wd (diff, wd, n, day, month, year, mode)
-     int diff;
-     const int wd;
-     int *n;
-     int *day;
-     int *month;
-     int *year;
-     const Cmode_enum mode;
+precomp_nth_wd (int diff, const int wd, int *n, int *day, int *month, int *year, const Cmode_enum mode)
 /*!
    Precomputes the date of the "N'th absolute weekday" `wd' of the year
      or the date of weekday `wd' of the "N'th absolute week" of the year
@@ -1662,13 +1629,7 @@ precomp_nth_wd (diff, wd, n, day, month, year, mode)
 
 
 Bool
-precomp_date (diff, wd, day, month, year, mode)
-     int diff;
-     const int wd;
-     int *day;
-     int *month;
-     const int year;
-     const Cmode_enum mode;
+precomp_date (int diff, const int wd, int *day, int *month, const int year, const Cmode_enum mode)
 /*!
    Precomputes the date relative to Easter Sunday's date (mode==EAster),
      relative to today's date (mode==TOday) or relative to date variables
@@ -1809,12 +1770,7 @@ precomp_date (diff, wd, day, month, year, mode)
 
 
 void
-set_dvar (line_buffer, lineptrs, filename, line_number, mode)
-     const char *line_buffer;
-     Line_struct *lineptrs;
-     const char *filename;
-     const long line_number;
-     const Var_enum mode;
+set_dvar (const char *line_buffer, Line_struct *lineptrs, const char *filename, const long line_number, const Var_enum mode)
 /*!
    Scans given string `line_buffer' and tries to detect a valid date variable
      reference, which can be:
@@ -2244,11 +2200,7 @@ set_dvar (line_buffer, lineptrs, filename, line_number, mode)
 
 
 void
-set_tvar (line_buffer, filename, line_number, mode)
-     const char *line_buffer;
-     const char *filename;
-     const long line_number;
-     const Var_enum mode;
+set_tvar (const char *line_buffer, const char *filename, const long line_number, const Var_enum mode)
 /*!
    Scans given string `line_buffer' and tries to detect a valid text variable
      reference, which is:
@@ -2981,12 +2933,7 @@ set_tvar (line_buffer, filename, line_number, mode)
 
 
 void
-nth_weekday_of_month (d, m, y, n, is_weekday_mode)
-     int *d;
-     int *m;
-     int *y;
-     const int *n;
-     Bool *is_weekday_mode;
+nth_weekday_of_month (int *d, int *m, int *y, const int *n, Bool *is_weekday_mode)
 /*!
    If "N'th weekday of month" field is encoded:
      Compute the according date and return it in `&d', `&m' and `&y'.
@@ -3153,13 +3100,7 @@ nth_weekday_of_month (d, m, y, n, is_weekday_mode)
 
 
 Slint
-d_between (d1, m1, y1, d2, m2, y2)
-     const int d1;
-     const int m1;
-     const int y1;
-     const int d2;
-     const int m2;
-     const int y2;
+d_between (const int d1, const int m1, const int y1, const int d2, const int m2, const int y2)
 /*!
    Computes the amount of days between date1(base date) and date2
      exclusive date1 and date2, and adds 1 to the result.
@@ -3171,13 +3112,7 @@ d_between (d1, m1, y1, d2, m2, y2)
 
 
 Slint
-w_between (d1, m1, y1, d2, m2, y2)
-     const int d1;
-     const int m1;
-     const int y1;
-     const int d2;
-     const int m2;
-     const int y2;
+w_between (const int d1, const int m1, const int y1, const int d2, const int m2, const int y2)
 /*!
    Computes the amount of weeks between date1(base date) and date2
      exclusive date1 and date2, and adds 1 to the result.
@@ -3202,11 +3137,7 @@ w_between (d1, m1, y1, d2, m2, y2)
 
 
 Slint
-m_between (m1, y1, m2, y2)
-     const int m1;
-     const int y1;
-     const int m2;
-     const int y2;
+m_between (const int m1, const int y1, const int m2, const int y2)
 /*!
    Computes the amount of months between date1(base date) and date2
      exclusive date1 and date2, and adds 1 to the result.
@@ -3218,13 +3149,7 @@ m_between (m1, y1, m2, y2)
 
 
 void
-manage_leap_day (day, month, year, line_buffer, filename, line_number)
-     int *day;
-     int *month;
-     int year;
-     const char *line_buffer;
-     const char *filename;
-     const long line_number;
+manage_leap_day (int *day, int *month, int year, const char *line_buffer, const char *filename, const long line_number)
 /*!
    Tries to set the leap day (29-Feb) either to "28-Feb" or "1-Mar"
      and prints a informational message in case this date modification is
@@ -3279,33 +3204,12 @@ manage_leap_day (day, month, year, line_buffer, filename, line_number)
 
 
 char *
-biorhythm (create_bar, axis_len, string,
-	   day, month, year, birth_day, birth_month, birth_year,
-	   emo_text, emo_phase, emo_waxes,
-	   int_text, int_phase, int_waxes,
-	   phy_text, phy_phase, phy_waxes,
-	   critical_day, positive_day, negative_day)
-     const Bool create_bar;
-     int axis_len;
-     char *string;
-     const int day;
-     const int month;
-     const int year;
-     const int birth_day;
-     const int birth_month;
-     const int birth_year;
-     const char *emo_text;
-     int *emo_phase;
-     int *emo_waxes;
-     const char *int_text;
-     int *int_phase;
-     int *int_waxes;
-     const char *phy_text;
-     int *phy_phase;
-     int *phy_waxes;
-     int *critical_day;
-     int *positive_day;
-     int *negative_day;
+biorhythm (const Bool create_bar, int axis_len, char *string,
+	   const int day, const int month, const int year, const int birth_day, const int birth_month, const int birth_year,
+	   const char *emo_text, int *emo_phase, int *emo_waxes,
+	   const char *int_text, int *int_phase, int *int_waxes,
+	   const char *phy_text, int *phy_phase, int *phy_waxes,
+	   int *critical_day, int *positive_day, int *negative_day)
 /*!
    Computes the biorhythm for a date and creates a text graphics bar line
      according to the computed values in case `create_bar' is set to TRUE.
@@ -3475,9 +3379,7 @@ biorhythm (create_bar, axis_len, string,
 
 
 double
-compute_distance (coor1, coor2)
-     const Coor_struct *coor1;
-     const Coor_struct *coor2;
+compute_distance (const Coor_struct *coor1, const Coor_struct *coor2)
 /*!
    Returns the air line distance in Kilometers between the two geographical
      point locations which are delivered in the COOR1 and COOR2 structures
@@ -3607,12 +3509,7 @@ compute_distance (coor1, coor2)
 
 
 static void
-var_warning (exit_status, var_name, line_buffer, filename, line_number)
-     const int exit_status;
-     const int var_name;
-     const char *line_buffer;
-     const char *filename;
-     const long line_number;
+var_warning (const int exit_status, const int var_name, const char *line_buffer, const char *filename, const long line_number)
 /*!
    Prints an informational message on STDERR channel in case an operation
      on a date or text variable is invalid.  Terminates the program if

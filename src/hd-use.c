@@ -62,12 +62,7 @@ char hd_mdays[HD_MAX] = { '\0' };
 *  Function implementations.
 */
 int
-eval_holiday (day, month, year, wd, forwards)
-     int day;
-     const int month;
-     const int year;
-     const int wd;
-     const Bool forwards;
+eval_holiday (int day, const int month, const int year, const int wd, const Bool forwards)
 /*!
    Detects first (FORWARDS==TRUE) or last (FORWARDS==FALSE) appearance
      of weekday `wd' in given date starting the search at `day'
@@ -99,14 +94,8 @@ eval_holiday (day, month, year, wd, forwards)
 
 
 int
-orthodox_easter (year, greg_diff, greg_year, greg_month, greg_first_day,
-		 greg_last_day)
-     const int year;
-     int *greg_diff;
-     const int greg_year;
-     const int greg_month;
-     const int greg_first_day;
-     const int greg_last_day;
+orthodox_easter (const int year, int *greg_diff, const int greg_year, const int greg_month, const int greg_first_day,
+		 const int greg_last_day)
 /*!
    Calculates the day and month of Orthodox Easter giving the year
      and the specific Gregorian Reformation date.  It returns the
@@ -187,8 +176,7 @@ orthodox_easter (year, greg_diff, greg_year, greg_month, greg_first_day,
 
 
 int
-tishri_1 (year)
-     const int year;
+tishri_1 (const int year)
 /*!
    Returns the `day_of_year' number of the (arithmetical lunisolar)
      Hebrew/Jewish Hebrew_New_Year/Rosh_Hashana/Tishri_1 for the
@@ -239,9 +227,7 @@ tishri_1 (year)
 
 
 int
-muharram_1 (year, doy)
-     const int year;
-     int *doy;
+muharram_1 (const int year, int *doy)
 /*!
    Returns the `day_of_year' number of the (arithmetical lunar)
      Islamic *CIVIL* calendar's Islamic_New_Year/MuHarram_1 for the
@@ -386,12 +372,7 @@ muharram_1 (year, doy)
 
 
 int
-find_chinese_leap_month (conjunction_vector, nh_ws_prev_year, year, hour, min)
-     Ulint *conjunction_vector;
-     Ulint *nh_ws_prev_year;
-     const int year;
-     const int hour;
-     const int min;
+find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, const int year, const int hour, const int min)
 /*!
    Calculates the leap month of the Chinese calendar (based on the method
      used since AD 1645, which implemented the use of true -- astronomically
@@ -639,17 +620,8 @@ find_chinese_leap_month (conjunction_vector, nh_ws_prev_year, year, hour, min)
 
 
 int
-decode_date_format (format_txt, result_txt, day, month, year, doy,
-		    hls1_set, hls2_set, fixed_length_names)
-     char *format_txt;
-     char **result_txt;
-     int day;
-     int month;
-     const int year;
-     const int doy;
-     const Bool hls1_set;
-     const Bool hls2_set;
-     const Bool fixed_length_names;
+decode_date_format (char *format_txt, char **result_txt, int day, int month, const int year, const int doy,
+		    const Bool hls1_set, const Bool hls2_set, const Bool fixed_length_names)
 /*!
    Concatenates the elements of a date (inclusive highlighting) in formatted
      manner to `&result_txt' according to the order of format specifiers, which
@@ -1165,18 +1137,8 @@ decode_date_format (format_txt, result_txt, day, month, year, doy,
 
 
 int
-decode_format (format_txt, pos, is_cformat, is_lformat, is_sign,
-	       is_lzero, is_suffix, is_fformat, fstyle, fwidth)
-     char *format_txt;
-     int pos;
-     Bool *is_cformat;
-     Bool *is_lformat;
-     Bool *is_sign;
-     Bool *is_lzero;
-     Bool *is_suffix;
-     Bool *is_fformat;
-     int *fstyle;
-     int *fwidth;
+decode_format (char *format_txt, int pos, Bool *is_cformat, Bool *is_lformat, Bool *is_sign,
+	       Bool *is_lzero, Bool *is_suffix, Bool *is_fformat, int *fstyle, int *fwidth)
 /*!
    Checks for an optional format instruction which can either be used
      in case a TVAR or a `%...' special text is referenced.  The template
@@ -1327,23 +1289,9 @@ decode_format (format_txt, pos, is_cformat, is_lformat, is_sign,
 
 
 int
-use_format (result_txt, pos, string, value, is_numeric, is_cformat,
-	    is_lformat, is_sign, is_lzero, is_suffix, is_fformat, fstyle,
-	    fwidth, extra_len)
-     char **result_txt;
-     const int pos;
-     const char *string;
-     const long value;
-     const Bool is_numeric;
-     const Bool is_cformat;
-     const Bool is_lformat;
-     const Bool is_sign;
-     const Bool is_lzero;
-     const Bool is_suffix;
-     const Bool is_fformat;
-     const int fstyle;
-     const int fwidth;
-     const int extra_len;
+use_format (char **result_txt, const int pos, const char *string, const long value, const Bool is_numeric, const Bool is_cformat,
+	    const Bool is_lformat, const Bool is_sign, const Bool is_lzero, const Bool is_suffix, const Bool is_fformat, const int fstyle,
+	    const int fwidth, const int extra_len)
 /*!
    Formats either the text `string' points to, or the number stored in `value'
      and returns the effective length of the text formatted.
@@ -1731,9 +1679,7 @@ use_format (result_txt, pos, string, value, is_numeric, is_cformat,
 
 
 void
-print_all_holidays (init_data, detected)
-     Bool init_data;
-     const Bool detected;
+print_all_holidays (Bool init_data, const Bool detected)
 /*!
    Generate and display all holidays (global `hd_table') in sorted manner.
 */
@@ -2118,19 +2064,8 @@ print_all_holidays (init_data, detected)
 
 
 void
-holiday (init_data, detected, holiday_name, country_code, holiday_prefix,
-	 day, month, year, hd_elems, fday, count)
-     Bool init_data;
-     const Bool detected;
-     const char *holiday_name;
-     const char *country_code;
-     const char *holiday_prefix;
-     int day;
-     int month;
-     const int year;
-     int *hd_elems;
-     const int fday;
-     const int count;
+holiday (Bool init_data, const Bool detected, const char *holiday_name, const char *country_code, const char *holiday_prefix,
+	 int day, int month, const int year, int *hd_elems, const int fday, const int count)
 /*!
    Generates a single holiday date text in formatted manner and stores the
      result into global `hd_table[]'.

@@ -72,10 +72,7 @@ __END_DECLARATIONS
 *  Function implementations.
 */
   static double
-atmospheric_refraction (altitude, pressure, temperature)
-     const double altitude;
-     double pressure;
-     const double temperature;
+atmospheric_refraction (const double altitude, double pressure, const double temperature)
 /*!
    Returns the approximate atmospheric refraction for the given true radians
      ALTITUDE in radians, the atmospheric PRESSURE in Newton per sqare meter
@@ -167,9 +164,7 @@ atmospheric_refraction (altitude, pressure, temperature)
 
 
 static int
-moon_charpos (x, lines)
-     const double x;
-     const int lines;
+moon_charpos (const double x, const int lines)
 /*!
    Computes the position where to place the next character
      of the Moon text graphics image.
@@ -190,10 +185,7 @@ moon_charpos (x, lines)
 
 
 double
-gd_latitude2gc_latitude (gd_latitude, meters_above_sea_level, gc_latitude)
-     const double gd_latitude;
-     const int meters_above_sea_level;
-     double *gc_latitude;
+gd_latitude2gc_latitude (const double gd_latitude, const int meters_above_sea_level, double *gc_latitude)
 /*!
    Reduces the geodetic latitude GD_LATITUDE of the Earth (which must be
      given in radians) to a geocentric latitude respecting the altitude
@@ -234,13 +226,7 @@ gd_latitude2gc_latitude (gd_latitude, meters_above_sea_level, gc_latitude)
 
 
 double
-sun_rise_set (event, is_limited, day, month, year, coordinates)
-     const Aevent_enum event;
-     const Bool is_limited;
-     const int day;
-     const int month;
-     const int year;
-     Coor_struct *coordinates;
+sun_rise_set (const Aevent_enum event, const Bool is_limited, const int day, const int month, const int year, Coor_struct *coordinates)
 /*!
    Returns the approximate timezone-based (local time) rise time of a definite
      Sun altitude for the given date in hours plus fraction if EVENT is `RIse',
@@ -1436,12 +1422,7 @@ sun_rise_set (event, is_limited, day, month, year, coordinates)
 
 
 double
-moon_rise_set (event, day, month, year, coordinates)
-     const Aevent_enum event;
-     int day;
-     int month;
-     int year;
-     Coor_struct *coordinates;
+moon_rise_set (const Aevent_enum event, int day, int month, int year, Coor_struct *coordinates)
 /*!
    Driver/wrapper function to calculate timezone-based (local time)
      rise/set times of the Moon correctly.
@@ -1521,12 +1502,7 @@ moon_rise_set (event, day, month, year, coordinates)
 
 
 static double
-internal_moon_rise_set (event, day, month, year, coordinates)
-     const Aevent_enum event;
-     int day;
-     int month;
-     int year;
-     Coor_struct *coordinates;
+internal_moon_rise_set (const Aevent_enum event, int day, int month, int year, Coor_struct *coordinates)
 /*!
    Returns the approximate UT/GMT-based rise time of a definite Moon altitude
      for the given date in hours plus fraction if EVENT is `RIse', otherwise
@@ -3319,13 +3295,7 @@ internal_moon_rise_set (event, day, month, year, coordinates)
 
 
 int
-moondisk (is_full_new, day, month, year, hour, min)
-     Bool *is_full_new;
-     int day;
-     int month;
-     int year;
-     const int hour;
-     const int min;
+moondisk (Bool *is_full_new, int day, int month, int year, const int hour, const int min)
 /*!
    Calculates the approximate illuminated fraction of the Moon's disk for
      the given Julian/Gregorian date (range 00010101...99991231) and returns
@@ -3405,10 +3375,7 @@ moondisk (is_full_new, day, month, year, hour, min)
 
 
 void
-draw_moon (age, lines, string)
-     const int age;
-     const int lines;
-     char **string;
+draw_moon (const int age, const int lines, char **string)
 /*!
    Creates a text graphics image of the Moon according to its `age', which is
      expressed as the illuminated fraction of the Moon's disk as a value within

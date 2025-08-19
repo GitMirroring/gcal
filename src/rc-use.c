@@ -1511,9 +1511,7 @@ rc_use ()
 
 
 static void
-try_to_include_file (ed, wd)
-     int ed;
-     int wd;
+try_to_include_file (int ed, int wd)
 /*!
    Manages an include file.
 */
@@ -1779,13 +1777,7 @@ try_to_include_file (ed, wd)
 
 
 static void
-display_table (tmp_ad, tmp_am, tmp_ay, day, ed, wd)
-     const int tmp_ad;
-     const int tmp_am;
-     const int tmp_ay;
-     int day;
-     int ed;
-     int wd;
+display_table (const int tmp_ad, const int tmp_am, const int tmp_ay, int day, int ed, int wd)
 /*!
    Displays all entries in `rc_elems_table[]' in sorted order.
 */
@@ -2656,9 +2648,7 @@ display_table (tmp_ad, tmp_am, tmp_ay, day, ed, wd)
 
 
 static int
-fn_asc_sort (a, b)
-     const char **a;
-     const char **b;
+fn_asc_sort (const char **a, const char **b)
 /*!
    The (q)sort compare function for fixed dates which texts
      have an included resource "file name"; ascending order.
@@ -2761,9 +2751,7 @@ fn_asc_sort (a, b)
 
 
 static int
-fn_des_sort (a, b)
-     const char **a;
-     const char **b;
+fn_des_sort (const char **a, const char **b)
 /*!
    The (q)sort compare function for fixed dates which texts
      have an included resource "file name"; descending order.

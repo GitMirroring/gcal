@@ -123,9 +123,7 @@ __END_DECLARATIONS
 *  Function implementations.
 */
 int
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 /*!
    The Gcal program entry point   =8^)
 */
@@ -1730,9 +1728,7 @@ main (argc, argv)
 
 
 int
-eval_longopt (longopt, longopt_symbolic)
-     char *longopt;
-     int *longopt_symbolic;
+eval_longopt (char *longopt, int *longopt_symbolic)
 /*!
    Evaluates a long option and returns -2...0 if success, +1...+6 if fails:
      -2 == Given `longopt' successfully parsed and completed `long_name' with argument returned.
@@ -2092,13 +2088,8 @@ eval_longopt (longopt, longopt_symbolic)
 
 
 static Bool
-is_correct_date_format (format_txt, use_day_suffix, use_short3_day_name,
-			use_day_zeroleaded, use_year_zeroleaded)
-     char *format_txt;
-     Bool *use_day_suffix;
-     Bool *use_short3_day_name;
-     Bool *use_day_zeroleaded;
-     Bool *use_year_zeroleaded;
+is_correct_date_format (char *format_txt, Bool *use_day_suffix, Bool *use_short3_day_name,
+			Bool *use_day_zeroleaded, Bool *use_year_zeroleaded)
 /*!
    Checks whether the delivered `format_txt' contains valid format directives
      (see the `decode_date_format()' function for a more brief description of
@@ -2233,10 +2224,7 @@ is_correct_date_format (format_txt, use_day_suffix, use_short3_day_name,
 
 
 static void
-rearrange_argv (opt_list, argc, argv)
-     const char *opt_list;
-     int *argc;
-     char *argv[];
+rearrange_argv (const char *opt_list, int *argc, char *argv[])
 /*!
    Rearranges `argv[]' internally.
      This means all short-style options which need an argument,
@@ -2251,6 +2239,7 @@ rearrange_argv (opt_list, argc, argv)
   register int n = 1;
   auto char **ptr_argv = argv;
   auto char **ptr2_argv;
+  auto char *new_arg;
   auto Bool is_modified;
 
 
@@ -2323,17 +2312,18 @@ rearrange_argv (opt_list, argc, argv)
 				     short-style option character and its needed argument.
 				   */
 				  i--;
-				  argv[n] =
-				    (char *) my_realloc ((VOID_PTR) (argv[n]),
-							 strlen (*ptr_argv) +
-							 strlen (*ptr2_argv) +
-							 1,
-							 ERR_NO_MEMORY_AVAILABLE,
-							 __FILE__,
-							 ((long) __LINE__) -
-							 3L, "argv[n]", n);
-				  strcpy (argv[n], *ptr_argv);
-				  strcat (argv[n], *ptr2_argv);
+				  new_arg =
+				    (char *) my_malloc (strlen (*ptr_argv) +
+							strlen (*ptr2_argv) +
+							1,
+							ERR_NO_MEMORY_AVAILABLE,
+							__FILE__,
+							((long) __LINE__) -
+							3L, "argv[n]", n);
+				  strcpy (new_arg, *ptr_argv);
+				  strcat (new_arg, *ptr2_argv);
+				  free (argv[n]);
+				  argv[n] = new_arg;
 				  ptr_argv++;
 				  is_modified = TRUE;
 				}
@@ -2361,12 +2351,13 @@ rearrange_argv (opt_list, argc, argv)
 	     or     a command (an argument not leaded by a '-', '/', '@' or '%' character.
 	   */
 	  (*ptr_argv)--;
-	  argv[n] = (char *) my_realloc ((VOID_PTR) (argv[n]),
-					 strlen (*ptr_argv) + 1,
-					 ERR_NO_MEMORY_AVAILABLE,
-					 __FILE__, ((long) __LINE__) - 3L,
-					 "argv[n]", n);
-	  strcpy (argv[n], *ptr_argv);
+	  new_arg = (char *) my_malloc (strlen (*ptr_argv) + 1,
+					ERR_NO_MEMORY_AVAILABLE,
+					__FILE__, ((long) __LINE__) - 3L,
+					"argv[n]", n);
+	  strcpy (new_arg, *ptr_argv);
+	  free (argv[n]);
+	  argv[n] = new_arg;
 	}
       n++;
       i--;
@@ -2377,9 +2368,7 @@ rearrange_argv (opt_list, argc, argv)
 
 
 static void
-check_command_line (argc, argv)
-     int argc;
-     char *argv[];
+check_command_line (int argc, char *argv[])
 /*!
    Gets and manages the arguments from the command line.
 */
@@ -5357,8 +5346,7 @@ check_command_line (argc, argv)
 
 
 static void
-build_month_list (argv)
-     char *argv[];
+build_month_list (char *argv[])
 /*!
    If more than a single month/year is wanted (means list or ranges of
      months or years), fill the global data structure `month_list[]'; which
@@ -5921,8 +5909,7 @@ eliminate_invalid_data ()
 
 
 static void
-pseudo_blank_conversion (text)
-     char **text;
+pseudo_blank_conversion (char **text)
 /*!
    Perform conversion of quoted or unquoted PSEUDO_BLANK characters
      in TEXT to real ' ' blank characters.
@@ -5964,8 +5951,7 @@ pseudo_blank_conversion (text)
 
 #if USE_RC
 static int
-further_check (option)
-     char **option;
+further_check (char **option)
 /*!
    Checks whether invalid characters trail the
      argument of the `--period-of-fixed-dates=ARG' option.

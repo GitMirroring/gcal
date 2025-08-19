@@ -77,15 +77,7 @@ __END_DECLARATIONS
 /*
 *  Function implementations.
 */
-  FILE * file_open (filename, level, mode, bad_sys_include)
-     char **
-       filename;
-     const int
-       level;
-     const Fmode_enum
-       mode;
-     Bool *
-       bad_sys_include;
+  FILE * file_open (char **filename, const int level, const Fmode_enum mode, Bool *bad_sys_include)
 /*!
    Tries to open a resource/response file (MODE == `REsource', `REsponse')
      in the following order:
@@ -298,7 +290,7 @@ __END_DECLARATIONS
 		    ptr_char = s2 + len + 1;
 		    if (!*ptr_char)
 		      break;
-		    strcpy (s2, ptr_char);
+		    memmove (s2, ptr_char, strlen(ptr_char) + 1);
 		  }
 		/*
 		   If a file isn't found yet but the last character of the
@@ -480,20 +472,9 @@ __END_DECLARATIONS
 
 
 
-  char *file_read_line (fp, line_buffer, in_pool, pool, ptr_pool, filename,
-			line_number, line_length, mode, is_include, is_dvar,
-			is_tvar) FILE *fp;
-  char **line_buffer;
-  int *in_pool;
-  char *pool;
-  char *ptr_pool;
-  const char *filename;
-  long *line_number;
-  int *line_length;
-  const Fmode_enum mode;
-  Bool *is_include;
-  Bool *is_dvar;
-  Bool *is_tvar;
+char *file_read_line (FILE *fp, char **line_buffer, int *in_pool, char *pool, char *ptr_pool, const char *filename,
+			long *line_number, int *line_length, const Fmode_enum mode, Bool *is_include, Bool *is_dvar,
+			Bool *is_tvar)
 /*!
    Reads a line of a delivered resource/response file into `&line_buffer'
      using the delivered char vector `pool', which must be allocated by caller
@@ -1292,13 +1273,8 @@ __END_DECLARATIONS
 
 
 
-  char **insert_response_file (fp, filename, opt_list, my_argc_max, my_argc,
-			       my_argv) FILE *fp;
-  char *filename;
-  const char *opt_list;
-  Uint *my_argc_max;
-  int *my_argc;
-  char *my_argv[];
+char **insert_response_file (FILE *fp, char *filename, const char *opt_list, Uint *my_argc_max, int *my_argc,
+			       char *my_argv[])
 /*!
    Tries to manage a response file @FILE argument given in the command line.
      Inserts the options and commands found in file @FILE (name delivered
@@ -1414,13 +1390,7 @@ __END_DECLARATIONS
 
 
   void
-    write_log_file (filename, mode, mode_txt, created_txt, argc, argv)
-    const char *filename;
-  const Fmode_enum mode;
-  const char *mode_txt;
-  const char *created_txt;
-  const int argc;
-  char *argv[];
+    write_log_file (const char *filename, const Fmode_enum mode, const char *mode_txt, const char *created_txt, const int argc, char *argv[])
 /*!
    Writes the contents of the environment variable $GCAL, which is already
      stored in `argc' and the arguments of command line either into a
@@ -1595,10 +1565,7 @@ __END_DECLARATIONS
 
 
   static void
-    make_absolute_filename (absolute_filename, directory, filename)
-    char **absolute_filename;
-  const char *directory;
-  const char *filename;
+    make_absolute_filename (char **absolute_filename, const char *directory, const char *filename)
 /*!
    Creates an absolute file name (directory+file name) of a delivered
      file name and directory and returns it in delivered `&absolute_filename'.
@@ -1621,11 +1588,7 @@ __END_DECLARATIONS
 
 
 
-  static FILE *get_file_ptr (fp, filename, level, mode, is_first) FILE *fp;
-  const char *filename;
-  const int level;
-  const Fmode_enum mode;
-  Bool *is_first;
+  static FILE *get_file_ptr (FILE *fp, const char *filename, const int level, const Fmode_enum mode, Bool *is_first)
 /*!
    Tries to open the file (with optional diagnostic messages on STDERR channel
      in case the `--debug[=0...WARN_LVL_MAX]' option is set) and returns a

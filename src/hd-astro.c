@@ -51,12 +51,8 @@ __END_DECLARATIONS
 /*
 *  Function implementations.
 */
-  static double
-meeus_equinox_solstice (mode, year, hour, min)
-     const double mode;
-     const int year;
-     int hour;
-     int min;
+static double
+meeus_equinox_solstice (const double mode, const int year, int hour, int min)
 /*!
    According to MODE (== 0.0|90.0|180.0|270.0), this function calculates the
      dates of equinoxes and solstices for the given YEAR (range: 0001...9999)
@@ -179,13 +175,7 @@ meeus_equinox_solstice (mode, year, hour, min)
 
 
 double
-equinox_solstice (longitude, day, month, year, hour, min)
-     const double longitude;
-     int *day;
-     int *month;
-     int *year;
-     const int hour;
-     const int min;
+equinox_solstice (const double longitude, int *day, int *month, int *year, const int hour, const int min)
 /*!
    Wrapper/driver function for selecting the proper function
      that calculates the date and time of the equinoxes/solstices
@@ -208,12 +198,7 @@ equinox_solstice (longitude, day, month, year, hour, min)
 
 
 
-double delta_t (day, month, year, hour, min)
-     const int day;
-     const int month;
-     const int year;
-     const int hour;
-     const int min;
+double delta_t (const int day, const int month, const int year, const int hour, const int min)
 /*!
    Returns the approximate Delta_T in seconds plus fraction for the given
      Julian/Gregorian calendar date (range 00010101..99991231), which is the
@@ -494,17 +479,8 @@ double delta_t (day, month, year, hour, min)
 
 
 double
-moonphase (phase_selector, find_eclipse, eclipse_type, lunation,
-	   day, month, year, hour, min)
-     const double phase_selector;
-     const Bool find_eclipse;
-     double *eclipse_type;
-     Ulint *lunation;
-     int *day;
-     int *month;
-     int *year;
-     int hour;
-     int min;
+moonphase (const double phase_selector, const Bool find_eclipse, double *eclipse_type, Ulint *lunation,
+	   int *day, int *month, int *year, int hour, int min)
 /*!
    According to PHASE_SELECTOR, this function calculates the requested Moon
      phase, which occurs on or later the given Julian/Gregorian date (range
@@ -925,15 +901,7 @@ moonphase (phase_selector, find_eclipse, eclipse_type, lunation,
 
 
 double
-next_sun_longitude (longitude, step, mjd, day, month, year, hour, min)
-     double *longitude;
-     const double step;
-     const double mjd;
-     int *day;
-     int *month;
-     int *year;
-     const int hour;
-     const int min;
+next_sun_longitude (double *longitude, const double step, const double mjd, int *day, int *month, int *year, const int hour, const int min)
 /*!
    Calculates and returns the Julian/Gregorian date and time fraction
      (properly converted, and this number is also passed via the addresses
@@ -984,14 +952,7 @@ next_sun_longitude (longitude, step, mjd, day, month, year, hour, min)
 
 
 double
-sun_longitude (longitude, day, month, year, hour, min, next_mode)
-     const double longitude;
-     int *day;
-     int *month;
-     int *year;
-     int hour;
-     int min;
-     const Bool next_mode;
+sun_longitude (const double longitude, int *day, int *month, int *year, int hour, int min, const Bool next_mode)
 /*!
    If LONGITUDE is set to SPECIAL_VALUE, this function calculates and returns
      the approximate apparent geocentric solar ecliptic longitude degree for
@@ -1203,11 +1164,7 @@ LABEL_sel_start:
 
 
 void
-val2hours (val, hour, min, sec)
-     double val;
-     int *hour;
-     int *min;
-     double *sec;
+val2hours (double val, int *hour, int *min, double *sec)
 /*!
    Returns the day fraction which is given by VAL either converted to
      a rounded 24-hour time value HH:MM via the addresses of HOUR and MIN
@@ -1265,11 +1222,7 @@ val2hours (val, hour, min, sec)
 
 
 void
-val2degrees (val, degree, min, sec)
-     double val;
-     int *degree;
-     int *min;
-     double *sec;
+val2degrees (double val, int *degree, int *min, double *sec)
 /*!
    Returns VAL either converted to a rounded 360-degree value DDDdMM'
      via the addresses of DEGREE and MIN if SEC is NULL, or converted
@@ -1326,8 +1279,7 @@ val2degrees (val, degree, min, sec)
 
 
 double
-my_cot (x)
-     double x;
+my_cot (double x)
 /*!
    Computes the "cotangent" of a given X by using the formula:
 
@@ -1349,8 +1301,7 @@ my_cot (x)
 
 
 double
-my_acot (x)
-     double x;
+my_acot (double x)
 /*!
    Computes the "arc cotangent" of a given X by using the formulae:
 
@@ -1378,9 +1329,7 @@ my_acot (x)
 
 
 double
-my_atan2 (y, x)
-     double y;
-     double x;
+my_atan2 (double y, double x)
 /*!
    Computes the "arc tangent Y/X" selecting the correct quadrant,
      i.e. returns the angle between 0 and 2 Pi whose tangent is Y/X.
@@ -1399,11 +1348,10 @@ my_atan2 (y, x)
 }
 
 
-
 #if !HAVE_LIBM
+#error is there any system that does not have libm
 double
-my_floor (x)
-     double x;
+my_floor (double x)
 /*!
    Returns the largest integer value not greater than X.
 */
@@ -1435,8 +1383,7 @@ my_floor (x)
 
 
 double
-my_ceil (x)
-     double x;
+my_ceil (double x)
 /*!
    Returns the smallest integer value not less than X.
 */
@@ -1468,8 +1415,7 @@ my_ceil (x)
 
 
 double
-my_sqrt (x)
-     double x;
+my_sqrt (double x)
 /*!
    Computes the "square root" of a given X by using Newton's iteration formula:
 
@@ -1506,8 +1452,7 @@ my_sqrt (x)
 
 
 double
-my_log (x)
-     double x;
+my_log (double x)
 /*!
    Computes the "logarithm base e" (logarithmus naturalis, ln) of a given X
      by using a series and the fact, that log  X^2 == 2 log  X:
@@ -1583,8 +1528,7 @@ my_log (x)
 
 
 double
-my_log10 (x)
-     double x;
+my_log10 (double x)
 /*!
    Computes the "logarithm base 10" of a given X by using the formula:
 
@@ -1602,8 +1546,7 @@ my_log10 (x)
 
 
 double
-my_sin (x)
-     double x;
+my_sin (double x)
 /*!
    Computes the "sine" of a given X by using the series:
 
@@ -1676,8 +1619,7 @@ my_sin (x)
 
 
 double
-my_cos (x)
-     double x;
+my_cos (double x)
 /*!
    Computes the "cosine" of a given X by using the formula:
 
@@ -1690,8 +1632,7 @@ my_cos (x)
 
 
 double
-my_tan (x)
-     double x;
+my_tan (double x)
 /*!
    Computes the "tangent" of a given X by using the formula:
 
@@ -1711,8 +1652,7 @@ my_tan (x)
 
 
 double
-my_asin (x)
-     double x;
+my_asin (double x)
 /*!
    Computes the "arc sine" of a given X by using the formula:
 
@@ -1751,8 +1691,7 @@ my_asin (x)
 
 
 double
-my_acos (x)
-     double x;
+my_acos (double x)
 /*!
    Computes the "arc cosine" of a given X by using the formula:
 
@@ -1769,8 +1708,7 @@ my_acos (x)
 
 
 double
-my_atan (x)
-     double x;
+my_atan (double x)
 /*!
    Computes the "arc tangent" of a given X by using the formula:
 

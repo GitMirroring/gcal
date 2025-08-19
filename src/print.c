@@ -1373,8 +1373,7 @@ print_calendar ()
 
 
 static void
-fill_year_vector (year)
-     int year;
+fill_year_vector (int year)
 /*!
    Builds the "standard" year vector and the "special" year vector
      according to the delivered `year'.
@@ -1463,8 +1462,7 @@ fill_year_vector (year)
 
 
 static Bool
-print_unhighlighted_date (marker_flag)
-     Bool marker_flag;
+print_unhighlighted_date (Bool marker_flag)
 /*!
    Prints a date in NON-highlighted manner.
      If the MARKER_FLAG is set to TRUE when entering this function, this
@@ -1543,14 +1541,8 @@ print_unhighlighted_date (marker_flag)
 
 
 static Bool
-print_highlighted_date (last_item, marker_flag, hls_start, hls_slen, hls_end,
-			hls_elen)
-     const Bool last_item;
-     const Bool marker_flag;
-     const char *hls_start;
-     const int hls_slen;
-     const char *hls_end;
-     const int hls_elen;
+print_highlighted_date (const Bool last_item, const Bool marker_flag, const char *hls_start, const int hls_slen, const char *hls_end,
+			const int hls_elen)
 /*!
    Prints a date in highlighted manner using the given highlighting sequence,
      which consists of the "starting" highlighting sequence HLS_START and the

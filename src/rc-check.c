@@ -79,16 +79,8 @@ static Bool changed_month = FALSE;
 *  Function implementations.
 */
 void
-rc_check (line_buffer, filename, line_number, line_length, rc_elems, day, ed,
-	  wd)
-     char *line_buffer;
-     const char *filename;
-     const long line_number;
-     const int line_length;
-     int *rc_elems;
-     const int day;
-     const int ed;
-     const int wd;
+rc_check (char *line_buffer, const char *filename, const long line_number, const int line_length, int *rc_elems, const int day, const int ed,
+	  const int wd)
 /*!
    Checks whether a single line of a resource file resp.,
      eternal holiday must be displayed.
@@ -1726,11 +1718,7 @@ rc_check (line_buffer, filename, line_number, line_length, rc_elems, day, ed,
 
 
 static Bool
-date_matches_period (print_twice, day, ed, wd)
-     int *print_twice;
-     int day;
-     int ed;
-     const int wd;
+date_matches_period (int *print_twice, int day, int ed, const int wd)
 /*!
    Checks if a given date (module global variables `d' for the day, `m' for
      the month and `y' for the year) matches a given period, which starts at
@@ -2324,8 +2312,7 @@ date_matches_period (print_twice, day, ed, wd)
 
 
 static int
-get_number (string)
-     char **string;
+get_number (char **string)
 /*!
    Returns the absolute value of a "repeat for N days since..." field or
      "for each N'th day since..." field using the global `s6' text buffer.

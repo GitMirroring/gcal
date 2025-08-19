@@ -164,14 +164,8 @@ static const Aobj_oformat_struct aobj_oformat[][AOBJ_MOON + 1] = {
 *  Function implementations.
 */
 void
-insert_line_into_table (line_buffer, filename, line_number, rc_elems,
-			len_date, print_twice)
-     char *line_buffer;
-     const char *filename;
-     const long line_number;
-     int *rc_elems;
-     int len_date;
-     int print_twice;
+insert_line_into_table (char *line_buffer, const char *filename, const long line_number, int *rc_elems,
+			int len_date, int print_twice)
 /*!
    Inserts a line into `rc_elems_table[]',
      but before this the line is checked and evaluated first

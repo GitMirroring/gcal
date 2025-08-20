@@ -1604,9 +1604,6 @@ pl_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *h
   holiday (*init_data, detected, _(hd_text[HD_SYLVESTER].ht_text), ptr_cc_id,
 	   DIS_HLS_PREF, dvec[MONTH_MAX - 1], MONTH_MAX, year, hd_elems, fday,
 	   count);
-  holiday (*init_data, detected, _(hd_text[HD_THREE_KINGS_DAY].ht_text),
-	   ptr_cc_id, DIS_HLS_PREF, 6, MONTH_MIN, year, hd_elems, fday,
-	   count);
   holiday (*init_data, detected, _(hd_text[HD_ST_VALENTINES_DAY].ht_text),
 	   ptr_cc_id, DIS_HLS_PREF, 14, 2, year, hd_elems, fday, count);
   if ((year > 1944) && (year < 1990))
@@ -1618,9 +1615,18 @@ pl_hdy (Bool *init_data, const Bool detected, int easter, const int year, int *h
       holiday (*init_data, detected, _(hd_text[HD_WOMENS_DAY].ht_text),
 	       ptr_cc_id, DIS_HLS_PREF, 8, 3, year, hd_elems, fday, count);
     }
-  if (year > 1989)
+  if (year > 1989) {
     holiday (*init_data, detected, _(hd_text[HD_INDEPENDENCE_DAY].ht_text),
 	     ptr_cc_id, "+", 11, 11, year, hd_elems, fday, count);
+  }
+  if (year >= 2011) {
+    holiday (*init_data, detected, _(hd_text[HD_THREE_KINGS_DAY].ht_text),
+         ptr_cc_id, "+", 6, MONTH_MIN, year, hd_elems, fday, count);
+  } else {
+    holiday (*init_data, detected, _(hd_text[HD_THREE_KINGS_DAY].ht_text),
+	   ptr_cc_id, DIS_HLS_PREF, 6, MONTH_MIN, year, hd_elems, fday,
+	   count);
+  }
 }
 
 

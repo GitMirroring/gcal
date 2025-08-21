@@ -4,6 +4,15 @@ Copyright (C) 1994-2014 Free Software Foundation, Inc.
 
 User-visible changes.
 
+Major changes in release 4.2
+
+* New entry added for Good Friday as Czech holiday.
+* New entry added for Good Friday as Hungarian holiday.
+* New entry added for Three Kings Day in Poland since 2011.
+* Print note in case of starting-day different from monday and --iso-week-number is set to yes.
+* No longer report Christmas day as the 26th in Idaho.
+* No longer report Christmas day as the 26th in Ohio.
+
 Major changes in release 4.1
 
 * National holiday replaced Pentecost Monday as a Swedish holiday 2005

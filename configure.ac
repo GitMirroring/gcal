@@ -25,7 +25,8 @@ dnl
 dnl Starting operations.
 dnl
 
-AC_INIT([gcal],[m4_esyscmd(build-aux/git-version-gen .tarball-version)],[bug-gcal@gnu.org])
+#do not use this: AC_INIT([gcal],[m4_esyscmd(build-aux/git-version-gen .tarball-version)],[bug-gcal@gnu.org])
+AC_INIT([gcal],[4.2.0],[bug-gcal@gnu.org])
 AC_PREREQ([2.72])
 
 AC_CONFIG_MACRO_DIR([m4])

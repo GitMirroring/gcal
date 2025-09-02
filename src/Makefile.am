@@ -63,6 +63,7 @@ GCAL_BASE_HDRS = \
   file-io.h \
   gcal.h \
   globals.h \
+  global-variables.h \
   hd-astro.h \
   hd-data.h \
   hd-data1.h \
@@ -159,6 +160,7 @@ EXTRA_DIST = common.h \
 	utils.h \
 	defines.h \
 	globals.h \
+        global-variables.h \
 	hd-data2.h \
 	hd-defs.h \
 	rc-astro.h \

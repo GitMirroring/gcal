@@ -22,6 +22,8 @@
 #AM_CFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS)
 AM_CPPFLAGS = -I$(top_srcdir)/lib -I$(srcdir) -I.. $(CPPFLAGS) -D_GNU_SOURCE
 
+MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
+
 GCAL_OBJS= \
   ../src/file-io.o \
   ../src/hd-astro.o \
@@ -71,4 +73,5 @@ check_gcal_SOURCES = check_gcal.c \
 
 
 check_gcal_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS) $(DEFS)
+check_gcal_LDFLAGS = -lgcov --coverage
 check_gcal_LDADD = $(LDFLAGS) $(CHECK_LIBS) $(GCAL_OBJS) $(GCAL_GNULIB_OBJS)

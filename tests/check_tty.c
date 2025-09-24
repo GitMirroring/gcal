@@ -76,6 +76,7 @@ Suite *gcal_suite_tty(void)
     tcase_add_test(tc_core, test_print_text);
     tcase_add_test(tc_core, test_get_tty_hls);
     tcase_add_test(tc_core, test_get_tty_scr_size);
+    /* other functions in tty.c are static */
 
     suite_add_tcase(s, tc_core);
 

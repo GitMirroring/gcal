@@ -23,6 +23,32 @@ START_TEST(test_valid_day)
 }
 END_TEST
 
+START_TEST(test_clean_flag)
+{
+    rc_tomorrow_flag = rc_week_flag = rc_month_flag = rc_year_flag = rc_week_year_flag = rc_forwards_flag = rc_backwards_flag = rc_period_flag = TRUE;
+
+    ck_assert(rc_tomorrow_flag);
+    ck_assert(rc_week_flag);
+    ck_assert(rc_month_flag);
+    ck_assert(rc_year_flag);
+    ck_assert(rc_week_year_flag);
+    ck_assert(rc_forwards_flag);
+    ck_assert(rc_backwards_flag);
+    ck_assert(rc_period_flag);
+
+    rc_clean_flags();
+
+    ck_assert(!rc_tomorrow_flag);
+    ck_assert(!rc_week_flag);
+    ck_assert(!rc_month_flag);
+    ck_assert(!rc_year_flag);
+    ck_assert(!rc_week_year_flag);
+    ck_assert(!rc_forwards_flag);
+    ck_assert(!rc_backwards_flag);
+    ck_assert(!rc_period_flag);
+}
+END_TEST
+
 Suite *gcal_suite_rc_utils(void)
 {
     Suite *s;
@@ -34,6 +60,7 @@ Suite *gcal_suite_rc_utils(void)
     tc_core = tcase_create("rc-utils");
 
     tcase_add_test(tc_core, test_valid_day);
+    tcase_add_test(tc_core, test_clean_flag);
 
     suite_add_tcase(s, tc_core);
 

@@ -49,6 +49,78 @@ START_TEST(test_clean_flag)
 }
 END_TEST
 
+START_TEST(test_get_date)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_precomp_date)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_set_dvar)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_set_tvar)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_nth_weekday_of_month)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_d_between)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_w_between)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
+START_TEST(test_m_between)
+{
+    //XXX TODO has to be done
+    bool flag=true;
+    ck_assert(flag);
+
+}
+END_TEST
+
 Suite *gcal_suite_rc_utils(void)
 {
     Suite *s;
@@ -61,6 +133,14 @@ Suite *gcal_suite_rc_utils(void)
 
     tcase_add_test(tc_core, test_valid_day);
     tcase_add_test(tc_core, test_clean_flag);
+    tcase_add_test(tc_core, test_get_date);
+    tcase_add_test(tc_core, test_precomp_date);
+    tcase_add_test(tc_core, test_set_dvar);
+    tcase_add_test(tc_core, test_set_tvar);
+    tcase_add_test(tc_core, test_nth_weekday_of_month);
+    tcase_add_test(tc_core, test_d_between);
+    tcase_add_test(tc_core, test_w_between);
+    tcase_add_test(tc_core, test_m_between);
 
     suite_add_tcase(s, tc_core);
 

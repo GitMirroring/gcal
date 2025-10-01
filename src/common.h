@@ -43,29 +43,9 @@
 #  undef strlen
 #  define strlen u8_strlen
 # endif
-# if HAVE_STDIO_H || STDC_HEADERS
-#  include <stdio.h>
-# endif
-# if HAVE_STDLIB_H || STDC_HEADERS
-#  include <stdlib.h>
-# endif
-# if HAVE_STRING_H || STDC_HEADERS
-#  include <string.h>
-# else /* !HAVE_STRING_H && !STDC_HEADERS */
-#  include <strings.h>
-#  if !HAVE_STRCHR
-#   ifndef strchr
-#    define strchr       index
-extern char *strchr __P_ ((const char *s, int c));
-#   endif
-#  endif /* !HAVE_STRCHR */
-#  if !HAVE_STRRCHR
-#   ifndef strrchr
-#    define strrchr      rindex
-extern char *strrchr __P_ ((const char *s, int c));
-#   endif
-#  endif /* !HAVE_STRRCHR */
-# endif	/* !HAVE_STRING_H && !STDC_HEADERS */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 # if HAVE_SIGNAL_H && HAVE_SIGNAL
 #  if HAVE_SYS_TYPES_H

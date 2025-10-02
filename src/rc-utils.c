@@ -40,7 +40,7 @@
 */
 #include <ctype.h>
 #include <unistd.h>
-#HAVE_LIBM
+#if HAVE_LIBM
 # include <math.h>
 #endif
 #include "common.h"

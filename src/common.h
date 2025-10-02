@@ -47,7 +47,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-# if HAVE_SIGNAL_H && HAVE_SIGNAL
+# if HAVE_SIGNAL
 #  if HAVE_SYS_TYPES_H
 #   include <sys/types.h>
 #  endif

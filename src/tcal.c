@@ -33,21 +33,11 @@
 *  Include header files.
 */
 #include "tailor.h"
-#if HAVE_ASSERT_H
-# include <assert.h>
-#endif
-#if HAVE_CTYPE_H
-# include <ctype.h>
-#endif
-#if HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-#if HAVE_LIMITS_H
-# include <limits.h>
-#endif
-#if HAVE_ERRNO_H
-# include <errno.h>
-#endif
+#include <assert.h>
+#include <ctype.h>
+#include <unistd.h>
+#include <limits.h>
+#include <errno.h>
 #if (!HAVE_SIGNAL_H || !HAVE_SIGNAL) && HAVE_SYS_TYPES_H
 /* Otherwise "gcal.h" includes <sys/types.h>. */
 # include <sys/types.h>

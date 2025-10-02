@@ -28,13 +28,9 @@
 *  Include header files.
 */
 #include "tailor.h"
-#if HAVE_CTYPE_H
-# include <ctype.h>
-#endif
+#include <ctype.h>
 #ifdef GCAL_SHELL
-# if HAVE_UNISTD_H
-#  include <unistd.h>
-# endif
+# include <unistd.h>
 #endif
 #if HAVE_SYS_STAT_H
 # if HAVE_SYS_TYPES_H

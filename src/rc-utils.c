@@ -38,26 +38,22 @@
 /*
 *  Include header files.
 */
-# if HAVE_CTYPE_H
-#  include <ctype.h>
-# endif
-# if HAVE_UNISTD_H
-#  include <unistd.h>
-# endif
-# if HAVE_MATH_H && HAVE_LIBM
-#  include <math.h>
-# endif
-# include "common.h"
-# include "rc-defs.h"
-# include "globals.h"
-# include "file-io.h"
-# include "hd-astro.h"
-# include "hd-use.h"
-# include "help.h"
-# include "rc-astro.h"
-# include "tty.h"
-# include "utils.h"
-# include "rc-utils.h"
+#include <ctype.h>
+#include <unistd.h>
+#HAVE_LIBM
+# include <math.h>
+#endif
+#include "common.h"
+#include "rc-defs.h"
+#include "globals.h"
+#include "file-io.h"
+#include "hd-astro.h"
+#include "hd-use.h"
+#include "help.h"
+#include "rc-astro.h"
+#include "tty.h"
+#include "utils.h"
+#include "rc-utils.h"
 
 
 

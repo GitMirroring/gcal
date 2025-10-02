@@ -28,15 +28,9 @@
 *  Include header files.
 */
 #include "tailor.h"
-#if HAVE_CTYPE_H
-# include <ctype.h>
-#endif
-#if HAVE_ERRNO_H
-# include <errno.h>
-#endif
-#if HAVE_UNISTD_H
-# include <unistd.h>
-#endif
+#include <ctype.h>
+#include <errno.h>
+#include <unistd.h>
 #if TIME_WITH_SYS_TIME
 # include <sys/time.h>
 # include <time.h>

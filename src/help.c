@@ -27,9 +27,7 @@
 *  Include header files.
 */
 #include "tailor.h"
-#if HAVE_CTYPE_H
-# include <ctype.h>
-#endif
+#include <ctype.h>
 #include "common.h"
 #if USE_RC
 # include "rc-defs.h"

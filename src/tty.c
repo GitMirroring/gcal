@@ -29,20 +29,18 @@
 *  Include header files.
 */
 #include "tailor.h"
-#if HAVE_CTYPE_H
-# include <ctype.h>
-#endif
+#include <ctype.h>
 #if HAVE_SYS_TYPES_H
 # include <sys/types.h>
 #endif
 #if USE_PAGER || USE_HLS
 # if defined(UNIX) && !defined(DJG)
-#  if HAVE_TERMIOS_H && HAVE_TERMIOS_FUNCS
+#  if HAVE_TERMIOS_FUNCS
 #   include <termios.h>
 #   if HAVE_SYS_IOCTL_H && !defined(TIOCGWINSZ)
 #    include <sys/ioctl.h>
 #   endif
-#  else	/* !HAVE_TERMIOS_H || !HAVE_TERMIOS_FUNCS */
+#  else	/* !HAVE_TERMIOS_FUNCS */
 #   if HAVE_TERMIO_H
 #    include <termio.h>
 #   else /* !HAVE_TERMIO_H */
@@ -75,7 +73,7 @@
 # else /* !DJG */
 #  if defined(UNIX) || (defined(OS2) && defined(__GNUC__))
 #   if HAVE_TERMCAP_H && HAVE_TTYLIBS
-#    if HAVE_TERMIOS_H && HAVE_TERMIOS_FUNCS && defined(OS2) && defined(__GNUC__)
+#    if HAVE_TERMIOS_FUNCS && defined(OS2) && defined(__GNUC__)
 #     include <termios.h>
 #    endif
 #    include <termcap.h>

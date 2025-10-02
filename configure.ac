@@ -396,17 +396,10 @@ dnl
 AC_MSG_RESULT()
 AS_MESSAGE([checking for header files...])
 dnl
-m4_warn([obsolete],
-[The preprocessor macro 'STDC_HEADERS' is obsolete.
-  Except in unusual embedded environments, you can safely include all
-  C89 headers unconditionally.])dnl
 # Autoupdate added the next two lines to ensure that your configure
 # script's behavior did not change.  They are probably safe to remove.
 AC_CHECK_INCLUDES_DEFAULT
 AC_PROG_EGREP
-
-AC_CHECK_HEADERS(stdio.h stdlib.h string.h unistd.h ctype.h errno.h limits.h)
-AC_CHECK_HEADERS(assert.h signal.h termio.h termios.h sgtty.h langinfo.h)
 
 AC_MSG_CHECKING([for _NL_TIME_FIRST_WEEKDAY])
 AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <langinfo.h>]], [[
@@ -526,9 +519,7 @@ dnl
 AC_MSG_CHECKING(for working system function)
 AC_CACHE_VAL(gcal_cv_func_system_ok,
   AC_RUN_IFELSE([AC_LANG_SOURCE([[
-#    if STDC_HEADERS
-#      include <stdlib.h>
-#    endif
+#    include <stdlib.h>
     int main()
     {
       int i;

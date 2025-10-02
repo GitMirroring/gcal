@@ -39,28 +39,22 @@
 /*
 *  Include header files.
 */
-# if HAVE_ASSERT_H
-#  include <assert.h>
-# endif
-# if HAVE_CTYPE_H
-#  include <ctype.h>
-# endif
-# if HAVE_LIMITS_H
-#  include <limits.h>
-# endif
-# include "common.h"
-# include "rc-defs.h"
-# include "globals.h"
-# include "file-io.h"
-# include "hd-defs.h"
-# include "hd-use.h"
-# include "rc-astro.h"
-# include "rc-check.h"
-# include "rc-insert.h"
-# include "rc-utils.h"
-# include "tty.h"
-# include "utils.h"
-# include "rc-use.h"
+#include <assert.h>
+#include <ctype.h>
+#include <limits.h>
+#include "common.h"
+#include "rc-defs.h"
+#include "globals.h"
+#include "file-io.h"
+#include "hd-defs.h"
+#include "hd-use.h"
+#include "rc-astro.h"
+#include "rc-check.h"
+#include "rc-insert.h"
+#include "rc-utils.h"
+#include "tty.h"
+#include "utils.h"
+#include "rc-use.h"
 
 
 

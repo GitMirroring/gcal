@@ -35,25 +35,23 @@
 /*
 *  SUB-include definitions header files  ;<
 */
-# include "defines.h"
-# if HAVE_CONFIG_H
-#  include <config.h>
-# endif
+#include "defines.h"
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
 
-# include <unistd.h>
-# include <stdlib.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-# define GCAL_NLS
-# include <locale.h>
+#define GCAL_NLS
+#include <locale.h>
 
-# include <gettext.h>
+#include <gettext.h>
 
-# define _(Str) gettext(Str)
-# define N_(Str) (Str)
+#define _(Str) gettext(Str)
+#define N_(Str) (Str)
 
-# ifdef HAVE_LANGINFO_H
-#  include <langinfo.h>
-# endif
+#include <langinfo.h>
 
 /*
 *  Detect the machine / os.
@@ -583,11 +581,11 @@
 
 
 
-# if USE_RC || defined(GCAL_EMAIL)
+#if USE_RC || defined(GCAL_EMAIL)
 /* The proper function for a temporary file name according to used target system. */
-#  ifdef MSDOS
-#   define TMPFILENAME  tempnam(NULL, NULL)
-#  else	/* !MSDOS */
+# ifdef MSDOS
+#  define TMPFILENAME  tempnam(NULL, NULL)
+# else	/* !MSDOS */
 # include <tmpdir.h>
 # include <stdio.h>
 
@@ -606,16 +604,16 @@ static char *_tmpfn ()
   return __buftmpfn;
 }
 
-#   define TMPFILENAME  _tmpfn ()
-#  endif /* !MSDOS */
-# endif	/* GCAL_EMAIL || USE_RC */
+#  define TMPFILENAME  _tmpfn ()
+# endif /* !MSDOS */
+#endif	/* GCAL_EMAIL || USE_RC */
 
 
 
 /*! Default number of terminal columns, unconditional. */
-# ifndef SCREEN_COLS
-#  define SCREEN_COLS   80
-# endif
+#ifndef SCREEN_COLS
+# define SCREEN_COLS   80
+#endif
 
 
 

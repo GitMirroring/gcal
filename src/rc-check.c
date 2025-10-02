@@ -39,16 +39,14 @@
 /*
 *  Include header files.
 */
-# if HAVE_CTYPE_H
-#  include <ctype.h>
-# endif
-# include "common.h"
-# include "rc-defs.h"
-# include "globals.h"
-# include "rc-insert.h"
-# include "rc-utils.h"
-# include "utils.h"
-# include "rc-check.h"
+#include <ctype.h>
+#include "common.h"
+#include "rc-defs.h"
+#include "globals.h"
+#include "rc-insert.h"
+#include "rc-utils.h"
+#include "utils.h"
+#include "rc-check.h"
 
 
 

@@ -1,6 +1,7 @@
 #include "../config.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "../src/tailor.h"
 #include "../src/common.h"

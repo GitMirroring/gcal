@@ -604,9 +604,8 @@ dnl
 AC_MSG_CHECKING(for upper/lower)
 AC_CACHE_VAL(gcal_cv_func_upper_lower,
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#    if HAVE_CTYPE_H
-#      include <ctype.h>
-#    endif]], [[static int x; x = tolower(x); x = toupper(x); x = islower(x); x = isupper(x);]])],[gcal_cv_func_upper_lower=yes],[gcal_cv_func_upper_lower=no]))
+     #include <ctype.h>
+  ]], [[static int x; x = tolower(x); x = toupper(x); x = islower(x); x = isupper(x);]])],[gcal_cv_func_upper_lower=yes],[gcal_cv_func_upper_lower=no]))
 if test "$gcal_cv_func_upper_lower" = yes; then
   AC_DEFINE([HAVE_UPPER_LOWER], [1], [Functions/macros toupper(), tolower(), isupper() and islower() are found.])
 fi
@@ -615,9 +614,8 @@ dnl
 AC_MSG_CHECKING(for isdigit)
 AC_CACHE_VAL(gcal_cv_func_isdigit,
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#    if HAVE_CTYPE_H
-#      include <ctype.h>
-#    endif]], [[static int x; x = isdigit(x);]])],[gcal_cv_func_isdigit=yes],[gcal_cv_func_isdigit=no]))
+     #include <ctype.h>
+  ]], [[static int x; x = isdigit(x);]])],[gcal_cv_func_isdigit=yes],[gcal_cv_func_isdigit=no]))
 if test "$gcal_cv_func_isdigit" = yes; then
   AC_DEFINE([HAVE_ISDIGIT], [1], [Function/macro isdigit() is found.])
 fi
@@ -626,9 +624,8 @@ dnl
 AC_MSG_CHECKING(for isalpha)
 AC_CACHE_VAL(gcal_cv_func_isalpha,
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#    if HAVE_CTYPE_H
-#      include <ctype.h>
-#    endif]], [[static int x; x = isalpha(x);]])],[gcal_cv_func_isalpha=yes],[gcal_cv_func_isalpha=no]))
+     #include <ctype.h>
+  ]], [[static int x; x = isalpha(x);]])],[gcal_cv_func_isalpha=yes],[gcal_cv_func_isalpha=no]))
 if test "$gcal_cv_func_isalpha" = yes; then
   AC_DEFINE([HAVE_ISALPHA], [1], [Have isalpha])
 fi
@@ -637,9 +634,8 @@ dnl
 AC_MSG_CHECKING(for isalnum)
 AC_CACHE_VAL(gcal_cv_func_isalnum,
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#    if HAVE_CTYPE_H
-#      include <ctype.h>
-#    endif]], [[static int x; x = isalnum(x);]])],[gcal_cv_func_isalnum=yes],[gcal_cv_func_isalnum=no]))
+     #include <ctype.h>
+  ]], [[static int x; x = isalnum(x);]])],[gcal_cv_func_isalnum=yes],[gcal_cv_func_isalnum=no]))
 if test "$gcal_cv_func_isalnum" = yes; then
   AC_DEFINE([HAVE_ISALNUM], [1], [Have isalnum])
 fi
@@ -648,9 +644,8 @@ dnl
 AC_MSG_CHECKING(for isspace)
 AC_CACHE_VAL(gcal_cv_func_isspace,
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-#    if HAVE_CTYPE_H
-#      include <ctype.h>
-#    endif]], [[static int x; x = isspace(x);]])],[gcal_cv_func_isspace=yes],[gcal_cv_func_isspace=no]))
+     #include <ctype.h>
+  ]], [[static int x; x = isspace(x);]])],[gcal_cv_func_isspace=yes],[gcal_cv_func_isspace=no]))
 if test "$gcal_cv_func_isspace" = yes; then
   AC_DEFINE([HAVE_ISSPACE], [1], [Have isspace])
 fi
@@ -670,9 +665,7 @@ if test "$gcal_cv_use_term" = yes; then
 #        if HAVE_SYS_TYPES_H
 #          include <sys/types.h>
 #        endif
-#        if HAVE_TERMIOS_H
-#          include <termios.h>
-#        endif
+         #include <termios.h>
 #        if HAVE_TERMCAP_H
 #          include <termcap.h>
 #        endif]], [[ospeed = 0;]])],[gcal_cv_var_ospeed_test_1=yes],[gcal_cv_var_ospeed_test_1=no]))

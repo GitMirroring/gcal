@@ -27,7 +27,7 @@ MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
 GCAL_OBJS= \
   ../src/file-io.o \
   ../src/hd-astro.o \
-  ../src/hd-data.o \ 
+  ../src/hd-data.o \
   ../src/hd-data1.o \
   ../src/hd-data2.o \
   ../src/hd-data3.o \

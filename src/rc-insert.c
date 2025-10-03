@@ -38,26 +38,20 @@
 *  Include header files.
 */
 #include <ctype.h>
-# if TIME_WITH_SYS_TIME
-#  include <sys/time.h>
-#  include <time.h>
-# else /* !TIME_WITH_SYS_TIME */
-#  if HAVE_SYS_TIME_H
-#   include <sys/time.h>
-#  else	/* !HAVE_SYS_TIME_H */
-#   include <time.h>
-#  endif /* !HAVE_SYS_TIME_H */
-# endif	/* !TIME_WITH_SYS_TIME */
-# include "common.h"
-# include "rc-defs.h"
-# include "globals.h"
-# include "hd-astro.h"
-# include "hd-use.h"
-# include "rc-astro.h"
-# include "rc-utils.h"
-# include "tty.h"
-# include "utils.h"
-# include "rc-insert.h"
+#if HAVE_SYS_TIME_H
+#include <sys/time.h>
+#endif /* HAVE_SYS_TIME_H */
+#include <time.h>
+#include "common.h"
+#include "rc-defs.h"
+#include "globals.h"
+#include "hd-astro.h"
+#include "hd-use.h"
+#include "rc-astro.h"
+#include "rc-utils.h"
+#include "tty.h"
+#include "utils.h"
+#include "rc-insert.h"
 
 
 

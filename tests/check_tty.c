@@ -63,15 +63,15 @@ START_TEST(test_get_tty_scr_size)
 }
 END_TEST
 
-Suite *gcal_suite_tty(void)
+Suite *gcal_suite_tty(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.tty");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("tty");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_print_text);
     tcase_add_test(tc_core, test_get_tty_hls);

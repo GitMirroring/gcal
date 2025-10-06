@@ -235,15 +235,15 @@ START_TEST(test_hd_astro_helper_functions)
 }
 END_TEST
 
-Suite *gcal_suite_hd_astro(void)
+Suite *gcal_suite_hd_astro(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.hd-astro");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("hd-astro");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_hd_astro_equinox_solstice);
     tcase_add_test(tc_core, test_hd_astro_delta_t);

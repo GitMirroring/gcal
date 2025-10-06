@@ -8,15 +8,15 @@ START_TEST(test_gcal_dummy)
 }
 END_TEST
 
-Suite *gcal_suite_file_io(void)
+Suite *gcal_suite_file_io(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.file-io");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("file-io");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_gcal_dummy);
 

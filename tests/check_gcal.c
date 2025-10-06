@@ -19,56 +19,23 @@
 #include "../src/global-variables.h"
 #include <check.h>
 
-Suite *gcal_suite_file_io(void);
-Suite *gcal_suite_gcal2txt(void);
-Suite *gcal_suite_hd_astro(void);
-Suite *gcal_suite_hd_data(void);
-Suite *gcal_suite_hd_use(void);
-Suite *gcal_suite_help(void);
-Suite *gcal_suite_print(void);
-Suite *gcal_suite_rc_astro(void);
-Suite *gcal_suite_rc_check(void);
-Suite *gcal_suite_rc_insert(void);
-Suite *gcal_suite_rc_use(void);
-Suite *gcal_suite_rc_utils(void);
-Suite *gcal_suite_tcal(void);
-Suite *gcal_suite_tty(void);
-Suite *gcal_suite_txt2gcal(void);
-Suite *gcal_suite_utils(void);
+Suite *gcal_suite_file_io(char *testname);
+Suite *gcal_suite_gcal2txt(char *testname);
+Suite *gcal_suite_hd_astro(char *testname);
+Suite *gcal_suite_hd_data(char *testname);
+Suite *gcal_suite_hd_use(char *testname);
+Suite *gcal_suite_help(char *testname);
+Suite *gcal_suite_print(char *testname);
+Suite *gcal_suite_rc_astro(char *testname);
+Suite *gcal_suite_rc_check(char *testname);
+Suite *gcal_suite_rc_insert(char *testname);
+Suite *gcal_suite_rc_use(char *testname);
+Suite *gcal_suite_rc_utils(char *testname);
+Suite *gcal_suite_tcal(char *testname);
+Suite *gcal_suite_tty(char *testname);
+Suite *gcal_suite_txt2gcal(char *testname);
+Suite *gcal_suite_utils(char *testname);
 
-
-START_TEST(test_gcal_base_start)
-{
-    uint8_t bytes[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 170};
-    ck_assert_int_eq(bytes[1], 2);
-}
-END_TEST
-
-
-START_TEST(test_gcal_base_end)
-{
-    ck_assert_int_eq(254, 254);
-}
-END_TEST
-
-
-static Suite *gcal_suite(void)
-{
-    Suite *s;
-    TCase *tc_core;
-
-    s = suite_create("GCAL");
-
-    /* Core test case */
-    tc_core = tcase_create("Core");
-
-    tcase_add_test(tc_core, test_gcal_base_start);
-    tcase_add_test(tc_core, test_gcal_base_end);
-
-    suite_add_tcase(s, tc_core);
-
-    return s;
-}
 
 /* dumy function (normally defined in gcal.c) to make linking possible */
 int
@@ -89,34 +56,52 @@ void init_global_variables()
 
 int main(void)
 {
-    int number_failed;
-    SRunner *sr;
+    int number_failed, total_number_failed=0;
+    SRunner *sr; /* only one runner could be used to handle everything */
 
     init_global_variables();
 
-    sr = srunner_create(gcal_suite());
-    srunner_add_suite(sr, gcal_suite_file_io());
-    srunner_add_suite(sr, gcal_suite_gcal2txt());
-    srunner_add_suite(sr, gcal_suite_hd_astro());
-    srunner_add_suite(sr, gcal_suite_hd_data());
-    srunner_add_suite(sr, gcal_suite_hd_use());
-    srunner_add_suite(sr, gcal_suite_help());
-    srunner_add_suite(sr, gcal_suite_print());
-    srunner_add_suite(sr, gcal_suite_rc_astro());
-    srunner_add_suite(sr, gcal_suite_rc_check());
-    srunner_add_suite(sr, gcal_suite_rc_insert());
-    srunner_add_suite(sr, gcal_suite_rc_use());
-    srunner_add_suite(sr, gcal_suite_rc_utils());
-    srunner_add_suite(sr, gcal_suite_tcal());
-    srunner_add_suite(sr, gcal_suite_tty());
-    srunner_add_suite(sr, gcal_suite_txt2gcal());
-    srunner_add_suite(sr, gcal_suite_utils());
-
-
-    //not really needed: srunner_set_log (sr, "test.log");
-
+    sr = srunner_create(gcal_suite_file_io("file_io"));
     srunner_run_all(sr, CK_VERBOSE);
     number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
     srunner_free(sr);
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+
+    sr = srunner_create(gcal_suite_hd_astro("hd"));
+    srunner_add_suite(sr, gcal_suite_hd_data("hd"));
+    srunner_add_suite(sr, gcal_suite_hd_use("hd"));
+    srunner_run_all(sr, CK_VERBOSE);
+    number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
+    srunner_free(sr);
+
+    sr = srunner_create(gcal_suite_help("stuff"));
+    srunner_add_suite(sr, gcal_suite_print("stuff"));
+    srunner_add_suite(sr, gcal_suite_tty("stuff"));
+    srunner_add_suite(sr, gcal_suite_utils("stuff"));
+    srunner_add_suite(sr, gcal_suite_rc_utils("stuff"));
+    srunner_run_all(sr, CK_VERBOSE);
+    number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
+    srunner_free(sr);
+
+    sr = srunner_create(gcal_suite_rc_astro("rc"));
+    srunner_add_suite(sr, gcal_suite_rc_check("rc"));
+    srunner_add_suite(sr, gcal_suite_rc_insert("rc"));
+    srunner_add_suite(sr, gcal_suite_rc_use("rc"));
+    srunner_add_suite(sr, gcal_suite_rc_utils("rc"));
+    srunner_run_all(sr, CK_VERBOSE);
+    number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
+    srunner_free(sr);
+
+    sr = srunner_create(gcal_suite_tcal("pgm"));
+    srunner_add_suite(sr, gcal_suite_gcal2txt("pgm"));
+    srunner_add_suite(sr, gcal_suite_txt2gcal("pgm"));
+    srunner_run_all(sr, CK_VERBOSE);
+    number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
+    srunner_free(sr);
+
+    return (total_number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

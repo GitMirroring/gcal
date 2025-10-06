@@ -81,15 +81,15 @@ START_TEST(test_utils_knuth_easter_formula)
 }
 END_TEST
 
-Suite *gcal_suite_utils(void)
+Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.utils");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("utils");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_utils_my_atoi);
     tcase_add_test(tc_core, test_utils_julian_gregorian_diff);

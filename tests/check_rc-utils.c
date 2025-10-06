@@ -154,27 +154,31 @@ START_TEST(test_compute_distance)
     p1.lon_deg=12; p1.lon_min=34; p1.lon_sec=45;
     p1.lat_deg=34; p1.lat_min=56; p1.lat_sec=00;
     p1.the_mode=0;
+    p1.meters_above_sea_level=0;
+    p1.time_zone_in_mins=0;
 
     p2.lon_deg=00; p2.lon_min=56; p2.lon_sec=34;
     p2.lat_deg=45; p2.lat_min=34; p2.lat_sec=12;
     p2.the_mode=0;
+    p2.meters_above_sea_level=0;
+    p2.time_zone_in_mins=0;
 
-    compare=1543.190844;
+    compare=1537.872518;
     distance=compute_distance(&p1, &p2);
-    printf("XXX distance: %f <-> %f\n",distance,compare);
-    ck_assert_double_eq_tol(distance, compare, 1e-2);
+    printf("XXX distance: %lf <-> %lf\n",distance,compare);
+    ck_assert_double_eq_tol(distance, compare, 1e-5);
 }
 END_TEST
 
-Suite *gcal_suite_rc_utils(void)
+Suite *gcal_suite_rc_utils(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.rc-utils");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("rc-utils");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_valid_day);
     tcase_add_test(tc_core, test_clean_flag);

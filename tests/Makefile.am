@@ -51,8 +51,9 @@ GCAL_GNULIB_OBJS= \
   ../lib/ioctl.o \
   ../lib/tmpdir.o 
 
-noinst_PROGRAMS = check_gcal
-TESTS = check_gcal
+noinst_PROGRAMS = check_gcal check_gcal_file_io
+TESTS = check_gcal check_gcal_file_io
+
 check_gcal_SOURCES = check_gcal.c \
                            check_file-io.c \
                            check_gcal2txt.c \
@@ -71,7 +72,15 @@ check_gcal_SOURCES = check_gcal.c \
                            check_txt2gcal.c \
                            check_utils.c 
 
-
 check_gcal_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS) $(DEFS)
 check_gcal_LDFLAGS = -lgcov --coverage
 check_gcal_LDADD = $(LDFLAGS) $(CHECK_LIBS) $(GCAL_OBJS) $(GCAL_GNULIB_OBJS)
+
+
+# splitting tests might be needed later, so this is how it is done
+check_gcal_file_io_SOURCES = check_gcal_file-io.c \
+                           check_file-io.c
+
+check_gcal_file_io_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS) $(DEFS)
+check_gcal_file_io_LDFLAGS = -lgcov --coverage
+check_gcal_file_io_LDADD = $(LDFLAGS) $(CHECK_LIBS) $(GCAL_OBJS) $(GCAL_GNULIB_OBJS)

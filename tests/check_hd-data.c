@@ -9,15 +9,15 @@ START_TEST(test_gcal_dummy)
 }
 END_TEST
 
-Suite *gcal_suite_hd_data(void)
+Suite *gcal_suite_hd_data(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.hd-data");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("hd-data");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_gcal_dummy);
 

@@ -9,15 +9,15 @@ START_TEST(test_gcal_dummy)
 }
 END_TEST
 
-Suite *gcal_suite_rc_insert(void)
+Suite *gcal_suite_rc_insert(char *testname)
 {
     Suite *s;
     TCase *tc_core;
 
-    s = suite_create("GCAL.rc_insert");
+    s = suite_create(testname);
 
     /* Core test case */
-    tc_core = tcase_create("rc_insert");
+    tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_gcal_dummy);
 

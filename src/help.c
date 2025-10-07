@@ -171,12 +171,17 @@ my_help_on_help (FILE *fp, const char *longopt, const Bool lopt_ambig, const int
     s1[len_line] = ' ';
   s1[len_line] = '\0';
   if (lopt_ambig)
-    {
-      while (tolower (*ptr_lopt->long_name) < tolower (*longopt))
+    { int count=0;
+
+      while (tolower (*ptr_lopt->long_name) < tolower (*longopt)) {
 	ptr_lopt++;
-      while (strncasecmp
-	     (longopt + 1, ptr_lopt->long_name + 1, len_longopt - 1))
+        count++;
+      }
+      while ((strncasecmp
+	     (longopt + 1, ptr_lopt->long_name + 1, len_longopt - 1)) && (count < len_longopt)) {
 	ptr_lopt++;
+        count++;
+      }
     }
   while (ptr_lopt->long_name != NULL)
     {

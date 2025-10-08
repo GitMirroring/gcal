@@ -2485,29 +2485,36 @@ check_command_line (int argc, char *argv[])
 				         Newton per square meter (Nm^-2) value.
 				       */
 				      atm_pressure *= 100.0;
-				      ptr_char++;
-				      if (*ptr_char)
-					{
-					  (void) sscanf (ptr_char, "%lf",
-							 &atm_temperature);
-					  /*
-					     Avoid nonsense data
-					     (-100.0 C <= temperature <= +100.0 C).
-					   */
-					  if (abs (atm_temperature) > 100.0)
+				      if (ptr_char) {
+				        ptr_char++;
+				        if (*ptr_char) {
+					    (void) sscanf (ptr_char, "%lf",
+							   &atm_temperature);
 					    /*
-					       Error, long-style option is trailed
-					       by an invalid argument.
+					       Avoid nonsense data
+					       (-100.0 C <= temperature <= +100.0 C).
 					     */
-					    opt_error = 5;
-					}
-				      else
-					/*
-					   Error, long-style option is trailed
-					   by an invalid argument.
-					 */
+					    if (abs (atm_temperature) > 100.0) {
+					      /*
+					         Error, long-style option is trailed
+					         by an invalid argument.
+					       */
+					      opt_error = 5;
+                                            }
+					} else {
+					  /*
+					     Error, long-style option is trailed
+					     by an invalid argument.
+					   */
+					  opt_error = 5;
+				        }
+                                      } else {
+				        /*
+                                           Error, no parameter given
+                                         */
 					opt_error = 5;
-				    }
+                                      }
+                                  }
 				}
 			      else
 				opt_error = 0;

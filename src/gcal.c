@@ -3467,34 +3467,36 @@ check_command_line (int argc, char *argv[])
 			   Get the argument of the `--date-format=PRESET_VALUE|ARG' long-style option.
 			 */
 			option++;
-			if ((Uint) * option < LARG_MAX - 1)
-			  {
-			    date_format = supported_date_format;
-			    date_format += ((Uint) * option - 1);
-			    if (date_format->df_id == (char *) NULL)
+                        if (strlen(option)>0) {
+			  if ((Uint) * option < LARG_MAX - 1)
+			    {
+			      date_format = supported_date_format;
+			      date_format += ((Uint) * option - 1);
+			      if (date_format->df_id == (char *) NULL) {
+			        /*
+			           Error, index of an "empty" table element referenced.
+			         */
+			        opt_error = 5;
+                              }
+			    }
+			  else
+			    {
 			      /*
-			         Error, index of an "empty" table element referenced.
+			         Respect this given argument now.
 			       */
-			      opt_error = 5;
-			  }
-			else
-			  {
-			    /*
-			       Respect this given argument now.
-			     */
-			    users_date_format.df_info = _("command line");
-			    if (users_date_format.df_format == (char *) NULL)
-			      users_date_format.df_format
-				= (char *) my_malloc (strlen (option) + 1,
+			      users_date_format.df_info = _("command line");
+			      if (users_date_format.df_format == (char *) NULL)
+			        users_date_format.df_format
+				  = (char *) my_malloc (strlen (option) + 1,
 						      ERR_NO_MEMORY_AVAILABLE,
 						      __FILE__,
 						      ((long) __LINE__) - 2L,
 						      "users_date_format.df_format",
 						      0);
-			    else
-			      users_date_format.df_format
-				=
-				(char *) my_realloc ((VOID_PTR)
+			      else
+			        users_date_format.df_format
+				  =
+				  (char *) my_realloc ((VOID_PTR)
 						     users_date_format.
 						     df_format,
 						     strlen (option) + 1,
@@ -3503,9 +3505,12 @@ check_command_line (int argc, char *argv[])
 						     ((long) __LINE__) - 3L,
 						     "users_date_format.df_format",
 						     0);
-			    strcpy (users_date_format.df_format, option);
-			    date_format = &users_date_format;
-			  }
+			      strcpy (users_date_format.df_format, option);
+			      date_format = &users_date_format;
+			    }
+                        } else {
+	                  opt_error = 5;
+                        }
 			if (!opt_error)
 			  {
 			    /*

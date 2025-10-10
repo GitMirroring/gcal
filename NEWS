@@ -1,10 +1,15 @@
 NEWS file for `gcal'.
 
-Copyright (C) 1994-2014 Free Software Foundation, Inc.
+Copyright (C) 1994-2025 Free Software Foundation, Inc.
 
 User-visible changes.
 
-Major changes in release 4.2
+Major changes in release 4.3.0
+
+* improved option handling to avoid segmentation faults when unusual options are given
+
+
+Major changes in release 4.2.0
 
 * New entry added for Good Friday as Czech holiday.
 * New entry added for Good Friday as Hungarian holiday.
@@ -13,11 +18,13 @@ Major changes in release 4.2
 * No longer report Christmas day as the 26th in Idaho.
 * No longer report Christmas day as the 26th in Ohio.
 
+
 Major changes in release 4.1
 
 * National holiday replaced Pentecost Monday as a Swedish holiday 2005
 * Report Reformation Day as an holiday everywhere in Germany in 2017
 
+
 Major changes in release 4
 
 * Remove duplicate for All Saints Day for DE_BW and DE_RP.

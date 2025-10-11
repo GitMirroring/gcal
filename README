@@ -151,8 +151,6 @@ Files you might look into
    * See `NEWS' for a summary of user-visible changes since version
      0.28.
 
-   * See `HISTORY' for a complete summary of changes.
-
    * See `INSTALL' for compilation and installation instructions.
      Some answers to frequently asked questions are given in the
      file `INSTALL', please read it!
@@ -172,7 +170,7 @@ Files you might look into
      distribution.
 
    * Many thanks to those who provided me with bug reports and feedback.
-     See the `THANKS' and `HISTORY' files for more details.
+     See the `THANKS' file for more details.
 
    * See `ABOUT-NLS' for notes on the Free Translation Project.  Some
      parts of this file which are important for a proper installation

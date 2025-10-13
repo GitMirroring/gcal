@@ -56,7 +56,6 @@ TESTS = check_gcal check_gcal_file_io
 
 check_gcal_SOURCES = check_gcal.c \
                            check_file-io.c \
-                           check_gcal2txt.c \
                            check_hd-astro.c \
                            check_hd-data.c \
                            check_hd-use.c \
@@ -69,7 +68,6 @@ check_gcal_SOURCES = check_gcal.c \
                            check_rc-utils.c \
                            check_tcal.c \
                            check_tty.c \
-                           check_txt2gcal.c \
                            check_utils.c 
 
 check_gcal_CFLAGS = $(CFLAGS) $(CHECK_CFLAGS) $(DEFS)

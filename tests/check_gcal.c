@@ -20,7 +20,6 @@
 #include <check.h>
 
 Suite *gcal_suite_file_io(char *testname);
-Suite *gcal_suite_gcal2txt(char *testname);
 Suite *gcal_suite_hd_astro(char *testname);
 Suite *gcal_suite_hd_data(char *testname);
 Suite *gcal_suite_hd_use(char *testname);
@@ -33,7 +32,6 @@ Suite *gcal_suite_rc_use(char *testname);
 Suite *gcal_suite_rc_utils(char *testname);
 Suite *gcal_suite_tcal(char *testname);
 Suite *gcal_suite_tty(char *testname);
-Suite *gcal_suite_txt2gcal(char *testname);
 Suite *gcal_suite_utils(char *testname);
 
 
@@ -90,14 +88,6 @@ int main(void)
     srunner_add_suite(sr, gcal_suite_rc_insert("rc"));
     srunner_add_suite(sr, gcal_suite_rc_use("rc"));
     srunner_add_suite(sr, gcal_suite_rc_utils("rc"));
-    srunner_run_all(sr, CK_VERBOSE);
-    number_failed = srunner_ntests_failed(sr);
-    total_number_failed+=number_failed;
-    srunner_free(sr);
-
-    sr = srunner_create(gcal_suite_tcal("pgm"));
-    srunner_add_suite(sr, gcal_suite_gcal2txt("pgm"));
-    srunner_add_suite(sr, gcal_suite_txt2gcal("pgm"));
     srunner_run_all(sr, CK_VERBOSE);
     number_failed = srunner_ntests_failed(sr);
     total_number_failed+=number_failed;

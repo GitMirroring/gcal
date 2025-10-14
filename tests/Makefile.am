@@ -66,7 +66,6 @@ check_gcal_SOURCES = check_gcal.c \
                            check_rc-insert.c \
                            check_rc-use.c \
                            check_rc-utils.c \
-                           check_tcal.c \
                            check_tty.c \
                            check_utils.c 
 

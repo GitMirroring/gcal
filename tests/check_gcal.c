@@ -73,16 +73,6 @@ int main(void)
     total_number_failed+=number_failed;
     srunner_free(sr);
 
-    sr = srunner_create(gcal_suite_help("stuff"));
-    srunner_add_suite(sr, gcal_suite_print("stuff"));
-    srunner_add_suite(sr, gcal_suite_tty("stuff"));
-    srunner_add_suite(sr, gcal_suite_utils("stuff"));
-    srunner_add_suite(sr, gcal_suite_rc_utils("stuff"));
-    srunner_run_all(sr, CK_VERBOSE);
-    number_failed = srunner_ntests_failed(sr);
-    total_number_failed+=number_failed;
-    srunner_free(sr);
-
     sr = srunner_create(gcal_suite_rc_astro("rc"));
     srunner_add_suite(sr, gcal_suite_rc_check("rc"));
     srunner_add_suite(sr, gcal_suite_rc_insert("rc"));
@@ -92,6 +82,17 @@ int main(void)
     number_failed = srunner_ntests_failed(sr);
     total_number_failed+=number_failed;
     srunner_free(sr);
+
+    sr = srunner_create(gcal_suite_help("stuff"));
+    srunner_add_suite(sr, gcal_suite_tty("stuff"));
+    srunner_add_suite(sr, gcal_suite_utils("stuff"));
+    srunner_add_suite(sr, gcal_suite_rc_utils("stuff"));
+    srunner_add_suite(sr, gcal_suite_print("stuff")); // freopen(stdout) is needed, so lets doit last
+    srunner_run_all(sr, CK_VERBOSE);
+    number_failed = srunner_ntests_failed(sr);
+    total_number_failed+=number_failed;
+    srunner_free(sr);
+
 
     return (total_number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -2,6 +2,11 @@
 #include <check.h>
 #include <stdlib.h>
 
+/*
+ * except a function "void print_calender()", print.c only contains static functions"
+ * output goes to stdout which is defined in stdio.h
+ * this can be changed by freopen()
+ */
 
 START_TEST(test_gcal_dummy)
 {

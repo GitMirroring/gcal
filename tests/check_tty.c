@@ -44,9 +44,12 @@ END_TEST
 START_TEST(test_get_tty_hls)
 {
     const char *sequence = NULL;
+    highlight_flag=true;
+    emu_hls=true;
     get_tty_hls (sequence);
 
-    printf("XXX sequence: %s\n",sequence);
+    //XXX why is this always NULL?
+    printf("test_get_tty_hls sequence: %s\n",sequence);
 }
 END_TEST
 

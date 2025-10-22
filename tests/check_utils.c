@@ -81,6 +81,84 @@ START_TEST(test_utils_knuth_easter_formula)
 }
 END_TEST
 
+START_TEST(test_utils_doy2date)
+{
+  Bool valid;
+  int day, month;
+
+  valid=doy2date(1, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 1);
+  ck_assert_int_eq(month, 1);
+
+  valid=doy2date(31, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 31);
+  ck_assert_int_eq(month, 1);
+
+  valid=doy2date(60, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 1);
+  ck_assert_int_eq(month, 3);
+
+  valid=doy2date(60, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 29);
+  ck_assert_int_eq(month, 2);
+
+  valid=doy2date(61, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 1);
+  ck_assert_int_eq(month, 3);
+
+  valid=doy2date(74, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 3);
+
+  valid=doy2date(105, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 4);
+
+  valid=doy2date(136, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 5);
+
+  valid=doy2date(166, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 6);
+
+  valid=doy2date(185, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day,  4);
+  ck_assert_int_eq(month, 7);
+
+  valid=doy2date(228, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 8);
+
+  valid=doy2date(258, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 9);
+
+  valid=doy2date(288, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 10);
+
+  valid=doy2date(320, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 15);
+  ck_assert_int_eq(month, 11);
+
+  valid=doy2date(359, 0, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 25);
+  ck_assert_int_eq(month, 12);
+
+  valid=doy2date(366, 1, &day, &month); ck_assert(valid);
+  ck_assert_int_eq(day, 31);
+  ck_assert_int_eq(month, 12);
+
+  day=77; month=22;
+  valid=doy2date(461, 1, &day, &month);
+  ck_assert(!valid);
+  ck_assert_int_eq(day, 77); //XXX in case of invalid doy, day and month don't change
+  ck_assert_int_eq(month, 22); //XXX in case of invalid doy, day and month don't change
+
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -94,6 +172,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_my_atoi);
     tcase_add_test(tc_core, test_utils_julian_gregorian_diff);
     tcase_add_test(tc_core, test_utils_knuth_easter_formula);
+    tcase_add_test(tc_core, test_utils_doy2date);
 
     suite_add_tcase(s, tc_core);
 

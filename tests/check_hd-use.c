@@ -14,16 +14,6 @@
 #include "../src/utils.h"
 #include "../src/hd-use.h"
 
-/*
-int
-eval_holiday (int day, const int month, const int year, const int wd, const Bool forwards)
-/ *!
-   Detects first (FORWARDS==TRUE) or last (FORWARDS==FALSE) appearance
-     of weekday `wd' in given date starting the search at `day'
-     and returns the day number of `wd' in month.
-*/
-
-
 START_TEST(test_eval_holiday)
 {
     int eh;
@@ -83,6 +73,41 @@ START_TEST(test_eval_holiday)
 }
 END_TEST
 
+/*
+int
+orthodox_easter (const int year, int *greg_diff, const int greg_year, const int greg_month, const int greg_first_day,
+                 const int greg_last_day)
+*/
+START_TEST(test_orthodox_easter)
+{
+    int oe, greg_diff=0;
+
+    oe=orthodox_easter(2025, &greg_diff, 1582, 10, 5, 15);
+    printf("XXX oe: %i  diff %i\n",oe, greg_diff);
+    ck_assert_int_eq(greg_diff, 14); //XX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+
+}
+END_TEST
+
+/*
+int
+tishri_1 (const int year)
+/ *!
+   Returns the `day_of_year' number of the (arithmetical lunisolar)
+     Hebrew/Jewish Hebrew_New_Year/Rosh_Hashana/Tishri_1 for the
+     given Julian/Gregorian year YEAR.
+   Used formula:  John H. Conway, Guy and Berlekamp: "Winning Ways", Vol. 2.
+   References:    Lot's of, but see `doc/calendar.faq' for the basics.
+*/
+START_TEST(test_tishri_1)
+{
+  int doy;
+
+  doy=tishri_1(2025);
+  printf("XXX tishri_1 2025 %i\n",doy);
+}
+END_TEST
+
 Suite *gcal_suite_hd_use(char *testname)
 {
     Suite *s;
@@ -94,6 +119,8 @@ Suite *gcal_suite_hd_use(char *testname)
     tc_core = tcase_create(testname);
 
     tcase_add_test(tc_core, test_eval_holiday);
+    tcase_add_test(tc_core, test_orthodox_easter);
+    tcase_add_test(tc_core, test_tishri_1);
 
     suite_add_tcase(s, tc_core);
 

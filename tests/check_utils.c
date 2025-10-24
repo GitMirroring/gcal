@@ -155,10 +155,50 @@ START_TEST(test_utils_doy2date)
   ck_assert(!valid);
   ck_assert_int_eq(day, 77); //XXX in case of invalid doy, day and month don't change
   ck_assert_int_eq(month, 22); //XXX in case of invalid doy, day and month don't change
-
 }
 END_TEST
 
+START_TEST(test_utils_weekday_of_date)
+{
+  // weekday_of_date returns 1...7 (1==mo, 2==tu...7==su)
+  ck_assert_int_eq(weekday_of_date(  1,  1, 2025), 3);
+  ck_assert_int_ne(weekday_of_date(  1,  1, 2025), 2);
+  ck_assert_int_eq(weekday_of_date(  7, 11, 2000), 2);
+  ck_assert_int_eq(weekday_of_date(  3,  5, 1950), 3);
+  ck_assert_int_eq(weekday_of_date( 24, 12, 1800), 3);
+
+  // XXX so what is the real weekday? This needs some more investigations
+  //XXX ck_assert_int_eq(weekday_of_date( 27,  4, 1652), 2); // shall be 2 according to https://www.timeanddate.com/date/weekday.html?day=27&month=4&year=1652
+
+  // according to https://www.timeanddate.com/date/weekday.html?day=4&month=10&year=1582  the weekday is Thursday = 4 <- same as gcal
+  // according to https://www.timeanddate.com/date/weekday.html?day=15&month=10&year=1582 the weekday is Monday = 1 <- different from gcak
+  // according to https://ahnenforschung-vhs-mosbach.de/wp/wp-content/uploads/2020/03/AK-Mosbach-Julian-Gregorianisch.pdf the 15.10.1582 is a Tuesday
+  ck_assert_int_eq(weekday_of_date(  4, 10, 1582), 4);
+  ck_assert_int_eq(weekday_of_date( 15, 10, 1582), 5);
+  ck_assert_int_eq(weekday_of_date( 13, 10, 1439), 2);
+}
+END_TEST
+
+// obtained from https://ahnenforschung-vhs-mosbach.de/wp/wp-content/uploads/2020/03/AK-Mosbach-Julian-Gregorianisch.pdf
+// 	Julian			Gregorian
+//	23. Sep	Thursday	03. Oct
+//	24. Sep	Friday		04. Oct
+//	25. Sep	Saturday	05. Oct
+//	26. Sep	Sunday		06. Oct
+//	27. Sep	Monday		07. Oct
+//	28. Sep	Tuesday		08. Oct
+//	29. Sep	Wednesday	09. Oct
+//	30. Sep	Thursday	10. Oct
+//	01. Oct	Friday		11. Oct
+//	02. Oct	Saturday	12. Oct
+//	03. Oct	Sunday		13. Oct
+//	04. Oct	Monday		14. Oct <-
+//	05. Oct	Tuesday		15. Oct
+//	06. Oct	Wednesday	16. Oct
+//	07. Oct	Thursday	17. Oct
+//	08. Oct	Friday		18. Oct
+//	09. Oct	Saturday	19. Oct
+//	10. Oct	Sunday		20. Oct
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -173,6 +213,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_julian_gregorian_diff);
     tcase_add_test(tc_core, test_utils_knuth_easter_formula);
     tcase_add_test(tc_core, test_utils_doy2date);
+    tcase_add_test(tc_core, test_utils_weekday_of_date);
 
     suite_add_tcase(s, tc_core);
 

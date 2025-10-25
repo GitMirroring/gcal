@@ -199,6 +199,27 @@ END_TEST
 //	08. Oct	Friday		18. Oct
 //	09. Oct	Saturday	19. Oct
 //	10. Oct	Sunday		20. Oct
+
+/*
+int
+day_of_year (const int day, const int month, const int year)
+/* !
+   Returns the day of the year of a Gregorian or Julian calendar date
+     (month must be 1...12) and returns 1...365|366.
+*/
+START_TEST(test_utils_day_of_year)
+{
+  ck_assert_int_eq(day_of_year(  1,  1, 2025),   1);
+  ck_assert_int_eq(day_of_year(  7, 11, 2000), 312);
+  ck_assert_int_eq(day_of_year(  3,  5, 1950), 123);
+  ck_assert_int_eq(day_of_year( 24, 12, 1800), 358);
+  ck_assert_int_eq(day_of_year( 27,  4, 1652), 118);
+  ck_assert_int_eq(day_of_year(  4, 10, 1582), 277);
+  ck_assert_int_eq(day_of_year( 15, 10, 1582), 288); //XXX as the 04.10. is directly followed by the 15.10., shouldn't be there only one day between them?
+  ck_assert_int_eq(day_of_year( 13, 10, 1439), 286);
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -214,6 +235,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_knuth_easter_formula);
     tcase_add_test(tc_core, test_utils_doy2date);
     tcase_add_test(tc_core, test_utils_weekday_of_date);
+    tcase_add_test(tc_core, test_utils_day_of_year);
 
     suite_add_tcase(s, tc_core);
 

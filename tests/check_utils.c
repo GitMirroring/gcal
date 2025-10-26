@@ -200,13 +200,6 @@ END_TEST
 //	09. Oct	Saturday	19. Oct
 //	10. Oct	Sunday		20. Oct
 
-/*
-int
-day_of_year (const int day, const int month, const int year)
-/* !
-   Returns the day of the year of a Gregorian or Julian calendar date
-     (month must be 1...12) and returns 1...365|366.
-*/
 START_TEST(test_utils_day_of_year)
 {
   ck_assert_int_eq(day_of_year(  1,  1, 2025),   1);
@@ -217,6 +210,20 @@ START_TEST(test_utils_day_of_year)
   ck_assert_int_eq(day_of_year(  4, 10, 1582), 277);
   ck_assert_int_eq(day_of_year( 15, 10, 1582), 288); //XXX as the 04.10. is directly followed by the 15.10., shouldn't be there only one day between them?
   ck_assert_int_eq(day_of_year( 13, 10, 1439), 286);
+}
+END_TEST
+
+START_TEST(test_utils_days_of_february)
+{
+  ck_assert_int_eq(days_of_february(   4), 28); //XXX find literatur that confirms this
+  ck_assert_int_eq(days_of_february(2025), 28);
+  ck_assert_int_eq(days_of_february(2020), 29);
+  ck_assert_int_eq(days_of_february(2000), 29);
+  ck_assert_int_eq(days_of_february(1900), 28);
+  ck_assert_int_eq(days_of_february(1840), 29);
+  ck_assert_int_eq(days_of_february(1800), 28);
+  ck_assert_int_eq(days_of_february(1801), 28);
+  ck_assert_int_eq(days_of_february(1804), 29);
 }
 END_TEST
 
@@ -236,6 +243,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_doy2date);
     tcase_add_test(tc_core, test_utils_weekday_of_date);
     tcase_add_test(tc_core, test_utils_day_of_year);
+    tcase_add_test(tc_core, test_utils_days_of_february);
 
     suite_add_tcase(s, tc_core);
 

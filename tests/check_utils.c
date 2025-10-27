@@ -227,6 +227,16 @@ START_TEST(test_utils_days_of_february)
 }
 END_TEST
 
+START_TEST(test_utils_valid_date)
+{
+  ck_assert( valid_date(22, 11, 1965));
+  ck_assert(!valid_date(30,  2, 2045));
+  ck_assert(!valid_date(15, 19, 2045));
+  ck_assert( valid_date(29, 02, 2024));
+  ck_assert(!valid_date(29, 02, 2025));
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -244,6 +254,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_weekday_of_date);
     tcase_add_test(tc_core, test_utils_day_of_year);
     tcase_add_test(tc_core, test_utils_days_of_february);
+    tcase_add_test(tc_core, test_utils_valid_date);
 
     suite_add_tcase(s, tc_core);
 

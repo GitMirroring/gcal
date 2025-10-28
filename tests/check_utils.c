@@ -237,6 +237,73 @@ START_TEST(test_utils_valid_date)
 }
 END_TEST
 
+START_TEST(test_utils_prev_date)
+{
+  int day, month, year;
+  int doy, ndoy; /* Day Of Year / New Day Of Year */
+
+  day=1; month=1; year=2025;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy, 1);
+  ck_assert_int_eq(ndoy, 366); // previous year (=2024) is leap year
+
+  day=1; month=1; year=2023;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy, 1);
+  ck_assert_int_eq(ndoy, 365); // previous year (=2022) is no leap year
+
+  day=27; month=5; year=2022;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1, ndoy);
+
+  day=1; month=3; year=2024;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1, ndoy);
+  ck_assert_int_eq(day, 29);
+
+  day=1; month=3; year=2023;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1, ndoy);
+  ck_assert_int_eq(day, 28);
+
+  day=16; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1, ndoy);
+
+  day=15; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1-10, ndoy);
+  ck_assert_int_eq(day, 4);
+
+  day=10; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(ndoy,277);
+  ck_assert_int_eq(day, 4);
+
+  day=5; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!prev_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy-1, ndoy);
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -255,6 +322,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_day_of_year);
     tcase_add_test(tc_core, test_utils_days_of_february);
     tcase_add_test(tc_core, test_utils_valid_date);
+    tcase_add_test(tc_core, test_utils_prev_date);
 
     suite_add_tcase(s, tc_core);
 

@@ -304,6 +304,66 @@ START_TEST(test_utils_prev_date)
 }
 END_TEST
 
+START_TEST(test_utils_next_date)
+{
+  int day, month, year;
+  int doy, ndoy; /* Day Of Year / New Day Of Year */
+
+  day=31; month=12; year=2024;
+  doy=day_of_year(day, month, year);
+  ck_assert(next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy, 366);
+  ck_assert_int_eq(ndoy, 1);
+
+  day=27; month=5; year=2022;
+  doy=day_of_year(day, month, year);
+  ck_assert(next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1, ndoy);
+
+  day=28; month=2; year=2024;
+  doy=day_of_year(day, month, year);
+  ck_assert(next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1, ndoy);
+  ck_assert_int_eq(day, 29);
+
+  day=28; month=2; year=2023;
+  doy=day_of_year(day, month, year);
+  ck_assert(next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1, ndoy);
+  ck_assert_int_eq(day, 1);
+
+  day=3; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1, ndoy);
+
+  day=4; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1+10, ndoy);
+  ck_assert_int_eq(day, 15);
+
+  day=10; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(ndoy,288);
+  ck_assert_int_eq(day, 15);
+
+  day=5; month=10; year=1582;
+  doy=day_of_year(day, month, year);
+  ck_assert(!next_date(&day, &month, &year));
+  ndoy=day_of_year(day, month, year);
+  ck_assert_int_eq(doy+1+9, ndoy);
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -323,6 +383,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_days_of_february);
     tcase_add_test(tc_core, test_utils_valid_date);
     tcase_add_test(tc_core, test_utils_prev_date);
+    tcase_add_test(tc_core, test_utils_next_date);
 
     suite_add_tcase(s, tc_core);
 

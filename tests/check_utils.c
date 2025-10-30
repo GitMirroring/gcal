@@ -364,6 +364,35 @@ START_TEST(test_utils_next_date)
 }
 END_TEST
 
+START_TEST(test_utils_week_number)
+{
+  ck_assert_int_eq(week_number( 31, 12, 2020, true, 1), -53);
+  ck_assert_int_eq(week_number(  1,  1, 2021, true, 1), -53);
+  ck_assert_int_eq(week_number(  2,  1, 2021, true, 1), -53);
+  ck_assert_int_eq(week_number(  3,  1, 2021, true, 1), -53);
+  ck_assert_int_eq(week_number(  4,  1, 2021, true, 1),   1);
+  ck_assert_int_eq(week_number(  1,  1, 2022, true, 1), -52);
+  ck_assert_int_eq(week_number(  2,  1, 2022, true, 1), -52);
+  ck_assert_int_eq(week_number(  3,  1, 2022, true, 1),   1);
+  ck_assert_int_eq(week_number(  1,  3, 2022, true, 1),   9);
+  ck_assert_int_eq(week_number(  5,  4, 2022, true, 1),  14);
+  ck_assert_int_eq(week_number(  9,  5, 2022, true, 1),  19);
+  ck_assert_int_eq(week_number( 13,  6, 2022, true, 1),  24);
+  ck_assert_int_eq(week_number( 17,  7, 2022, true, 1),  28);
+  ck_assert_int_eq(week_number( 21,  8, 2022, true, 1),  33);
+  ck_assert_int_eq(week_number( 25,  9, 2022, true, 1),  38);
+  ck_assert_int_eq(week_number( 29, 10, 2022, true, 1),  43);
+  ck_assert_int_eq(week_number(  1,  1, 2023, true, 1), -52);
+  ck_assert_int_eq(week_number(  1,  1, 2024, true, 1),   1);
+  ck_assert_int_eq(week_number(  1,  1, 2025, true, 1),   0);
+  ck_assert_int_eq(week_number(  1,  1, 2026, true, 1),   0);
+  ck_assert_int_eq(week_number(  1,  1, 2027, true, 1), -53);
+  ck_assert_int_eq(week_number(  1,  1, 2028, true, 1), -52);
+  ck_assert_int_eq(week_number(  1,  1, 2029, true, 1),   1);
+  //XXX check with year having 51 weeks
+}
+END_TEST
+
 Suite *gcal_suite_utils(char *testname)
 {
     Suite *s;
@@ -384,6 +413,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_valid_date);
     tcase_add_test(tc_core, test_utils_prev_date);
     tcase_add_test(tc_core, test_utils_next_date);
+    tcase_add_test(tc_core, test_utils_week_number);
 
     suite_add_tcase(s, tc_core);
 

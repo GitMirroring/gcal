@@ -390,6 +390,42 @@ START_TEST(test_utils_week_number)
   ck_assert_int_eq(week_number(  1,  1, 2028, true, 1), -52);
   ck_assert_int_eq(week_number(  1,  1, 2029, true, 1),   1);
   //XXX check with year having 51 weeks
+  //XXX probably also check with is_iso_week = false
+}
+END_TEST
+
+/*
+int
+weekno2doy (int week, const int year, const Bool is_iso_week, const int start_day_of_week)
+/ !
+   Returns the "day_of_year" number of a Julian or Gregorian calendar year,
+     the given week number (either ISO-8601:1988 or non-ISO) starts at.
+     Week number may be:
+       (a)  0           == Returns day_of_year number of first week of year.
+                             resp., that dates, which occur both in last week
+                             of previous year and first week of year
+                             (in this case, the function return value is
+                              -5...0 indicating how many days+1 are in
+                              the previous year).
+       (b)  1...52      == Returns day_of_year number always.
+       (c) 53           == Returns day_of_year_number or if year has
+                             NO 53rd week, returns -WEEK_MAX [=special value]).
+       (d) 99           == Returns day_of_year number of last week of year.
+     Return values are:
+           -WEEK_MAX    == Event (c) has occurred and year has NO 53rd week.
+           -5...0       == In case event (a) has occurred and the first days
+                             of year occur both in last week of previous year
+                             and first week of year.
+            1...365|366 == Events (b), (c) and (d).
+*/
+START_TEST(test_utils_weekno2doy)
+{
+  ck_assert_int_eq(weekno2doy(  1, 2029, true, 1),   1);
+  ck_assert_int_eq(weekno2doy(  1, 2028, true, 1),   3);
+  ck_assert_int_eq(weekno2doy(  1, 2021, true, 1),   4);
+  ck_assert_int_eq(weekno2doy( 52, 2028, true, 1), 360);
+  ck_assert_int_eq(weekno2doy( 52, 2027, true, 1), 361);
+  ck_assert_int_eq(weekno2doy( 52, 2026, true, 1), 355);
 }
 END_TEST
 
@@ -414,6 +450,7 @@ Suite *gcal_suite_utils(char *testname)
     tcase_add_test(tc_core, test_utils_prev_date);
     tcase_add_test(tc_core, test_utils_next_date);
     tcase_add_test(tc_core, test_utils_week_number);
+    tcase_add_test(tc_core, test_utils_weekno2doy);
 
     suite_add_tcase(s, tc_core);
 

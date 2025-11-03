@@ -1,0 +1,20 @@
+print.c		reopen stdout
+tty.c		DONE, only static functions left
+file-io.c
+hd-astro.c
+utils.c		DONE, only static functions left
+rc-check.c
+hd-use.c
+rc-use.c
+hd-data1.c
+rc-utils.c
+rc-insert.c
+help.c
+hd-data5.c
+hd-data4.c
+rc-astro.c
+hd-data2.c
+hd-data.c
+hd-data3.c
+
+take care of XXX

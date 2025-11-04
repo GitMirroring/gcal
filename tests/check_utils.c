@@ -394,30 +394,6 @@ START_TEST(test_utils_week_number)
 }
 END_TEST
 
-/*
-int
-weekno2doy (int week, const int year, const Bool is_iso_week, const int start_day_of_week)
-/ !
-   Returns the "day_of_year" number of a Julian or Gregorian calendar year,
-     the given week number (either ISO-8601:1988 or non-ISO) starts at.
-     Week number may be:
-       (a)  0           == Returns day_of_year number of first week of year.
-                             resp., that dates, which occur both in last week
-                             of previous year and first week of year
-                             (in this case, the function return value is
-                              -5...0 indicating how many days+1 are in
-                              the previous year).
-       (b)  1...52      == Returns day_of_year number always.
-       (c) 53           == Returns day_of_year_number or if year has
-                             NO 53rd week, returns -WEEK_MAX [=special value]).
-       (d) 99           == Returns day_of_year number of last week of year.
-     Return values are:
-           -WEEK_MAX    == Event (c) has occurred and year has NO 53rd week.
-           -5...0       == In case event (a) has occurred and the first days
-                             of year occur both in last week of previous year
-                             and first week of year.
-            1...365|366 == Events (b), (c) and (d).
-*/
 START_TEST(test_utils_weekno2doy)
 {
   ck_assert_int_eq(weekno2doy(  1, 2029, true, 1),   1);

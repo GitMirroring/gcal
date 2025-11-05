@@ -235,6 +235,50 @@ START_TEST(test_hd_astro_helper_functions)
 }
 END_TEST
 
+/*
+
+# define NH_VE  0.0
+# define SH_AE  NH_VE
+# define NH_SS  90.0
+# define SH_WS  NH_SS
+# define NH_AE  180.0
+# define SH_VE  NH_AE
+# define NH_WS  270.0
+# define SH_SS  NH_WS
+
+double
+next_sun_longitude (double *longitude, const double step, const double mjd, int *day, int *month, int *year, const int hour, const int min)
+/k!
+   Calculates and returns the Julian/Gregorian date and time fraction
+     (properly converted, and this number is also passed via the addresses
+     of DAY, MONTH and YEAR), at which the true solar longitude degree has
+     moved by STEP degrees from the base LONGITUDE in the given base YEAR.
+     The date of the LONGITUDE, expressed as a Julian/Gregorian date and time
+     fraction, must be given via MJD, so the date of the ``next'' longitude can
+     be computed (which can possibly be a date in a ``next'' year).  The caller
+     has to guarantee that LONGITUDE and STEP are set to proper values within
+     the range 0...359.9~.  Calculations are done for a line at a definite
+     meridian expressed as a time value in HOUR and MIN.  If HOUR and MIN are
+     set to zero, calculations are done for UTC/GMT.  If HOUR and MIN have a
+     positive sign, calculations are done for meridians East of Greenwich,
+     otherwise for meridians West of Greenwich.
+     If LONGITUDE does not appear in YEAR, or LONGITUDE is during the period
+     00010101...0001-ONE-DAY-PRIOR-VERNAL_EQUINOX, SPECIAL_VALUE is returned.
+*/
+START_TEST(test_hd_astro_next_sun_longitude)
+{
+  double result, longitude, step, mjd;
+  int day, month, year, hour, min;
+
+  longitude=NH_WS;
+  step=
+  day=1; month=1; year=2025;
+  hour=14; min=25;
+  result=next_sun_longitude(&longitude, 60.0, 0.0, &day, &month, &year, hour, min);
+  printf("XXX new day day: %i month: %i year %i\n", day, month, year);
+}
+END_TEST
+
 Suite *gcal_suite_hd_astro(char *testname)
 {
     Suite *s;
@@ -249,6 +293,7 @@ Suite *gcal_suite_hd_astro(char *testname)
     tcase_add_test(tc_core, test_hd_astro_delta_t);
     tcase_add_test(tc_core, test_hd_astro_moonphase);
     tcase_add_test(tc_core, test_hd_astro_helper_functions);
+    tcase_add_test(tc_core, test_hd_astro_next_sun_longitude);
 
     suite_add_tcase(s, tc_core);
 

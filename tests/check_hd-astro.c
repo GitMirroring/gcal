@@ -279,6 +279,65 @@ START_TEST(test_hd_astro_next_sun_longitude)
 }
 END_TEST
 
+/*
+double
+sun_longitude (const double longitude, int *day, int *month, int *year, int hour, int min, const Bool next_mode)
+/!
+   If LONGITUDE is set to SPECIAL_VALUE, this function calculates and returns
+     the approximate apparent geocentric solar ecliptic longitude degree for
+     the given Julian/Gregorian date (range 00010101...99991231), which occurs
+     at HOUR:MIN UTC/GMT.  The addresses of DAY, MONTH and YEAR remain
+     untouched in this case.
+   If LONGITUDE is set to 0.0...359.9~, this function calculates and returns
+     the Julian/Gregorian date and time fraction (properly converted, and this
+     number is also passed via the addresses of DAY, MONTH and YEAR), at which
+     the approximate apparent geocentric solar ecliptic longitude degree is
+     approximately equal the given/searched LONGITUDE in the given YEAR.
+     The caller has to guarantee that LONGITUDE is set to a proper value within
+     the range described above.  Calculations are done for a line at a definite
+     meridian expressed as a time value in HOUR and MIN.  If HOUR and MIN are
+     set to zero, calculations are done for UTC/GMT.  If HOUR and MIN have a
+     positive sign, calculations are done for meridians East of Greenwich,
+     otherwise for meridians West of Greenwich.
+     If LONGITUDE does not appear in YEAR, or LONGITUDE is during the period
+     00010101...0001-ONE-DAY-PRIOR-VERNAL_EQUINOX, SPECIAL_VALUE is returned.
+   The maximum error of this function is less than |0.028| degree
+     (about 1.7 arcminutes, respectively, 0h42' minutes of time) for some dates
+     in the respected period AD 0001...9999 --typically near the maximum year--
+     when compared with the results created by standard ephemeris software
+     (aa, moontool, xephemer...), but normally much much smaller than this
+     value.  The error can be really critical when it appears for dates
+     computed near midnight, by reason the computed date can be different
+     the real date!
+   References:
+     * "Practical Astronomy with your Calculator", Peter Duffet-Smith,
+       3rd edition.  Cambridge University Press 1988, ISBN 0-521-35699-7.
+     * "Astronomical Formulae for Calculators", Jean Meeus, 4th ed,
+       Willmann-Bell 1988, ISBN 0-943396-22-0.
+     * "Astronomical Algorithms", Jean Meeus, 1st ed, Willmann-Bell 1991,
+       ISBN 0-943396-35-2.
+     * The WWW documents "How to compute planetary positions" and
+       "How to compute rise/set times and altitude above horizon"
+       by Paul Schlyter, <http://welcome.to/pausch> or
+       <http://hotel04.ausys.se/pausch>.
+   Btw., Keith Burnett publishes a lot of diverse --good quality--
+     astronomical sources and links at <http://www.xylem.demon.co.uk/kepler>.
+*/
+START_TEST(test_hd_astro_sun_longitude)
+{
+  double result, longitude;
+  int day, month, year, hour, min;
+  bool mode;
+
+  longitude=NH_WS;
+  day=1; month=1; year=2025;
+  hour=14; min=25;
+  result=sun_longitude(longitude, &day, &month, &year, hour, min, mode);
+  printf("XXX sun_longitude: new day day: %i month: %i year %i\n", day, month, year);
+}
+END_TEST
+
+
 Suite *gcal_suite_hd_astro(char *testname)
 {
     Suite *s;
@@ -294,6 +353,7 @@ Suite *gcal_suite_hd_astro(char *testname)
     tcase_add_test(tc_core, test_hd_astro_moonphase);
     tcase_add_test(tc_core, test_hd_astro_helper_functions);
     tcase_add_test(tc_core, test_hd_astro_next_sun_longitude);
+    tcase_add_test(tc_core, test_hd_astro_sun_longitude);
 
     suite_add_tcase(s, tc_core);
 

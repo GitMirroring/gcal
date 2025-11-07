@@ -337,6 +337,42 @@ START_TEST(test_hd_astro_sun_longitude)
 }
 END_TEST
 
+START_TEST(test_hd_astro_val2hours)
+{
+  int hour, min;
+  double val, sec;
+
+  sec=0;
+  val2hours(1.0, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 0);
+  ck_assert_int_eq(min, 0);
+  ck_assert_double_eq_tol(sec, 0.0, 1e-6);
+  val2hours(0.5, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 12);
+  ck_assert_int_eq(min, 0);
+  ck_assert_double_eq_tol(sec, 0.0, 1e-6);
+  val2hours(0.75, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 18);
+  ck_assert_int_eq(min, 0);
+  ck_assert_double_eq_tol(sec, 0.0, 1e-6);
+  val2hours(0.333333333333333333, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 8);
+  ck_assert_int_eq(min, 0);
+  ck_assert_double_eq_tol(sec, 0.0, 1e-6);
+  val2hours(0.145833333333333333, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 3);
+  ck_assert_int_eq(min, 30);
+  ck_assert_double_eq_tol(sec, 0.0, 1e-6);
+  val2hours(0.1458, &hour, &min, &sec);
+  ck_assert_int_eq(hour, 3);
+  ck_assert_int_eq(min, 29);
+  ck_assert_double_eq_tol(sec, 57.12, 1e-6);
+  val2hours(0.1458, &hour, &min, NULL);
+  ck_assert_int_eq(hour, 3);
+  ck_assert_int_eq(min, 30);
+  ck_assert_double_eq_tol(sec, 57.12, 1e-6);
+}
+END_TEST
 
 Suite *gcal_suite_hd_astro(char *testname)
 {
@@ -354,6 +390,7 @@ Suite *gcal_suite_hd_astro(char *testname)
     tcase_add_test(tc_core, test_hd_astro_helper_functions);
     tcase_add_test(tc_core, test_hd_astro_next_sun_longitude);
     tcase_add_test(tc_core, test_hd_astro_sun_longitude);
+    tcase_add_test(tc_core, test_hd_astro_val2hours);
 
     suite_add_tcase(s, tc_core);
 

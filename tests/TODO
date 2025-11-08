@@ -1,9 +1,9 @@
 print.c		reopen stdout
 tty.c		DONE, only static functions left
 file-io.c
-hd-astro.c
+hd-astro.c      ALMOST DONE, only static functions left and *sun_logitude() need some care
 utils.c		DONE, only static functions left
-rc-check.c
+rc-check.c      ALMOST DONE, only static functions left and rc_check()
 hd-use.c
 rc-use.c
 hd-data1.c

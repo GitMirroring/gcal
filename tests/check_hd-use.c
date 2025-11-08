@@ -80,11 +80,43 @@ orthodox_easter (const int year, int *greg_diff, const int greg_year, const int 
 */
 START_TEST(test_orthodox_easter)
 {
-    int oe, greg_diff=0;
+    int oe, greg_diff=0, day, month;
+    bool valid;
+
+    oe=orthodox_easter(2024, &greg_diff, 1582, 10, 5, 15);
+    printf("XXX oe: %i  diff %i\n",oe, greg_diff);
+    ck_assert_int_eq(greg_diff, 14); //XXX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    valid=doy2date(oe, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 7); //XXX should be 5 according to https://www.christianity.com/wiki/holidays/orthodox-easter-origin-and-date.html
+    ck_assert_int_eq(month, 5);
 
     oe=orthodox_easter(2025, &greg_diff, 1582, 10, 5, 15);
     printf("XXX oe: %i  diff %i\n",oe, greg_diff);
-    ck_assert_int_eq(greg_diff, 14); //XX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    ck_assert_int_eq(greg_diff, 14); //XXX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    valid=doy2date(oe, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 21); //XXX should be 20 according to https://www.christianity.com/wiki/holidays/orthodox-easter-origin-and-date.html
+    ck_assert_int_eq(month, 4);
+
+    oe=orthodox_easter(2026, &greg_diff, 1582, 10, 5, 15);
+    printf("XXX oe: %i  diff %i\n",oe, greg_diff);
+    ck_assert_int_eq(greg_diff, 14); //XXX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    valid=doy2date(oe, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 13); //XXX should be 12 according to https://www.christianity.com/wiki/holidays/orthodox-easter-origin-and-date.html
+    ck_assert_int_eq(month, 4);
+
+    oe=orthodox_easter(2027, &greg_diff, 1582, 10, 5, 15);
+    printf("XXX oe: %i  diff %i\n",oe, greg_diff);
+    ck_assert_int_eq(greg_diff, 14); //XXX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    valid=doy2date(oe, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 3); //XXX should be 2 according to https://www.christianity.com/wiki/holidays/orthodox-easter-origin-and-date.html
+    ck_assert_int_eq(month, 5);
+
+    oe=orthodox_easter(2028, &greg_diff, 1582, 10, 5, 15);
+    printf("XXX oe: %i  diff %i\n",oe, greg_diff);
+    ck_assert_int_eq(greg_diff, 14); //XXX should be 13 according to https://en.wikipedia.org/wiki/Gregorian_calendar
+    valid=doy2date(oe, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 18); //XXX should be 16 according to https://www.christianity.com/wiki/holidays/orthodox-easter-origin-and-date.html
+    ck_assert_int_eq(month, 4);
 
 }
 END_TEST
@@ -103,8 +135,13 @@ START_TEST(test_tishri_1)
 {
   int doy;
 
-  doy=tishri_1(2025);
-  printf("XXX tishri_1 2025 %i\n",doy);
+    doy=tishri_1(2025);
+    printf("XXX tishri_1 2025 doy: %i\n",doy);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 23);
+    ck_assert_int_eq(month, 9);
+
+    //XXX pobably some more tests are needed here
 }
 END_TEST
 

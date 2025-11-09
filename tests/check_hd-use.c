@@ -133,7 +133,8 @@ tishri_1 (const int year)
 */
 START_TEST(test_tishri_1)
 {
-  int doy;
+    int doy;
+    bool valid;
 
     doy=tishri_1(2025);
     printf("XXX tishri_1 2025 doy: %i\n",doy);
@@ -142,6 +143,57 @@ START_TEST(test_tishri_1)
     ck_assert_int_eq(month, 9);
 
     //XXX pobably some more tests are needed here
+}
+END_TEST
+
+START_TEST(test_muharram_1)
+{
+    int doy,doy2;
+    bool valid;
+
+    doy=muharram_1(2024, &doy2);
+    printf("XXX muharram_1 2024 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 9); //XXX according to https://www.calendardate.com/muharram_2025.htm this should be 9
+    ck_assert_int_eq(month, 7);
+
+    doy=muharram_1(2025, &doy2);
+    printf("XXX muharram_1 2025 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 27);
+    ck_assert_int_eq(month, 6);
+
+    doy=muharram_1(2026, &doy2);
+    printf("XXX muharram_1 2026 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 17);
+    ck_assert_int_eq(month, 6);
+
+    doy=muharram_1(2027, &doy2);
+    printf("XXX muharram_1 2027 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 6);
+    ck_assert_int_eq(month, 6);
+
+    doy=muharram_1(2028, &doy2);
+    printf("XXX muharram_1 2028 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 26); //XXX according to https://www.calendardate.com/muharram_2025.htm this should be 25
+    ck_assert_int_eq(month, 5);
+
+    doy=muharram_1(2029, &doy2);
+    printf("XXX muharram_1 2029 doy: %i   doy2: %i\n",doy,doy2);
+    ck_assert_int_eq(doy2, 0);
+    valid=doy2date(doy, 0, &day, &month); ck_assert(valid);
+    ck_assert_int_eq(day, 15); //XXX according to https://www.calendardate.com/muharram_2025.htm this should be 14
+    ck_assert_int_eq(month, 5);
+
+    //XXX find a year where doy2 is !=0
 }
 END_TEST
 
@@ -158,6 +210,7 @@ Suite *gcal_suite_hd_use(char *testname)
     tcase_add_test(tc_core, test_eval_holiday);
     tcase_add_test(tc_core, test_orthodox_easter);
     tcase_add_test(tc_core, test_tishri_1);
+    tcase_add_test(tc_core, test_muharram_1);
 
     suite_add_tcase(s, tc_core);
 

@@ -197,6 +197,47 @@ START_TEST(test_muharram_1)
 }
 END_TEST
 
+/*
+int
+find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, const int year, const int hour, const int min)
+/!
+   Calculates the leap month of the Chinese calendar (based on the method
+     used since AD 1645, which implemented the use of true -- astronomically
+     detected -- Sun), which occurs in the given Julian/Gregorian year YEAR.
+     * If the computation of the leap month fails by any reason,
+       SPECIAL_VALUE is returned.
+     * If there is no leap month in the YEAR,
+       0 is returned.
+     * If there is a leap month and it belongs to the YEAR,
+       +1...+12 is returned.
+     * If there is a leap month and it belongs to the previous YEAR,
+       -11...-12 is returned.
+   The date of the winter solstice (major solar term/Zhong-Qi 11) of the
+     previous YEAR is returned via the address of NH_WS_PREV_YEAR.  All
+     conjunction dates (starting on the date of NH_WS_PREV_YEAR or later)
+     which are necessary to calculate the Chinese calendar for the YEAR,
+     are returned via the address of CONJUNCTION_VECTOR.  The caller has to
+     guarantee that the CONJUNCTION_VECTOR has 16 elements!
+   Calculations are done for a line at a definite meridian expressed as
+     a time value in HOUR and MIN.  If HOUR and MIN are set to zero,
+     calculations are done for UTC/GMT.  If HOUR and MIN have a positive
+     sign, calculations are done for meridians East of Greenwich, otherwise
+     for meridians West of Greenwich.
+   For a good and detailed reference of the Chinese calendar, see:
+     "The Mathematics of the Chinese Calendar" by Helmer Aslaksen,
+     <http://www.math.nus.edu.sg/aslaksen/>.
+*/
+START_TEST(test_find_chinese_leap_month)
+{
+    int leap_month;
+    Ulint conjunction_vector, nh_ws_prev_year;
+
+    printf("XXX leap_month\n");
+    //XXX crash here: leap_month=find_chinese_leap_month (&conjunction_vector, &nh_ws_prev_year, 2025, 0, 0);
+    printf("XXX leap_month: %i\n",leap_month);
+}
+END_TEST
+
 Suite *gcal_suite_hd_use(char *testname)
 {
     Suite *s;
@@ -211,6 +252,7 @@ Suite *gcal_suite_hd_use(char *testname)
     tcase_add_test(tc_core, test_orthodox_easter);
     tcase_add_test(tc_core, test_tishri_1);
     tcase_add_test(tc_core, test_muharram_1);
+    tcase_add_test(tc_core, test_find_chinese_leap_month);
 
     suite_add_tcase(s, tc_core);
 

@@ -230,10 +230,10 @@ find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, cons
 START_TEST(test_find_chinese_leap_month)
 {
     int leap_month;
-    Ulint conjunction_vector, nh_ws_prev_year;
+    Ulint conjunction_vector, nh_ws_prev_year=0;
 
     printf("XXX leap_month\n");
-    //XXX crash here: leap_month=find_chinese_leap_month (&conjunction_vector, &nh_ws_prev_year, 2025, 0, 0);
+    //XXX stil crashes: leap_month=find_chinese_leap_month(&conjunction_vector, &nh_ws_prev_year, 2025, 0, 0);
     printf("XXX leap_month: %i\n",leap_month);
 }
 END_TEST

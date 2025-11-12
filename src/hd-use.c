@@ -368,9 +368,19 @@ muharram_1 (const int year, int *doy)
 }
 
 
-
+/*!
+   This function is deprecated now!
+   There is no check possible whether conjunction_vector is large enough to really
+   contain 16 Elements.
+*/
 int
 find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, const int year, const int hour, const int min)
+{
+  return SPECIAL_VALUE;
+}
+
+int
+find_chinese_leap_month_with_length (Ulint *conjunction_vector, const int cv_len,  Ulint *nh_ws_prev_year, const int year, const int hour, const int min)
 /*!
    Calculates the leap month of the Chinese calendar (based on the method
      used since AD 1645, which implemented the use of true -- astronomically
@@ -389,6 +399,7 @@ find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, cons
      which are necessary to calculate the Chinese calendar for the YEAR,
      are returned via the address of CONJUNCTION_VECTOR.  The caller has to
      guarantee that the CONJUNCTION_VECTOR has 16 elements!
+     cv_len shall be the length of the allocated conjunction_vector
    Calculations are done for a line at a definite meridian expressed as
      a time value in HOUR and MIN.  If HOUR and MIN are set to zero,
      calculations are done for UTC/GMT.  If HOUR and MIN have a positive
@@ -420,7 +431,13 @@ find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, cons
   auto Bool double_zq_found = FALSE;
   auto Bool second_double_zq_found = FALSE;
 
-
+  /*
+    at the moment this should be enough
+    later this needs to be compared with j in LOOP
+   */
+  if (cv_len != MAX_MONTH+4) {
+     return SPECIAL_VALUE;
+  }
   /*
      Get the latest date that's necessary to check,
      which is the major solar term/Zhong-Qi 1 of the next YEAR.
@@ -486,13 +503,13 @@ find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, cons
     cj =
       (Ulint) moonphase (MPHASE_NEW, FALSE, NULL, &the_conjunction, &d, &m,
 			 &y, hour, min);
-    if (j)
-      {
-	if (*conjunction_vector != cj)
+    if (j) {
+	if (*conjunction_vector != cj) {
 	  *(conjunction_vector + j) = cj;
-	else
+        } else {
 	  j--;
-      }
+        }
+    }
     /*
        Check for leap month.
      */

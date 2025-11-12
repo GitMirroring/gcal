@@ -1752,7 +1752,7 @@ chinese_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elems
          And now the lunar based holidays, so check for a possible leap month.
        */
       lm =
-	find_chinese_leap_month (ptr_conjunction_vector, &zq, y, hour, min);
+	find_chinese_leap_month_with_length (ptr_conjunction_vector, MONTH_MAX+4, &zq, y, hour, min);
       if (lm == SPECIAL_VALUE)
 	{
 	  /*
@@ -2262,7 +2262,7 @@ chinese_mth (Bool *init_data, const Bool detected, const int year, int *hd_elems
 	     Manage the lunar based months, so check for a possible leap month.
 	   */
 	  lm =
-	    find_chinese_leap_month (ptr_conjunction_vector, &zq, y, hour,
+	    find_chinese_leap_month_with_length (ptr_conjunction_vector, MONTH_MAX+4, &zq, y, hour,
 				     min);
 	  if (lm == SPECIAL_VALUE)
 	    {
@@ -3720,7 +3720,7 @@ japanese_hdy (Bool *init_data, const Bool detected, const int year, int *hd_elem
          And now the lunar based holidays, so check for a possible leap month.
        */
       lm =
-	find_chinese_leap_month (ptr_conjunction_vector, &zq, y, hour, min);
+	find_chinese_leap_month_with_length (ptr_conjunction_vector, MONTH_MAX+4, &zq, y, hour, min);
       if (lm == SPECIAL_VALUE)
 	{
 	  /*

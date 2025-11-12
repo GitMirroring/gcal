@@ -57,6 +57,12 @@ extern int
 				 const int year,
 				 const int hour, const int min));
 extern int
+  find_chinese_leap_month_with_length __P_ ((Ulint * conjunction_vector,
+                                             const int cv_len,
+				             Ulint * nh_ws_prev_year,
+				             const int year,
+				             const int hour, const int min));
+extern int
   decode_date_format __P_ ((char *format_txt,
 			    char **result_txt,
 			    int day,

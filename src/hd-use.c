@@ -435,7 +435,7 @@ find_chinese_leap_month_with_length (Ulint *conjunction_vector, const int cv_len
     at the moment this should be enough
     later this needs to be compared with j in LOOP
    */
-  if (cv_len != MAX_MONTH+4) {
+  if (cv_len != 16) {
      return SPECIAL_VALUE;
   }
   /*

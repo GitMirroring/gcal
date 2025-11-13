@@ -230,11 +230,38 @@ find_chinese_leap_month (Ulint *conjunction_vector, Ulint *nh_ws_prev_year, cons
 START_TEST(test_find_chinese_leap_month)
 {
     int leap_month;
-    Ulint conjunction_vector, nh_ws_prev_year=0;
+    Ulint nh_ws_prev_year=0;
+    Ulint conjunction_vector[MONTH_MAX + 4];
+    Ulint *ptr_conjunction_vector = conjunction_vector;
 
-    printf("XXX leap_month\n");
-    //XXX stil crashes: leap_month=find_chinese_leap_month(&conjunction_vector, &nh_ws_prev_year, 2025, 0, 0);
-    printf("XXX leap_month: %i\n",leap_month);
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2025, 0, 0);
+    ck_assert_int_eq(leap_month, 7); //XXX according to https://www.chinahighlights.com/travelguide/guidebook/chinese-calendar.htm this should be 6
+
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2028, 0, 0);
+    ck_assert_int_eq(leap_month, 5);
+
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2031, 0, 0);
+    ck_assert_int_eq(leap_month, 3);
+
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2033, 0, 0);
+    ck_assert_int_eq(leap_month, 8); //XXX according to https://www.chinahighlights.com/travelguide/guidebook/chinese-calendar.htm this should be 11
+
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2036, 0, 0);
+    ck_assert_int_eq(leap_month, 6);
+
+    //XXX maybe add some checks from https://www.chinesefortunecalendar.com/clc/LeapMonth.htm
+    //XXX there are different leap month in different time zones!?
+
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2026, 0, 0);
+    ck_assert_int_eq(leap_month, 0);
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2027, 0, 0);
+    ck_assert_int_eq(leap_month, 0);
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2029, 0, 0);
+    ck_assert_int_eq(leap_month, 0);
+    leap_month=find_chinese_leap_month_with_length(ptr_conjunction_vector, MONTH_MAX+4, &nh_ws_prev_year, 2030, 0, 0);
+    ck_assert_int_eq(leap_month, 0);
+
+    //XXX maybe add more tests for special values
 }
 END_TEST
 

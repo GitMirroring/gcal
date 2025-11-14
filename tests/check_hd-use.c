@@ -265,6 +265,95 @@ START_TEST(test_find_chinese_leap_month)
 }
 END_TEST
 
+/*
+int
+decode_date_format (char *format_txt, char **result_txt, int day, int month, const int year, const int doy,
+                    const Bool hls1_set, const Bool hls2_set, const Bool fixed_length_names)
+/!
+   Concatenates the elements of a date (inclusive highlighting) in formatted
+     manner to `&result_txt' according to the order of format specifiers, which
+     are given in the `format_txt.  The core area of the string vector
+     `&result_txt' must be allocated and "filled" properly by the caller.
+     "Filled" either means `&result_txt' contains a ZERO terminated text at
+     function startup or a previous "*result_txt = '\0';" statement was
+     performed by the caller before entering this function.
+     If `day' is not zero but `doy' is zero:
+       Use day of month and all other GROUPS.
+     If `day' is zero but `doy' is not zero:
+       Use day of year, insert a "day" text, use all other GROUPS except the month GROUP.
+     If `day' is not zero and `doy' is not zero:
+       Use both day of month and day of year and all other GROUPS.
+     If `day' is zero and `doy' is zero:
+       This results to an unmanaged internal error, because this
+       case is unchecked due to faster internal processing speed.
+     If `hls1_set' is TRUE and `hls2_set' is FALSE:
+       Use `ehls1' highlighting sequences/marking characters.
+     If `hls1_set' is FALSE and `hls2_set' is TRUE:
+       Use `ehls2' highlighting sequences/marking characters.
+     If `hls1_set' is FALSE and `hls2_set' is FALSE:
+       Use no highlighting sequences/marking characters.
+     If `hls1_set' is TRUE and `hls2_set' is TRUE:
+       This case is unchecked due to faster internal processing speed
+       but doesn't result to an unmanaged internal error, because
+       the `ehls1' sequence is used by default.
+     If `fixed_length_names' is set to TRUE, the texts returned by the
+       `day_name()' and `month_name()' functions are set to a fixed length
+       of `len_???name_max' characters (means trailing spaces), otherwise
+       these texts are used as is.
+     The `format_txt' must have exactly ONE day and year format specifier,
+       exactly ONE format specifier from the month GROUP, BOTH format
+       specifiers from the highlighting GROUP (%1 must be given before %2),
+       and may have ONE weekday name format specifier.
+     All format specifiers -- except the ones from the highlighting group --
+       may be lead by an optional format instruction, which template is
+       `[ ALIGNMENT [SIGN] [LZERO] WIDTH [STYLE] [SUFFIX] FORMAT ]', (see the
+       `decode_format()' function for a more brief description of the
+       format instruction), which will be evaluated and respected in case
+       it is stated correctly:
+     Day:
+       %[FORMAT]D
+     Year:
+       %[FORMAT]Y
+     Weekday name:
+       %[FORMAT]K
+     Month GROUP:
+       %[FORMAT]M
+       %[FORMAT]U
+     Highlighting GROUP:
+       %1 - Starting highlighting sequence
+       %2 - Ending highlighting sequence
+     Other (no group):
+       _  - Blank (' ') character
+       \_ - Underscore ('_') character
+       \% - Percent ('%') character
+       \\ - Backslash ('\') character
+   The function return value is the text length of the "real" highlighting
+   sequence pair if "real" highlighting must be performed, otherwise zero.
+*/
+START_TEST(test_decode_date_format)
+{
+     char *format_txt;
+     int result;
+     char **result_txt;
+     int i, number_of_lines=8;
+
+     result_txt = malloc(sizeof(char*)*number_of_lines);
+     for(i=0;i<number_of_lines; i++) {
+        result_txt[i] = malloc(sizeof(char)*64);  
+        result_txt[i][0] = '\0';
+     }
+
+     format_txt="%D";
+     result=decode_date_format(format_txt, result_txt, 31, 12, 2025, 365, false, false, false);
+     ck_assert_int_eq(result, 0);
+     ck_assert_str_eq(result_txt[0], "31(365)");
+
+     //XXX this is just a template how things might work
+     //    lots of things for different formats need to be added
+     //    probably coverage helps
+}
+END_TEST
+
 Suite *gcal_suite_hd_use(char *testname)
 {
     Suite *s;
@@ -280,6 +369,7 @@ Suite *gcal_suite_hd_use(char *testname)
     tcase_add_test(tc_core, test_tishri_1);
     tcase_add_test(tc_core, test_muharram_1);
     tcase_add_test(tc_core, test_find_chinese_leap_month);
+    tcase_add_test(tc_core, test_decode_date_format);
 
     suite_add_tcase(s, tc_core);
 

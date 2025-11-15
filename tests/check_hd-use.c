@@ -354,6 +354,54 @@ START_TEST(test_decode_date_format)
 }
 END_TEST
 
+/*
+int
+decode_format (char *format_txt, int pos, Bool *is_cformat, Bool *is_lformat, Bool *is_sign,
+               Bool *is_lzero, Bool *is_suffix, Bool *is_fformat, int *fstyle, int *fwidth)
+/!
+   Checks for an optional format instruction which can either be used
+     in case a TVAR or a `%...' special text is referenced.  The template
+     of such a format is:  [ ALIGNMENT [SIGN] [LZERO] WIDTH [STYLE] [SUFFIX] FORMAT ],
+     e.g., $[<|:|>[+][0]N[u|U|l|L|w|W][&]*|#]TVAR, resp., %[<|:|>[+][0]N[u|U|l|L|w|W][&]*|#]?,
+     like `$:+010u&#a' or `%>20l&*Y'.
+     ALIGNMENT: '<' == adjusts field contents at the left margin using width WIDTH.
+                ':' == adjusts field contents in centered manner using width WIDTH.
+                '>' == ajdusts field contents at the right margin using width WIDTH.
+     SIGN     : '+' == leads a numerical value always by its sign.
+     LZERO    : '0' == fills a numerical value up to WIDTH leading zeroes
+                       inclusivly a possibly leading explicit SIGN or
+                       an implicitly leading negative sign.
+     WIDTH    : FWIDTH_MIN...FWIDTH_MAX == is the width of the field.
+     STYLE    : 'u' == converts field contents to upper-case letters.
+                'l' == converts field contents to lower-case letters.
+                'w' == converts field contents to capitalized words.
+     SUFFIX   : '&' == provides a numerical value with an ordinal number suffix.
+     FORMAT   : '*' == does not cut the field contents after
+                       position WIDTH if it is longer than WIDTH.
+                '#' == cuts the field contents after
+                       position WIDTH if it is longer than WIDTH.
+   On success, this function returns the position `pos' at which the format
+     instruction ends in the `format_txt' and the width of the field in `&fwidth'.
+     `&is_cformat', `&is_lformat', `&is_sign', `&is_lzero', `&is_suffix' and
+     `&is_fformat' are set to TRUE if the according directive characters are
+     found in proper order in `format_txt', otherwise they are set to FALSE;
+     and `&fstyle' is set to the according style value, otherwise to FSTYLE_NONE.
+   `&fwidth' is set to SPECIAL_VALUE and the unchanged position `pos' is
+     returned in case an error occurs during the scan of the format instruction,
+     which either means that it was not defined, or it contained a wrong
+     or misplaced or misspelled element.
+*/
+START_TEST(test_decode_format)
+{
+     char *format_txt;
+     int result, fstyle, fwidth;
+
+     format_txt="%>20l&*Y";
+     //XXX result=decode_format(format_txt, 0, true, false, false, false, false, false, &fstyle, &fwidth);
+     printf("XXX result: %i\n",result);
+}
+END_TEST
+
 Suite *gcal_suite_hd_use(char *testname)
 {
     Suite *s;
@@ -370,6 +418,7 @@ Suite *gcal_suite_hd_use(char *testname)
     tcase_add_test(tc_core, test_muharram_1);
     tcase_add_test(tc_core, test_find_chinese_leap_month);
     tcase_add_test(tc_core, test_decode_date_format);
+    tcase_add_test(tc_core, test_decode_format);
 
     suite_add_tcase(s, tc_core);
 

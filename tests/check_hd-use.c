@@ -395,10 +395,11 @@ START_TEST(test_decode_format)
 {
      char *format_txt;
      int result, fstyle, fwidth;
+     Bool is_cformat, is_lformat, is_sign, is_lzero, is_suffix, is_fformat;
 
      format_txt="%>20l&*Y";
-     //XXX result=decode_format(format_txt, 0, true, false, false, false, false, false, &fstyle, &fwidth);
-     printf("XXX result: %i\n",result);
+     result=decode_format(format_txt, 0, &is_cformat, &is_lformat, &is_sign, &is_lzero, &is_suffix, &is_fformat, &fstyle, &fwidth);
+     printf("XXX result: %i %i %i\n",result,fstyle,fwidth);
 }
 END_TEST
 

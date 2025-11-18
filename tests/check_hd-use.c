@@ -398,7 +398,20 @@ START_TEST(test_decode_format)
      Bool is_cformat, is_lformat, is_sign, is_lzero, is_suffix, is_fformat;
 
      format_txt="%>20l&*Y";
+     /* pos = 0 and 7 should give an error */
      result=decode_format(format_txt, 0, &is_cformat, &is_lformat, &is_sign, &is_lzero, &is_suffix, &is_fformat, &fstyle, &fwidth);
+     ck_assert_int_eq(fstyle, -1);
+     ck_assert_int_eq(fwidth, -1);
+     ck_assert_int_eq(result, 0);
+
+     result=decode_format(format_txt, 7, &is_cformat, &is_lformat, &is_sign, &is_lzero, &is_suffix, &is_fformat, &fstyle, &fwidth);
+     ck_assert_int_eq(fstyle, -1);
+     ck_assert_int_eq(fwidth, -1);
+     ck_assert_int_eq(result, 7);
+
+     result=decode_format(format_txt, 1, &is_cformat, &is_lformat, &is_sign, &is_lzero, &is_suffix, &is_fformat, &fstyle, &fwidth);
+     ck_assert_int_eq(result, 7);
+     ck_assert(!is_cformat); ck_assert(!is_lformat); ck_assert(!is_sign); ck_assert(!is_lzero); ck_assert(is_suffix); ck_assert(!is_fformat);
      printf("XXX result: %i %i %i\n",result,fstyle,fwidth);
 }
 END_TEST

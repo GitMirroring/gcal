@@ -9,6 +9,7 @@
 #include "../src/globals.h"
 #include "../src/hd-astro.h"
 #include "../src/hd-defs.h"
+#include "../src/rc-defs.h"
 #include "../src/hd-data.h"
 #include "../src/tty.h"
 #include "../src/utils.h"
@@ -419,6 +420,70 @@ START_TEST(test_decode_format)
 }
 END_TEST
 
+/*
+void
+print_all_holidays (Bool init_data, const Bool detected)
+/!
+   Generate and display all holidays (global `hd_table') in sorted manner.
+*/
+START_TEST(test_print_all_holidays)
+{
+  //XXX print_all_holidays() prints to stdout
+  //    maybe introduce a new FD parameter to make testing easier?
+}
+END_TEST
+
+int length_of_hd_table()
+{
+    int i = 0;
+    while ((hd_table[i] != (char *) NULL) && (i < HD_ELEMS_MAX)) i++;
+    return i;
+}
+
+/*
+void
+holiday (Bool init_data, const Bool detected, const char *holiday_name, const char *country_code, const char *holiday_prefix,
+         int day, int month, const int year, int *hd_elems, const int fday, const int count)
+/!
+   Generates a single holiday date text in formatted manner and stores the
+     result into global `hd_table[]'.
+     ONLY if `holiday_prefix' is a '-' (DIS_HLS_PREF) or '*' (DIS_HLS_PREF2)
+     character, this holiday is not stored into global `hd_ldays' and
+     will not be highlighted in the generated list, but is stored into
+     global `hd_mdays'!
+     If `holiday_prefix' is a '#' character, this marks the case the
+     holiday is only valid in some parts of the country, but is stored
+     into global `hd_ldays' and will be highlighted in the generated list.
+     If `holiday_prefix' is a '\0' or any other character, the same rules
+     concerning to '#' character applies.
+     If `month' is set to zero, it's assumed that the delivered date is a
+     date relative to the Easter Sunday's date (`day' contains the according
+     day_of_year number), otherwise the date is an absolute date of the `year'.
+*/
+START_TEST(test_holiday)
+{
+    //XXX test handling of hd_table[] here
+
+    int tableLength, hd_elems=0;
+
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+
+    holiday(true, true, "Blubber", "DE", "pre", 23, 10, 2025, &hd_elems, 0, 0);
+    printf("XXX hd_elems %i %i\n",hd_elems, HD_ELEMS_MAX); 
+    printf("XXX 0 %s\n", hd_table[0]);
+    printf("XXX 1 %s\n", hd_table[1]);
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+
+    holiday(false, true, "Blubber2", "DE", "pre", 10, 10, 2025, &hd_elems, 0, 0);
+    printf("XXX hd_elems %i %i\n",hd_elems, HD_ELEMS_MAX); 
+    printf("XXX 0 %s\n", hd_table[0]);
+    printf("XXX 1 %s\n", hd_table[1]);
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+
+    //XXX ck_assert_int_le(hd_elems, HD_ELEMS_MAX);
+}
+END_TEST
+
 Suite *gcal_suite_hd_use(char *testname)
 {
     Suite *s;
@@ -436,6 +501,8 @@ Suite *gcal_suite_hd_use(char *testname)
     tcase_add_test(tc_core, test_find_chinese_leap_month);
     tcase_add_test(tc_core, test_decode_date_format);
     tcase_add_test(tc_core, test_decode_format);
+    tcase_add_test(tc_core, test_print_all_holidays);
+    tcase_add_test(tc_core, test_holiday);
 
     suite_add_tcase(s, tc_core);
 

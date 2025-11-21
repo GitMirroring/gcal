@@ -440,6 +440,13 @@ int length_of_hd_table()
     return i;
 }
 
+int length_of_cc_holidays_table()
+{
+    int i = 0;
+    while (cc_holidays[i].cc_id != (char *) NULL) i++;
+    return i;
+}
+
 /*
 void
 holiday (Bool init_data, const Bool detected, const char *holiday_name, const char *country_code, const char *holiday_prefix,
@@ -462,9 +469,11 @@ holiday (Bool init_data, const Bool detected, const char *holiday_name, const ch
 */
 START_TEST(test_holiday)
 {
-    //XXX test handling of hd_table[] here
+    //XXX test handling of hd_table[] and cc_holidays[] here
 
     int tableLength, hd_elems=0;
+    int cc_holidays_length = length_of_cc_holidays_table();
+    ck_assert_int_ne(cc_holidays_length, 0); // cc_holidays_length should be around 354
 
     tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
 

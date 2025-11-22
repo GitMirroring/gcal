@@ -476,6 +476,19 @@ START_TEST(test_holiday)
     ck_assert_int_ne(cc_holidays_length, 0); // cc_holidays_length should be around 354
 
     tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+    ptr_cc_id = "AD";
+    holiday (false, false, _(hd_text[HD_ALL_SAINTS_DAY].ht_text),
+           ptr_cc_id, "+", DAY_MIN, 11, 2025, &hd_elems, 0, 0);
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+    holiday (true, false, _(hd_text[HD_ALL_SAINTS_DAY].ht_text),
+           ptr_cc_id, "+", DAY_MIN, 11, 2025, &hd_elems, 0, 0);
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+    holiday (true, true, _(hd_text[HD_ALL_SAINTS_DAY].ht_text),
+           ptr_cc_id, "+", DAY_MIN, 11, 2025, &hd_elems, 0, 0);
+    tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
+    //XXX the tests with tableLength being 0 should all fail!?
+
+
 
     holiday(true, true, "Blubber", "DE", "pre", 23, 10, 2025, &hd_elems, 0, 0);
     printf("XXX hd_elems %i %i\n",hd_elems, HD_ELEMS_MAX); 

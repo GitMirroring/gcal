@@ -24,15 +24,26 @@ int length_of_cc_holidays_table();
 
 START_TEST(test_hdy)
 {
-    int tableLength, hd_elems=0;
+    int tableLength, hd_elems=0, easter;
     Bool init_data=true;
+    int fday, i, j, count=0;
+
     int cc_holidays_length = length_of_cc_holidays_table();
     ck_assert_int_ne(cc_holidays_length, 0); // cc_holidays_length should be around 354
 
     tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
 
-    printf("XXX au_hdy: init_data: %i  hd_elemes: %i\n",init_data, hd_elems);
-    au_hdy (&init_data, true, 0, 2025, &hd_elems, 0, 0);
+    fiscal_month=1;
+    easter = knuth_easter_formula (year);
+    if (fiscal_month > MONTH_MIN)
+        {
+          fday = day_of_year (DAY_MIN, fiscal_month, year);
+          j = is_leap_year;
+          i = year;
+        }
+
+    printf("XXX before au_hdy: init_data: %i  hd_elemes: %i\n",init_data, hd_elems);
+    au_hdy (&init_data, true, easter, 2025, &hd_elems, fday, count);
     printf("XXX au_hdy: init_data: %i  hd_elemes: %i\n",init_data, hd_elems);
 
 }

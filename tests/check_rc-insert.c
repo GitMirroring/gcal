@@ -6,6 +6,7 @@
 #include "../src/common.h"
 #include "../src/rc-defs.h"
 #include "../src/globals.h"
+#include "../src/rc-use.h"
 #include "../src/hd-use.h"
 #include "../src/rc-utils.h"
 #include "../src/rc-insert.h"
@@ -14,7 +15,10 @@ int length_of_rc_elems_table()
 {
     int i = 0;
     if (rc_elems_table==NULL) return 0;
-    while (rc_elems_table[i] != (char *) NULL) i++;
+    while (rc_elems_table[i] != (char *) NULL) {
+       i++;
+       printf("rc_elems_table: %i %s\n",i,"aaaa"); //rc_elems_table[i]);
+    }
     return i;
 }
 
@@ -30,15 +34,19 @@ insert_line_into_table (char *line_buffer, const char *filename, const long line
 START_TEST(test_insert_line_into_table)
 {
     int lengthOfTable;
-    int rc_elems;
+    int rc_elems=0;
     char *line_buffer;
     const char *filename="IamHere";
 
     lengthOfTable=length_of_rc_elems_table();
     ck_assert_int_eq(lengthOfTable, 0);
 
-    line_buffer="-c";
+    rc_use(); /* do some initialization */
+
+    line_buffer="99";
     insert_line_into_table (line_buffer, _("`Internal'"), (long) SPECIAL_VALUE, &rc_elems, 1, 1);
+    lengthOfTable=length_of_rc_elems_table();
+//    ck_assert_int_eq(lengthOfTable, rc_elems);
     printf("XXX rc_elems: %i\n",rc_elems);
 
 }

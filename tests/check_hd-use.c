@@ -475,6 +475,13 @@ START_TEST(test_holiday)
     int cc_holidays_length = length_of_cc_holidays_table();
     ck_assert_int_ne(cc_holidays_length, 0); // cc_holidays_length should be around 354
 
+    year=2025; //XXX there really is a global variable containing the current year !?
+               //XXX there are lots of functions with parameter year
+               //XXX who did write such software??
+    fiscal_month=11;
+    is_2month_mode=true;
+    printf("XXX fiscal month: %i <-> MONTH_MIN %i\n",fiscal_month, MONTH_MIN);
+
     tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
     ptr_cc_id = "AD";
     holiday (false, false, _(hd_text[HD_ALL_SAINTS_DAY].ht_text),
@@ -488,7 +495,7 @@ START_TEST(test_holiday)
     tableLength=length_of_hd_table(); ck_assert_int_eq(tableLength, 0);
     //XXX the tests with tableLength being 0 should all fail!?
 
-
+    print_all_holidays(false, false);
 
     holiday(true, true, "Blubber", "DE", "pre", 23, 10, 2025, &hd_elems, 0, 0);
     printf("XXX hd_elems %i %i\n",hd_elems, HD_ELEMS_MAX); 

@@ -1,0 +1,52 @@
+name: Testing gcal on the mirror
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: docker
+
+    container:
+       image: debian:trixie
+
+    steps:
+    - name: Install Packages
+      run: |
+        apt -y update
+        apt -y install build-essential nodejs git autoconf automake autopoint gettext-base rsync
+        apt -y install check libncurses-dev texinfo pkg-config
+
+    - name: prepare environment 
+      run: |
+        mkdir repository
+        mkdir gnulib
+
+    - name: Check out repository v6
+      uses: actions/checkout@v6
+      with:
+          path: repository
+
+    - name: Check out gnulib-for-gcal
+      run: |
+        cd gnulib
+        git clone https://codeberg.org/alteholz/gnulib-for-gcal.git
+
+    - name: bootstrap
+      run: |
+        cd repository
+        pwd
+        ./bootstrap --no-git --gnulib-srcdir=../gnulib/gnulib-for-gcal
+
+    - name: confiugre and make
+      run: |
+        cd repository
+        ./configure
+        make
+
+    - name: run tests
+      run: |
+        cd repository
+        make check

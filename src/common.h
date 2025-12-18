@@ -53,9 +53,6 @@
 #  endif
 #  include <signal.h>
 # endif
-# if defined(AMIGA) && !defined(__GNUC__)
-extern long atol __P_ ((const char *string));
-# endif
 # ifdef __50SERIES
 extern char *getenv __P_ ((const char *env_var));
 #  if HAVE_SIGNAL && defined(SIGTERM)

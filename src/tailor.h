@@ -791,7 +791,6 @@ static char *_tmpfn ()
 	   /*! Marking character 2 end (holiday). */
 #     define BUF_HLS2E   ":"
 #    endif /* !IBM PC character set. */
-#   endif /* Atari character set. */
 #  endif /* NeXTstep character set. */
 # else /* !USE_EASC */
 #  define AE          "\"a"

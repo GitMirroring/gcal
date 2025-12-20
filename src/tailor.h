@@ -741,31 +741,6 @@ static char *_tmpfn ()
 	   /* Marking character 2 end (holiday). */
 #   define BUF_HLS2E   ":"
 #  else
-#   if defined(ATARI)
-	   /* Atari character set. */
-#    define AE          "\204"
-#    define OE          "\224"
-#    define UE          "\201"
-#    define SZ          "\377"
-#    define AAE         "\216"
-#    define OOE         "\231"
-#    define UUE         "\232"
-#    define ARA         "\240"
-#    define ERA_M       "\202"
-#    define ELA         "\212"
-#    define ADG         "\203"
-#    define EDG         "\210"
-#    define ODG         "\223"
-#    define CD          "\207"
-	   /* Marking character 1 start (current day). */
-#    define BUF_HLS1S   "<"
-	   /* Marking character 1 end (current day). */
-#    define BUF_HLS1E   ">"
-	   /* Marking character 2 start (holiday). */
-#    define BUF_HLS2S   ":"
-	   /* Marking character 2 end (holiday). */
-#    define BUF_HLS2E   ":"
-#   else
 #    if defined(MSDOS) || defined(OS2) || defined(WIN32) || defined(SCO) || defined(COHERENT)
 	   /* IBM PC character set. */
 #     define AE          "\204"

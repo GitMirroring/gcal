@@ -3,7 +3,7 @@ name: Testing gcal on the mirror
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   test:
